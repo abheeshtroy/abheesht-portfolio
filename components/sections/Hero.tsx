@@ -6,17 +6,27 @@ export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       <div
-        className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full pointer-events-none"
+        className="fixed pointer-events-none"
         style={{
-          background: "radial-gradient(circle, rgba(99,102,241,0.15) 0%, transparent 70%)",
-          filter: "blur(40px)",
+          width: "800px",
+          height: "800px",
+          top: "-400px",
+          left: "-300px",
+          background: "radial-gradient(circle, rgba(99,102,241,0.25) 0%, transparent 70%)",
+          filter: "blur(140px)",
+          zIndex: 0,
         }}
       />
       <div
-        className="absolute bottom-1/3 right-1/4 w-80 h-80 rounded-full pointer-events-none"
+        className="fixed pointer-events-none"
         style={{
-          background: "radial-gradient(circle, rgba(34,211,238,0.1) 0%, transparent 70%)",
-          filter: "blur(40px)",
+          width: "700px",
+          height: "700px",
+          bottom: "-350px",
+          right: "-250px",
+          background: "radial-gradient(circle, rgba(34,211,238,0.21) 0%, transparent 70%)",
+          filter: "blur(130px)",
+          zIndex: 0,
         }}
       />
 
@@ -78,8 +88,8 @@ export default function Hero() {
           transition={{ duration: 0.6, delay: 0.55 }}
           className="flex items-center gap-4"
         >
-          
-            <a href="#projects"
+          <a
+            href="#projects"
             className="px-6 py-3 rounded-lg text-sm font-mono tracking-wide text-white transition-all duration-200 hover:opacity-90"
             style={{
               background: "linear-gradient(135deg, #6366f1, #4f46e5)",
