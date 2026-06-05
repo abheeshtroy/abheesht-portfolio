@@ -17,7 +17,7 @@ export default function About() {
           height: "500px",
           top: "-100px",
           right: "-150px",
-          background: "radial-gradient(circle, rgba(34,211,238,0.07) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(34,211,238,0.18) 0%, transparent 70%)",
           filter: "blur(100px)",
           zIndex: 0,
         }}

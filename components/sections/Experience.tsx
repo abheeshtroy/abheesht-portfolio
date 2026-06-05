@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -135,24 +135,24 @@ const SamsungHeaderSVG: React.FC<{ id: string }> = ({ id }) => (
     <defs>
       <linearGradient id={`${id}-sh-l`} x1="0" y1="0" x2="1" y2="0">
         <stop offset="0%" stopColor="#08091c" stopOpacity="0.98" />
-        <stop offset="32%" stopColor="#08091c" stopOpacity="0" />
+        <stop offset="48%" stopColor="#08091c" stopOpacity="0" />
       </linearGradient>
       <linearGradient id={`${id}-sh-b`} x1="0" y1="0" x2="0" y2="1">
         <stop offset="55%" stopColor="#08091c" stopOpacity="0" />
         <stop offset="100%" stopColor="#08091c" stopOpacity="1" />
       </linearGradient>
     </defs>
-    <rect x="285" y="4" width="348" height="74" rx="2" stroke="#1428A0" strokeWidth="0.8" strokeOpacity="0.4" />
-    {[293, 334, 375, 416, 457].map((x, i) => (
-      <rect key={i} x={x} y="11" width={i === 4 ? 168 : 37} height="46" rx="1"
+    <rect x="340" y="4" width="293" height="74" rx="2" stroke="#1428A0" strokeWidth="0.8" strokeOpacity="0.4" />
+    {[348, 389, 430, 471, 512].map((x, i) => (
+      <rect key={i} x={x} y="11" width={i === 4 ? 113 : 37} height="46" rx="1"
         fill="#1428A0" fillOpacity="0.2" stroke="#1428A0" strokeWidth="0.55" strokeOpacity="0.45" />
     ))}
-    <rect x="293" y="61" width="102" height="13" rx="1" fill="#1428A0" fillOpacity="0.28" stroke="#1428A0" strokeWidth="0.5" strokeOpacity="0.5" />
-    {[399, 428, 457].map((x, i) => (
+    <rect x="348" y="61" width="102" height="13" rx="1" fill="#1428A0" fillOpacity="0.28" stroke="#1428A0" strokeWidth="0.5" strokeOpacity="0.5" />
+    {[454, 483, 512].map((x, i) => (
       <rect key={i} x={x} y="61" width="25" height="13"
         fill="#1428A0" fillOpacity="0.14" stroke="#1428A0" strokeWidth="0.4" strokeOpacity="0.35" />
     ))}
-    <rect x="486" y="61" width="139" height="13" fill="#1428A0" fillOpacity="0.14" stroke="#1428A0" strokeWidth="0.4" strokeOpacity="0.35" />
+    <rect x="541" y="61" width="84" height="13" fill="#1428A0" fillOpacity="0.14" stroke="#1428A0" strokeWidth="0.4" strokeOpacity="0.35" />
     <rect x="0" y="0" width="640" height="82" fill={`url(#${id}-sh-l)`} />
     <rect x="0" y="0" width="640" height="82" fill={`url(#${id}-sh-b)`} />
   </svg>
@@ -259,31 +259,31 @@ const DeskHeaderSVG: React.FC<{ id: string }> = ({ id }) => (
     <defs>
       <linearGradient id={`${id}-dh-l`} x1="0" y1="0" x2="1" y2="0">
         <stop offset="0%" stopColor="#04121a" stopOpacity="0.98" />
-        <stop offset="30%" stopColor="#04121a" stopOpacity="0" />
+        <stop offset="48%" stopColor="#04121a" stopOpacity="0" />
       </linearGradient>
       <linearGradient id={`${id}-dh-b`} x1="0" y1="0" x2="0" y2="1">
         <stop offset="50%" stopColor="#04121a" stopOpacity="0" />
         <stop offset="100%" stopColor="#04121a" stopOpacity="1" />
       </linearGradient>
     </defs>
-    <rect x="260" y="5" width="372" height="72" rx="1" stroke="#14b8a6" strokeWidth="0.7" strokeOpacity="0.3" />
-    <line x1="450" y1="5" x2="450" y2="77" stroke="#14b8a6" strokeWidth="0.5" strokeOpacity="0.25" />
-    <line x1="260" y1="44" x2="450" y2="44" stroke="#14b8a6" strokeWidth="0.5" strokeOpacity="0.25" />
-    <line x1="450" y1="52" x2="632" y2="52" stroke="#14b8a6" strokeWidth="0.5" strokeOpacity="0.25" />
-    {[[272,12],[296,12],[320,12],[344,12],[272,28],[296,28],[320,28],[344,28]].map(([x,y],i) => (
+    <rect x="340" y="5" width="292" height="72" rx="1" stroke="#14b8a6" strokeWidth="0.7" strokeOpacity="0.3" />
+    <line x1="490" y1="5" x2="490" y2="77" stroke="#14b8a6" strokeWidth="0.5" strokeOpacity="0.25" />
+    <line x1="340" y1="44" x2="490" y2="44" stroke="#14b8a6" strokeWidth="0.5" strokeOpacity="0.25" />
+    <line x1="490" y1="52" x2="632" y2="52" stroke="#14b8a6" strokeWidth="0.5" strokeOpacity="0.25" />
+    {[[352,12],[376,12],[400,12],[424,12],[352,28],[376,28],[400,28],[424,28]].map(([x,y],i) => (
       <rect key={i} x={x} y={y} width="18" height="10" rx="1"
         fill="#14b8a6" fillOpacity="0.12" stroke="#14b8a6" strokeWidth="0.45" strokeOpacity="0.38" />
     ))}
-    {[[272,52],[300,52],[328,52],[356,52],[384,52]].map(([x,y],i) => (
+    {[[352,52],[376,52],[400,52],[424,52],[448,52]].map(([x,y],i) => (
       <rect key={i} x={x} y={y} width="16" height="9" rx="1"
         fill="#14b8a6" fillOpacity="0.1" stroke="#14b8a6" strokeWidth="0.4" strokeOpacity="0.35" />
     ))}
-    <rect x="464" y="10" width="82" height="38" rx="4"
+    <rect x="504" y="10" width="82" height="38" rx="4"
       fill="#14b8a6" fillOpacity="0.06" stroke="#14b8a6" strokeWidth="0.45" strokeOpacity="0.3" />
-    {[[468,8],[482,8],[496,8],[510,8],[524,8],[538,8],[544,20],[544,32],[468,50],[482,50],[496,50],[510,50],[524,50],[538,50]].map(([x,y],i) => (
+    {[[508,8],[522,8],[536,8],[550,8],[564,8],[578,8],[584,20],[584,32],[508,50],[522,50],[536,50],[550,50],[564,50],[578,50]].map(([x,y],i) => (
       <circle key={i} cx={x} cy={y} r="3" fill="#14b8a6" fillOpacity="0.14" stroke="#14b8a6" strokeWidth="0.35" strokeOpacity="0.35" />
     ))}
-    {[[558,58],[576,58],[594,58],[612,58],[558,70],[576,70]].map(([x,y],i) => (
+    {[[596,58],[610,58],[624,58],[596,70],[610,70]].map(([x,y],i) => (
       <rect key={i} x={x} y={y} width="14" height="8" rx="1"
         fill="#14b8a6" fillOpacity="0.1" stroke="#14b8a6" strokeWidth="0.4" strokeOpacity="0.32" />
     ))}
@@ -332,31 +332,31 @@ const AtthahHeaderSVG: React.FC<{ id: string }> = ({ id }) => (
     <defs>
       <linearGradient id={`${id}-ath-l`} x1="0" y1="0" x2="1" y2="0">
         <stop offset="0%" stopColor="#0c0412" stopOpacity="0.98" />
-        <stop offset="30%" stopColor="#0c0412" stopOpacity="0" />
+        <stop offset="42%" stopColor="#0c0412" stopOpacity="0" />
       </linearGradient>
       <linearGradient id={`${id}-ath-b`} x1="0" y1="0" x2="0" y2="1">
         <stop offset="52%" stopColor="#0c0412" stopOpacity="0" />
         <stop offset="100%" stopColor="#0c0412" stopOpacity="1" />
       </linearGradient>
     </defs>
-    <rect x="310" y="8" width="66" height="66" rx="1" stroke="#d946ef" strokeWidth="0.7" strokeOpacity="0.45" />
-    <rect x="344" y="-8" width="66" height="66" rx="1" stroke="#d946ef" strokeWidth="0.5" strokeOpacity="0.22" />
-    <line x1="310" y1="8" x2="344" y2="-8" stroke="#d946ef" strokeWidth="0.5" strokeOpacity="0.32" />
-    <line x1="376" y1="8" x2="410" y2="-8" stroke="#d946ef" strokeWidth="0.5" strokeOpacity="0.32" />
-    <line x1="376" y1="74" x2="410" y2="58" stroke="#d946ef" strokeWidth="0.5" strokeOpacity="0.32" />
-    <line x1="310" y1="74" x2="344" y2="58" stroke="#d946ef" strokeWidth="0.5" strokeOpacity="0.32" />
-    <line x1="310" y1="8" x2="376" y2="74" stroke="#d946ef" strokeWidth="0.3" strokeOpacity="0.14" />
-    <line x1="376" y1="8" x2="310" y2="74" stroke="#d946ef" strokeWidth="0.3" strokeOpacity="0.14" />
-    <circle cx="343" cy="41" r="2.5" fill="#d946ef" fillOpacity="0.55" />
-    <rect x="430" y="14" width="50" height="50" rx="1" stroke="#d946ef" strokeWidth="0.5" strokeOpacity="0.3" />
-    <rect x="456" y="2" width="50" height="50" rx="1" stroke="#d946ef" strokeWidth="0.4" strokeOpacity="0.16" />
-    <line x1="430" y1="14" x2="456" y2="2" stroke="#d946ef" strokeWidth="0.4" strokeOpacity="0.22" />
-    <line x1="480" y1="14" x2="506" y2="2" stroke="#d946ef" strokeWidth="0.4" strokeOpacity="0.22" />
-    <line x1="480" y1="64" x2="506" y2="52" stroke="#d946ef" strokeWidth="0.4" strokeOpacity="0.22" />
-    <line x1="430" y1="64" x2="456" y2="52" stroke="#d946ef" strokeWidth="0.4" strokeOpacity="0.22" />
-    <line x1="590" y1="2" x2="343" y2="41" stroke="#d946ef" strokeWidth="0.5" strokeOpacity="0.18" strokeDasharray="4 4" />
-    <line x1="590" y1="60" x2="343" y2="41" stroke="#d946ef" strokeWidth="0.5" strokeOpacity="0.18" strokeDasharray="4 4" />
-    <circle cx="590" cy="31" r="3" fill="#d946ef" fillOpacity="0.35" />
+    <rect x="370" y="8" width="66" height="66" rx="1" stroke="#d946ef" strokeWidth="0.7" strokeOpacity="0.45" />
+    <rect x="404" y="-8" width="66" height="66" rx="1" stroke="#d946ef" strokeWidth="0.5" strokeOpacity="0.22" />
+    <line x1="370" y1="8" x2="404" y2="-8" stroke="#d946ef" strokeWidth="0.5" strokeOpacity="0.32" />
+    <line x1="436" y1="8" x2="470" y2="-8" stroke="#d946ef" strokeWidth="0.5" strokeOpacity="0.32" />
+    <line x1="436" y1="74" x2="470" y2="58" stroke="#d946ef" strokeWidth="0.5" strokeOpacity="0.32" />
+    <line x1="370" y1="74" x2="404" y2="58" stroke="#d946ef" strokeWidth="0.5" strokeOpacity="0.32" />
+    <line x1="370" y1="8" x2="436" y2="74" stroke="#d946ef" strokeWidth="0.3" strokeOpacity="0.14" />
+    <line x1="436" y1="8" x2="370" y2="74" stroke="#d946ef" strokeWidth="0.3" strokeOpacity="0.14" />
+    <circle cx="403" cy="41" r="2.5" fill="#d946ef" fillOpacity="0.55" />
+    <rect x="490" y="14" width="50" height="50" rx="1" stroke="#d946ef" strokeWidth="0.5" strokeOpacity="0.3" />
+    <rect x="516" y="2" width="50" height="50" rx="1" stroke="#d946ef" strokeWidth="0.4" strokeOpacity="0.16" />
+    <line x1="490" y1="14" x2="516" y2="2" stroke="#d946ef" strokeWidth="0.4" strokeOpacity="0.22" />
+    <line x1="540" y1="14" x2="566" y2="2" stroke="#d946ef" strokeWidth="0.4" strokeOpacity="0.22" />
+    <line x1="540" y1="64" x2="566" y2="52" stroke="#d946ef" strokeWidth="0.4" strokeOpacity="0.22" />
+    <line x1="490" y1="64" x2="516" y2="52" stroke="#d946ef" strokeWidth="0.4" strokeOpacity="0.22" />
+    <line x1="630" y1="2" x2="403" y2="41" stroke="#d946ef" strokeWidth="0.5" strokeOpacity="0.18" strokeDasharray="4 4" />
+    <line x1="630" y1="60" x2="403" y2="41" stroke="#d946ef" strokeWidth="0.5" strokeOpacity="0.18" strokeDasharray="4 4" />
+    <circle cx="630" cy="31" r="3" fill="#d946ef" fillOpacity="0.35" />
     <rect x="0" y="0" width="640" height="82" fill={`url(#${id}-ath-l)`} />
     <rect x="0" y="0" width="640" height="82" fill={`url(#${id}-ath-b)`} />
   </svg>
@@ -410,7 +410,7 @@ const NCSMHeaderSVG: React.FC<{ id: string }> = ({ id }) => (
     <defs>
       <linearGradient id={`${id}-nh-l`} x1="0" y1="0" x2="1" y2="0">
         <stop offset="0%" stopColor="#040414" stopOpacity="0.98" />
-        <stop offset="28%" stopColor="#040414" stopOpacity="0" />
+        <stop offset="40%" stopColor="#040414" stopOpacity="0" />
       </linearGradient>
       <linearGradient id={`${id}-nh-b`} x1="0" y1="0" x2="0" y2="1">
         <stop offset="52%" stopColor="#040414" stopOpacity="0" />
@@ -418,14 +418,15 @@ const NCSMHeaderSVG: React.FC<{ id: string }> = ({ id }) => (
       </linearGradient>
     </defs>
     {ncsmEdges.map(([a, b], i) => (
-      <line key={i} x1={ncsmStars[a].cx * 3.6} y1={ncsmStars[a].cy * 0.82}
-        x2={ncsmStars[b].cx * 3.6} y2={ncsmStars[b].cy * 0.82}
+      <line key={i} x1={ncsmStars[a].cx * 3.6 + 60} y1={ncsmStars[a].cy * 0.82}
+        x2={ncsmStars[b].cx * 3.6 + 60} y2={ncsmStars[b].cy * 0.82}
         stroke="#a78bfa" strokeWidth="0.5" strokeOpacity="0.22" />
     ))}
     {ncsmStars.map((s, i) => (
-      <circle key={i} cx={s.cx * 3.6} cy={s.cy * 0.82} r={s.r * 1.15} fill="#a78bfa" fillOpacity={s.o * 0.9} />
+      <circle key={i} cx={s.cx * 3.6 + 60} cy={s.cy * 0.82} r={s.r * 1.15}
+        fill="#a78bfa" fillOpacity={s.cx < 80 ? s.o * 0.2 : s.o * 0.9} />
     ))}
-    <ellipse cx={130 * 3.6} cy={52 * 0.82} rx="68" ry="22"
+    <ellipse cx={130 * 3.6 + 60} cy={52 * 0.82} rx="68" ry="22"
       stroke="#a78bfa" strokeWidth="0.5" strokeOpacity="0.18" strokeDasharray="2 3" />
     <rect x="0" y="0" width="640" height="82" fill={`url(#${id}-nh-l)`} />
     <rect x="0" y="0" width="640" height="82" fill={`url(#${id}-nh-b)`} />
@@ -615,11 +616,13 @@ function TimelineDot({ theme, isActive }: { theme: Theme; isActive: boolean }) {
 // ─── Role card ────────────────────────────────────────────────────────────────
 
 function RoleCard({ role, index }: { role: Role; index: number }) {
-  const [isOpen, setIsOpen] = useState(false);
-  const { theme } = role;
+   const [isOpen, setIsOpen] = useState(false);
+   const cardRef = useRef<HTMLDivElement>(null);
+   const { theme } = role;
 
   return (
     <motion.div
+      ref={cardRef}
       initial={{ opacity: 0, x: -20 }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true, margin: "-60px" }}
@@ -640,7 +643,15 @@ function RoleCard({ role, index }: { role: Role; index: number }) {
       {/* Card */}
       <div className="flex-1 pb-10">
         <button
-          onClick={() => setIsOpen((v) => !v)}
+          onClick={() => {
+            const opening = !isOpen;
+            setIsOpen(opening);
+            if (opening) {
+                setTimeout(() => {
+                    cardRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+                }, 300);
+            }
+          }}
           className="w-full text-left"
           aria-expanded={isOpen}
         >
@@ -788,7 +799,7 @@ export default function Experience() {
           height: "600px",
           top: "-100px",
           left: "-200px",
-          background: "radial-gradient(circle, rgba(99,102,241,0.07) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(99,102,241,0.18) 0%, transparent 70%)",
           filter: "blur(100px)",
           zIndex: 0,
         }}
@@ -800,7 +811,7 @@ export default function Experience() {
           height: "500px",
           bottom: "0px",
           right: "-150px",
-          background: "radial-gradient(circle, rgba(34,211,238,0.05) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(34,211,238,0.14) 0%, transparent 70%)",
           filter: "blur(100px)",
           zIndex: 0,
         }}
@@ -843,7 +854,7 @@ export default function Experience() {
         </div>
 
         {/* Timeline */}
-        <div className="max-w-2xl">
+        <div className="max-w-4xl">
           {roles.map((role, index) => (
             <RoleCard key={role.id} role={role} index={index} />
           ))}

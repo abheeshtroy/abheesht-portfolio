@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0a0a0f;
-  --surface: #12121a;
-  --border: #1e1e2e;
+  --background: #13131f;
+  --surface: #1a1a28;
+  --border: #2d2d42;
   --indigo: #6366f1;
   --cyan: #22d3ee;
 }
@@ -14,19 +14,13 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-snap-type: y proximity;
   scroll-padding-top: 80px;
 }
 
 body {
   background-color: var(--background);
-  color: #e2e8f0;
+  color: #eef0f6;
   -webkit-font-smoothing: antialiased;
-}
-
-section {
-  scroll-snap-align: start;
-  scroll-snap-stop: normal;
 }
 
 @keyframes pulse {
