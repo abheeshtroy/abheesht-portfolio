@@ -61,7 +61,11 @@ export default function Nav() {
 
     navLinks.forEach(({ id }) => {
       const el = document.getElementById(id);
-      if (!el) return;
+      if (!el) {
+        console.warn(`Nav: could not find #${id}`);
+        return;
+      }
+    
 
       const observer = new IntersectionObserver(
         ([entry]) => {
