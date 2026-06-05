@@ -5,32 +5,33 @@ import { motion } from "framer-motion";
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Orbs — absolute so they stay in section */}
       <div
-        className="fixed pointer-events-none"
+        className="absolute pointer-events-none"
         style={{
           width: "800px",
           height: "800px",
-          top: "-400px",
+          top: "-200px",
           left: "-300px",
-          background: "radial-gradient(circle, rgba(99,102,241,0.25) 0%, transparent 70%)",
-          filter: "blur(140px)",
+          background: "radial-gradient(circle, rgba(99,102,241,0.2) 0%, transparent 70%)",
+          filter: "blur(120px)",
           zIndex: 0,
         }}
       />
       <div
-        className="fixed pointer-events-none"
+        className="absolute pointer-events-none"
         style={{
-          width: "700px",
-          height: "700px",
-          bottom: "-350px",
-          right: "-250px",
-          background: "radial-gradient(circle, rgba(34,211,238,0.21) 0%, transparent 70%)",
-          filter: "blur(130px)",
+          width: "600px",
+          height: "600px",
+          bottom: "-100px",
+          right: "-200px",
+          background: "radial-gradient(circle, rgba(34,211,238,0.15) 0%, transparent 70%)",
+          filter: "blur(120px)",
           zIndex: 0,
         }}
       />
 
-      <div className="relative z-10 max-w-5xl mx-auto px-6 pt-24">
+      <div className="relative z-10 max-w-5xl mx-auto px-6 pt-24 w-full">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
@@ -58,7 +59,7 @@ export default function Hero() {
             backgroundClip: "text",
           }}
         >
-          Hi, I'm Abheesht.
+          Hi, I&apos;m Abheesht.
         </motion.h1>
 
         <motion.p
@@ -89,7 +90,7 @@ export default function Hero() {
           className="flex items-center gap-4"
         >
           <a
-            href="#projects"
+            href="#about"
             className="px-6 py-3 rounded-lg text-sm font-mono tracking-wide text-white transition-all duration-200 hover:opacity-90"
             style={{
               background: "linear-gradient(135deg, #6366f1, #4f46e5)",
@@ -114,6 +115,37 @@ export default function Hero() {
         >
           MS Computer Science · Arizona State University · GPA 4.0
         </motion.p>
+      </div>
+
+      {/* Scroll indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.6, delay: 1.1 }}
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+      >
+        <span className="font-mono text-xs text-white/20 tracking-widest">scroll</span>
+        <motion.div
+          animate={{ y: [0, 6, 0] }}
+          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-white/20">
+            <line x1="12" y1="5" x2="12" y2="19" />
+            <polyline points="19 12 12 19 5 12" />
+          </svg>
+        </motion.div>
+      </motion.div>
+
+      {/* Accent stripe into About */}
+      <div
+        className="absolute bottom-0 left-0 right-0 pointer-events-none"
+        style={{ zIndex: 10 }}
+      >
+        <div style={{
+          height: "2px",
+          background: "linear-gradient(90deg, #6366f1 0%, rgba(99,102,241,0.15) 60%, transparent 100%)",
+          opacity: 0.5,
+        }} />
       </div>
     </section>
   );

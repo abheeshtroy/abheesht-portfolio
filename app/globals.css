@@ -14,12 +14,24 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-snap-type: y proximity;
+  scroll-padding-top: 80px;
 }
 
 body {
   background-color: var(--background);
   color: #e2e8f0;
   -webkit-font-smoothing: antialiased;
+}
+
+section {
+  scroll-snap-align: start;
+  scroll-snap-stop: normal;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
 }
 
 ::-webkit-scrollbar { width: 6px; }

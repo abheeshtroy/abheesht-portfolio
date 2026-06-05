@@ -1,55 +1,138 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 
 const navLinks = [
-  { label: "about", href: "#about" },
-  { label: "projects", href: "#projects" },
-  { label: "experience", href: "#experience" },
-  { label: "contact", href: "#contact" },
+  { label: "about", href: "#about", id: "about" },
+  { label: "projects", href: "#projects", id: "projects" },
+  { label: "experience", href: "#experience", id: "experience" },
+  { label: "contact", href: "#contact", id: "contact" },
 ];
+
+type NavLinkItem = (typeof navLinks)[number];
+
+function NavLink({ link, isActive }: { link: NavLinkItem; isActive: boolean }) {
+  return (
+    <a
+      href={link.href}
+      className="relative font-mono text-xs tracking-widest transition-colors duration-200 pb-1"
+      style={{
+        color: isActive ? "rgba(255,255,255,0.9)" : "rgba(255,255,255,0.4)",
+      }}
+    >
+      {link.label}
+      {isActive ? (
+        <motion.div
+          layoutId="nav-indicator"
+          className="absolute bottom-0 left-0 right-0"
+          style={{
+            height: "1px",
+            background: "linear-gradient(90deg, #6366f1, #22d3ee)",
+          }}
+          transition={{ duration: 0.25, ease: "easeOut" as const }}
+        />
+      ) : null}
+    </a>
+  );
+}
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>("");
+  const hasScrolled = useRef(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+      if (window.scrollY > 80) {
+        hasScrolled.current = true;
+      } else {
+        hasScrolled.current = false;
+        setActiveSection("");
+      }
+    };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const observers: IntersectionObserver[] = [];
+
+    navLinks.forEach(({ id }) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting && hasScrolled.current) {
+            setActiveSection(id);
+          }
+        },
+        {
+          rootMargin: "-20% 0px -70% 0px",
+          threshold: 0,
+        }
+      );
+
+      observer.observe(el);
+      observers.push(observer);
+    });
+
+    return () => observers.forEach((o) => o.disconnect());
   }, []);
 
   return (
     <motion.nav
       initial={{ opacity: 0, y: -16 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "border-b border-white/5 backdrop-blur-md"
-          : ""
-      }`}
-      style={{ background: scrolled ? "rgba(10,10,15,0.85)" : "transparent" }}
+      transition={{ duration: 0.5, ease: "easeOut" as const }}
+      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+      style={{
+        background: scrolled ? "rgba(10,10,15,0.85)" : "transparent",
+        backdropFilter: scrolled ? "blur(12px)" : "none",
+        WebkitBackdropFilter: scrolled ? "blur(12px)" : "none",
+        borderBottom: `1px solid ${scrolled ? "rgba(255,255,255,0.05)" : "transparent"}`,
+        willChange: "background",
+      }}
     >
       <div className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
-        {/* Logo */}
+
+        {/* Logo — AR with glowing ring */}
         <a
           href="#"
-          className="font-mono text-sm tracking-widest text-white/60 hover:text-white transition-colors duration-200"
+          className="group relative flex items-center justify-center"
+          style={{
+            width: "40px",
+            height: "40px",
+            borderRadius: "50%",
+            border: "1px solid rgba(99,102,241,0.5)",
+            boxShadow: "0 0 10px rgba(99,102,241,0.25), 0 0 20px rgba(99,102,241,0.1), inset 0 0 10px rgba(99,102,241,0.05)",
+            background: "rgba(99,102,241,0.06)",
+            transition: "border-color 0.2s, box-shadow 0.2s",
+          }}
+          onMouseEnter={(e) => {
+            (e.currentTarget as HTMLElement).style.borderColor = "rgba(99,102,241,0.8)";
+            (e.currentTarget as HTMLElement).style.boxShadow = "0 0 16px rgba(99,102,241,0.4), 0 0 32px rgba(99,102,241,0.15), inset 0 0 12px rgba(99,102,241,0.08)";
+          }}
+          onMouseLeave={(e) => {
+            (e.currentTarget as HTMLElement).style.borderColor = "rgba(99,102,241,0.5)";
+            (e.currentTarget as HTMLElement).style.boxShadow = "0 0 10px rgba(99,102,241,0.25), 0 0 20px rgba(99,102,241,0.1), inset 0 0 10px rgba(99,102,241,0.05)";
+          }}
         >
-          AR
+          <span className="font-mono text-sm tracking-widest text-white/70 group-hover:text-white transition-colors duration-200">
+            AR
+          </span>
         </a>
 
         {/* Links */}
         <div className="flex items-center gap-8">
           {navLinks.map((link) => (
-            <a
+            <NavLink
               key={link.href}
-              href={link.href}
-              className="font-mono text-xs tracking-widest text-white/40 hover:text-white/90 transition-colors duration-200"
-            >
-              {link.label}
-            </a>
+              link={link}
+              isActive={activeSection === link.id}
+            />
           ))}
         </div>
       </div>
