@@ -3,6 +3,7 @@ import Hero from "@/components/sections/Hero";
 import About from "@/components/sections/About";
 import Projects from "@/components/sections/Projects";
 import Experience from "@/components/sections/Experience";
+import ContactSection from "@/components/sections/ContactSection";
 
 export default function Home() {
   return (
@@ -12,8 +13,7 @@ export default function Home() {
       <About />
       <Projects />
       <Experience />
+      <ContactSection />
     </main>
   );
 }
-
-
