@@ -2,6 +2,7 @@
 
 import { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import SectionOrbs from "@/components/SectionOrbs";
 
 type FormState = "idle" | "sending" | "success" | "error";
 
@@ -61,21 +62,8 @@ export default function ContactSection() {
       className="relative py-24 overflow-hidden"
       style={{ isolation: "isolate" }}
     >
-      {/* Background orbs — z-0, behind coent but inside section */}
-      <div className="absolute inset-0 z-0 pointer-events-none" aria-hidden>
-        <div
-          className="absolute top-[10%] left-[8%] w-[550px] h-[550px] rounded-full blur-[100px]"
-          style={{ backgroundColor: "#6366f1", opacity: 0.28 }}
-        />
-        <div
-          className="absolute bottom-[8%] right-[8%] w-[480px] h-[480px] rounded-full blur-[100px]"
-          style={{ backgroundColor: "#22d3ee", opacity: 0.18 }}
-        />
-        <div
-          className="absolute top-[50%] left-[45%] -translate-x-1/2 w-[400px] h-[400px] rounded-full blur-[110px]"
-          style={{ backgroundColor: "#a855f7", opacity: 0.17 }}
-        />
-      </div>
+      {/* Ambient orbs */}
+      <SectionOrbs />
 
       {/* Content — z-10, above orbs */}
       <div className="relative z-10 max-w-2xl mx-auto px-6 sm:px-10">

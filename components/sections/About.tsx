@@ -1,27 +1,17 @@
 "use client";
 
 import { motion } from "framer-motion";
+import SectionOrbs from "@/components/SectionOrbs";
 
 export default function About() {
   return (
     <section
       id="about"
-      className="relative py-32 px-6 overflow-hidden"
-      style={{ background: "var(--surface)" }}
+      className="relative py-32 px-6 overflow-hidden isolate"
+      
     >
-      {/* Orb */}
-      <div
-        className="absolute pointer-events-none"
-        style={{
-          width: "500px",
-          height: "500px",
-          top: "-100px",
-          right: "-150px",
-          background: "radial-gradient(circle, rgba(34,211,238,0.18) 0%, transparent 70%)",
-          filter: "blur(100px)",
-          zIndex: 0,
-        }}
-      />
+      {/* Ambient orbs */}
+      <SectionOrbs />
 
       <div className="relative z-10 max-w-5xl mx-auto">
         {/* Staggered heading */}

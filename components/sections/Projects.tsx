@@ -3,6 +3,7 @@
 import { motion, type Variants } from "framer-motion";
 import Link from "next/link";
 import { featuredProjects, secondaryProjects } from "@/lib/projects";
+import SectionOrbs from "@/components/SectionOrbs";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 24 },
@@ -32,14 +33,10 @@ export default function Projects() {
     <section
       id="projects"
       className="relative py-24 px-6 overflow-hidden"
-      style={{ background: "var(--background)" }}
+      style={{ isolation: "isolate" }}
     >
-      {/* Orbs */}
-      <div className="absolute pointer-events-none" style={{ width: "600px", height: "600px", top: "-100px", left: "-200px", background: "radial-gradient(circle, rgba(99,102,241,0.18) 0%, transparent 70%)", filter: "blur(100px)", zIndex: 0 }} />
-      <div className="absolute pointer-events-none" style={{ width: "500px", height: "500px", bottom: "0px", right: "-150px", background: "radial-gradient(circle, rgba(34,211,238,0.14) 0%, transparent 70%)", filter: "blur(100px)", zIndex: 0 }} />
-      <div className="absolute pointer-events-none" style={{ width: "500px", height: "500px", top: "25%", left: "10%", background: "radial-gradient(circle, rgba(99,102,241,0.12) 0%, transparent 70%)", filter: "blur(120px)", zIndex: 0 }} />
-      <div className="absolute pointer-events-none" style={{ width: "450px", height: "450px", top: "55%", left: "20%", background: "radial-gradient(circle, rgba(34,211,238,0.1) 0%, transparent 70%)", filter: "blur(120px)", zIndex: 0 }} />
-      <div className="absolute pointer-events-none" style={{ width: "400px", height: "400px", top: "40%", right: "5%", background: "radial-gradient(circle, rgba(99,102,241,0.09) 0%, transparent 70%)", filter: "blur(130px)", zIndex: 0 }} />
+      {/* Ambient orbs */}
+      <SectionOrbs />
 
       <div className="relative z-10 max-w-4xl mx-auto">
 
@@ -84,11 +81,11 @@ export default function Projects() {
               <div
                 className="rounded-xl overflow-hidden"
                 style={{
-                  background: "rgba(22,22,31,0.55)",
+                  background: "rgba(20,20,30,0.4)",
                   border: "0.5px solid var(--border)",
                   borderLeft: `3px solid ${project.accentColor}`,
-                  backdropFilter: "blur(12px)",
-                  WebkitBackdropFilter: "blur(12px)",
+                  backdropFilter: "blur(28px) saturate(1.4)",
+                  WebkitBackdropFilter: "blur(28px) saturate(1.4)",
                 }}
               >
                 {/* Terminal topbar */}
@@ -229,11 +226,11 @@ export default function Projects() {
                 <div
                   className="rounded-xl p-4 flex flex-col gap-2.5 h-full"
                   style={{
-                    background: "rgba(22,22,31,0.55)",
+                    background: "rgba(20,20,30,0.4)",
                     border: "0.5px solid var(--border)",
                     borderLeft: "3px solid rgba(255,255,255,0.08)",
-                    backdropFilter: "blur(12px)",
-                    WebkitBackdropFilter: "blur(12px)",
+                    backdropFilter: "blur(28px) saturate(1.4)",
+                    WebkitBackdropFilter: "blur(28px) saturate(1.4)",
                   }}
                 >
                   <span className="text-sm font-medium text-white/80">{project.title}</span>
@@ -280,10 +277,10 @@ export default function Projects() {
           <div
             className="rounded-xl overflow-hidden"
             style={{
-              background: "rgba(22,22,31,0.55)",
+              background: "rgba(20,20,30,0.4)",
               border: "0.5px solid var(--border)",
-              backdropFilter: "blur(12px)",
-              WebkitBackdropFilter: "blur(12px)",
+              backdropFilter: "blur(28px) saturate(1.4)",
+              WebkitBackdropFilter: "blur(28px) saturate(1.4)",
             }}
           >
             {/* Header bar */}

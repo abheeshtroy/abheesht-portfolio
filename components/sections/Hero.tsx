@@ -1,35 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
+import SectionOrbs from "@/components/SectionOrbs";
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Orbs — absolute so they stay in section */}
-      <div
-        className="absolute pointer-events-none"
-        style={{
-          width: "800px",
-          height: "800px",
-          top: "-200px",
-          left: "-300px",
-          background: "radial-gradient(circle, rgba(99,102,241,0.2) 0%, transparent 70%)",
-          filter: "blur(120px)",
-          zIndex: 0,
-        }}
-      />
-      <div
-        className="absolute pointer-events-none"
-        style={{
-          width: "600px",
-          height: "600px",
-          bottom: "-100px",
-          right: "-200px",
-          background: "radial-gradient(circle, rgba(34,211,238,0.15) 0%, transparent 70%)",
-          filter: "blur(120px)",
-          zIndex: 0,
-        }}
-      />
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden isolate">
+      {/* Ambient orbs */}
+      <SectionOrbs />
 
       <div className="relative z-10 max-w-5xl mx-auto px-6 pt-24 w-full">
         <motion.div

@@ -2,6 +2,7 @@
 
 import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import SectionOrbs from "@/components/SectionOrbs";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -788,34 +789,11 @@ export default function Experience() {
   return (
     <section
       id="experience"
-      className="relative py-24 px-6 overflow-hidden"
-      style={{ background: "var(--surface)" }}
+      className="relative py-24 px-6 overflow-hidden isolate"
+      
     >
-      {/* Orbs — same pattern as About/Projects */}
-      <div
-        className="absolute pointer-events-none"
-        style={{
-          width: "600px",
-          height: "600px",
-          top: "-100px",
-          left: "-200px",
-          background: "radial-gradient(circle, rgba(99,102,241,0.18) 0%, transparent 70%)",
-          filter: "blur(100px)",
-          zIndex: 0,
-        }}
-      />
-      <div
-        className="absolute pointer-events-none"
-        style={{
-          width: "500px",
-          height: "500px",
-          bottom: "0px",
-          right: "-150px",
-          background: "radial-gradient(circle, rgba(34,211,238,0.14) 0%, transparent 70%)",
-          filter: "blur(100px)",
-          zIndex: 0,
-        }}
-      />
+      {/* Ambient orbs */}
+      <SectionOrbs />
 
       <div className="relative z-10 max-w-4xl mx-auto">
         {/* Section heading — matches About/Projects pattern */}
