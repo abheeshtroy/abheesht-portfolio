@@ -763,10 +763,10 @@ function RoleCard({ role, index }: { role: Role; index: number }) {
                         {para}
                       </p>
                     ))}
-                    <div className="rounded-lg p-4 grid grid-cols-3 gap-4 md:max-w-[58%]"
+                    <div className="rounded-lg p-4 grid grid-cols-2 md:grid-cols-3 gap-4 md:max-w-[58%]"
                       style={{ backgroundColor: theme.highlightsBg }}>
                       {role.highlights.map((h) => (
-                        <div key={h.label}>
+                        <div key={h.label} className="min-w-0">
                           <div className="font-mono font-bold text-sm" style={{ color: theme.metricColor }}>
                             {h.metric}
                           </div>
