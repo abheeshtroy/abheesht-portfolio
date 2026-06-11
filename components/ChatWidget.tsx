@@ -74,7 +74,7 @@ export default function ChatWidget() {
             exit={{ scale: 0, opacity: 0 }}
             transition={{ type: 'spring', damping: 20, stiffness: 300 }}
             onClick={() => setIsOpen(true)}
-            className="fixed bottom-6 right-6 z-50 flex items-center gap-2 px-4 py-2.5
+            className="fixed bottom-20 right-4 sm:bottom-6 sm:right-6 z-50 flex items-center gap-2 px-4 py-2.5
               rounded-full font-mono text-sm cursor-pointer
               bg-[rgba(26,26,40,0.85)] backdrop-blur-xl
               border border-[rgba(99,102,241,0.4)]
@@ -143,7 +143,7 @@ export default function ChatWidget() {
                 </button>
               </div>
 
-              <div className="flex-1 overflow-y-auto px-4 py-3 space-y-3">
+              <div className="flex-1 overflow-y-auto px-4 py-3 space-y-3" style={{ WebkitOverflowScrolling: "touch", overscrollBehavior: "contain" }}>
                 {!hasMessages && !rateLimitMsg && (
                   <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.15 }} className="space-y-4">
