@@ -42,7 +42,7 @@ export default function ChatWidget() {
 
   const { messages, sendMessage, status, stop } = useChat({
     id: 'portfolio-chat',
-    initialMessages: restoredMessages,
+    messages: restoredMessages,
     onError: (error: Error) => {
       if (error.message?.includes('429') || error.message?.includes('message cap')) {
         setRateLimitMsg(
