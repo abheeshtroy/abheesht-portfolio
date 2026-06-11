@@ -61,7 +61,7 @@ export default function Projects() {
             className="flex items-center gap-3 mb-3"
           >
             <div style={{ width: "28px", height: "1px", background: "#6366f1" }} />
-            <p className="font-mono text-xs tracking-widest text-white/30">
+            <p className="font-mono text-xs tracking-widest text-white/45">
               02 / projects
             </p>
           </motion.div>
@@ -110,7 +110,7 @@ export default function Projects() {
                   <span className="w-2.5 h-2.5 rounded-full" style={{ background: "var(--border)" }} />
                   <span className="w-2.5 h-2.5 rounded-full" style={{ background: "var(--border)" }} />
                   <span className="w-2.5 h-2.5 rounded-full" style={{ background: "var(--border)" }} />
-                  <span className="font-mono text-xs text-white/25 ml-1">
+                  <span className="font-mono text-xs text-white/40 ml-1">
                     {project.filename}
                   </span>
                   <span
@@ -129,10 +129,10 @@ export default function Projects() {
                 <div className="p-5 flex flex-col gap-3">
                   <div className="flex justify-between items-start">
                     <h3 className="text-base font-medium text-white/90">{project.title}</h3>
-                    <span className="font-mono text-xs text-white/25">{project.year}</span>
+                    <span className="font-mono text-xs text-white/40">{project.year}</span>
                   </div>
 
-                  <p className="text-sm text-white/55 leading-relaxed">{project.description}</p>
+                  <p className="text-sm text-white/68 leading-relaxed">{project.description}</p>
 
                   {/* Meta block */}
                   <div
@@ -142,11 +142,11 @@ export default function Projects() {
                       border: "0.5px solid var(--border)",
                     }}
                   >
-                    <span className="text-white/25">stack</span>
+                    <span className="text-white/40">stack</span>
                     <span style={{ color: "#60a5fa" }}>{project.stack}</span>
                     {project.impact && (
                       <>
-                        <span className="text-white/25">impact</span>
+                        <span className="text-white/40">impact</span>
                         <span style={{ color: "#4ade80" }}>{project.impact}</span>
                       </>
                     )}
@@ -179,7 +179,7 @@ export default function Projects() {
                         href={project.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="font-mono text-xs text-white/40 hover:text-white/80 transition-colors flex items-center gap-1.5"
+                        className="font-mono text-xs text-white/55 hover:text-white/85 transition-colors flex items-center gap-1.5"
                       >
                         <GithubIcon /> github
                       </a>
@@ -189,7 +189,7 @@ export default function Projects() {
                         href={project.live}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="font-mono text-xs text-white/40 hover:text-white/80 transition-colors flex items-center gap-1.5"
+                        className="font-mono text-xs text-white/55 hover:text-white/85 transition-colors flex items-center gap-1.5"
                       >
                         <ExternalIcon /> live
                       </a>
@@ -232,7 +232,7 @@ export default function Projects() {
           transition={{ duration: 0.5 }}
           className="mb-8"
         >
-          <p className="font-mono text-xs tracking-widest text-white/25 mb-6">
+          <p className="font-mono text-xs tracking-widest text-white/40 mb-6">
             other work
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -256,8 +256,8 @@ export default function Projects() {
                     WebkitBackdropFilter: "blur(28px) saturate(1.4)",
                   }}
                 >
-                  <span className="text-sm font-medium text-white/80">{project.title}</span>
-                  <p className="text-xs text-white/40 leading-relaxed flex-1">{project.description}</p>
+                  <span className="text-sm font-medium text-white/85">{project.title}</span>
+                  <p className="text-xs text-white/55 leading-relaxed flex-1">{project.description}</p>
                   <div className="flex gap-2 flex-wrap">
                     {project.tags.map((tag) => (
                       <span
@@ -278,7 +278,7 @@ export default function Projects() {
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="font-mono text-xs text-white/30 hover:text-white/70 transition-colors flex items-center gap-1.5 pt-1"
+                      className="font-mono text-xs text-white/45 hover:text-white/80 transition-colors flex items-center gap-1.5 pt-1"
                       style={{ borderTop: "0.5px solid var(--border)" }}
                     >
                       <GithubIcon size={12} /> github
@@ -315,7 +315,7 @@ export default function Projects() {
               }}
             >
               <span className="w-2 h-2 rounded-full" style={{ background: "#f59e0b" }} />
-              <span className="font-mono text-xs text-white/40">published research</span>
+              <span className="font-mono text-xs text-white/55">published research</span>
               <span
                 className="ml-auto font-mono text-xs px-2 py-0.5 rounded"
                 style={{
@@ -330,7 +330,7 @@ export default function Projects() {
 
             {/* Body */}
             <div className="p-5 flex flex-col gap-5">
-              <p className="text-sm text-white/50 leading-relaxed">
+              <p className="text-sm text-white/65 leading-relaxed">
                 My first real encounter with applied AI — building systems that
                 actually shipped at a national science museum. Both papers came
                 out of a summer at NCSM and ended up being the reason I went
@@ -341,24 +341,24 @@ export default function Projects() {
               <div className="flex flex-col gap-2 pl-4" style={{ borderLeft: "2px solid rgba(245,158,11,0.3)" }}>
                 <div className="flex items-center gap-2 flex-wrap">
                   <span className="font-mono text-xs" style={{ color: "#f59e0b" }}>IEEE RTEICT 2021</span>
-                  <span className="text-white/20 text-xs">·</span>
-                  <span className="font-mono text-xs text-white/25">peer-reviewed</span>
+                  <span className="text-white/35 text-xs">·</span>
+                  <span className="font-mono text-xs text-white/40">peer-reviewed</span>
                 </div>
-                <p className="text-sm font-medium text-white/80">
+                <p className="text-sm font-medium text-white/85">
                   MusoAssist: An Interactive Virtual Bot for Museum Gallery Guidance
                 </p>
-                <p className="text-xs text-white/40 leading-relaxed">
+                <p className="text-xs text-white/55 leading-relaxed">
                   Humanoid chatbot deployed at NCSM Kolkata. Non-monotonic conversation
                   chains, IoT-activated physical exhibits. 73% comprehension vs 78%
                   with a human guide.
                 </p>
                 <div className="flex gap-4 flex-wrap">
                   <a href="https://ieeexplore.ieee.org/document/9573753" target="_blank" rel="noopener noreferrer"
-                    className="font-mono text-xs text-white/35 hover:text-white/70 transition-colors flex items-center gap-1.5">
+                    className="font-mono text-xs text-white/50 hover:text-white/80 transition-colors flex items-center gap-1.5">
                     <ExternalIcon size={13} /> IEEE
                   </a>
                   <a href="https://github.com/abheeshtroy/Musoassist-Chatbot" target="_blank" rel="noopener noreferrer"
-                    className="font-mono text-xs text-white/25 hover:text-white/60 transition-colors flex items-center gap-1.5">
+                    className="font-mono text-xs text-white/40 hover:text-white/72 transition-colors flex items-center gap-1.5">
                     <GithubIcon size={13} /> chatbot repo
                   </a>
                 </div>
@@ -370,24 +370,24 @@ export default function Projects() {
               <div className="flex flex-col gap-2 pl-4" style={{ borderLeft: "2px solid rgba(245,158,11,0.3)" }}>
                 <div className="flex items-center gap-2 flex-wrap">
                   <span className="font-mono text-xs" style={{ color: "#f59e0b" }}>IEEE RTEICT 2021</span>
-                  <span className="text-white/20 text-xs">·</span>
-                  <span className="font-mono text-xs text-white/25">peer-reviewed</span>
+                  <span className="text-white/35 text-xs">·</span>
+                  <span className="font-mono text-xs text-white/40">peer-reviewed</span>
                 </div>
-                <p className="text-sm font-medium text-white/80">
+                <p className="text-sm font-medium text-white/85">
                   Low-Cost Crowd Counting for Museum Gallery Management
                 </p>
-                <p className="text-xs text-white/40 leading-relaxed">
+                <p className="text-xs text-white/55 leading-relaxed">
                   P2PNet CNN on existing surveillance cameras. Output drove a motorized
                   spotlight to the most-crowded exhibit in real time. Raspberry Pi +
                   ESP8266, no new hardware required.
                 </p>
                 <div className="flex gap-4 flex-wrap">
                   <a href="https://ieeexplore.ieee.org/document/9573753" target="_blank" rel="noopener noreferrer"
-                    className="font-mono text-xs text-white/35 hover:text-white/70 transition-colors flex items-center gap-1.5">
+                    className="font-mono text-xs text-white/50 hover:text-white/80 transition-colors flex items-center gap-1.5">
                     <ExternalIcon size={13} /> IEEE
                   </a>
                   <a href="https://github.com/abheeshtroy/Bayesian-Crowd-Counting" target="_blank" rel="noopener noreferrer"
-                    className="font-mono text-xs text-white/25 hover:text-white/60 transition-colors flex items-center gap-1.5">
+                    className="font-mono text-xs text-white/40 hover:text-white/72 transition-colors flex items-center gap-1.5">
                     <GithubIcon size={13} /> crowd counting repo
                   </a>
                 </div>
@@ -399,10 +399,10 @@ export default function Projects() {
               <div className="flex items-center justify-between flex-wrap gap-3">
                 <div className="flex items-center gap-3 flex-wrap">
                   <span className="font-mono text-xs" style={{ color: "#f59e0b" }}>IEEE INCON 2023</span>
-                  <span className="text-sm text-white/55">Smart IoT Infrastructure for Public Space Management</span>
+                  <span className="text-sm text-white/68">Smart IoT Infrastructure for Public Space Management</span>
                 </div>
                 <a href="https://ieeexplore.ieee.org/document/10101373" target="_blank" rel="noopener noreferrer"
-                  className="font-mono text-xs text-white/35 hover:text-white/70 transition-colors flex items-center gap-1.5 shrink-0">
+                  className="font-mono text-xs text-white/50 hover:text-white/80 transition-colors flex items-center gap-1.5 shrink-0">
                   <ExternalIcon size={13} /> IEEE
                 </a>
               </div>

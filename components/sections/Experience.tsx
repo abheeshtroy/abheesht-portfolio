@@ -39,6 +39,7 @@ interface Theme {
 interface Role {
   id: string;
   companyNode: React.ReactNode;
+  website: string;
   title: string;
   period: string;
   location: string;
@@ -484,6 +485,7 @@ const roles: Role[] = [
   {
     id: "agent-techs",
     companyNode: <PlainName name="Agent-Techs AI" />,
+    website: "https://www.agent-techs.ai/",
     title: "Applied AI Engineering Intern",
     period: "Jun 2025 – Aug 2025",
     location: "Remote",
@@ -506,6 +508,7 @@ const roles: Role[] = [
   {
     id: "desknow",
     companyNode: <PlainName name="DeskNow" />,
+    website: "https://www.desk-now.com/",
     title: "Software Engineer",
     period: "Sep 2023 – Jul 2024",
     location: "Remote",
@@ -528,6 +531,7 @@ const roles: Role[] = [
   {
     id: "samsung",
     companyNode: <SamsungName />,
+    website: "https://semiconductor.samsung.com/",
     title: "Embedded Systems Engineer",
     period: "Jan 2023 – Jul 2023",
     location: "Bangalore, India",
@@ -550,6 +554,7 @@ const roles: Role[] = [
   {
     id: "atthah",
     companyNode: <PlainName name="Atthah Infomedia" />,
+    website: "https://www.atthah.com/",
     title: "Backend Engineer",
     period: "May 2022 – Jul 2022",
     location: "Remote",
@@ -572,6 +577,7 @@ const roles: Role[] = [
   {
     id: "ncsm",
     companyNode: <PlainName name="NCSM" />,
+    website: "https://ncsm.gov.in/",
     title: "Research Intern",
     period: "May 2021 – Aug 2021",
     location: "Kolkata, India",
@@ -626,8 +632,27 @@ function TimelineDot({ theme, isActive }: { theme: Theme; isActive: boolean }) {
 
 function RoleCard({ role, index }: { role: Role; index: number }) {
    const [isOpen, setIsOpen] = useState(false);
+   const [isHovered, setIsHovered] = useState(false);
    const cardRef = useRef<HTMLDivElement>(null);
    const { theme } = role;
+   const showHover = !isOpen && isHovered;
+
+   const handleToggle = () => {
+     const opening = !isOpen;
+     setIsOpen(opening);
+     if (opening) {
+       // Wait for the 0.4s expand animation to finish so we measure the final
+       // layout, then scroll with a fixed-nav offset (avoids landing mid-animation
+       // or tucking the card under the nav).
+       setTimeout(() => {
+         const el = cardRef.current;
+         if (!el) return;
+         const navOffset = 88;
+         const top = el.getBoundingClientRect().top + window.scrollY - navOffset;
+         window.scrollTo({ top, behavior: "smooth" });
+       }, 440);
+     }
+   };
 
   return (
     <motion.div
@@ -651,25 +676,28 @@ function RoleCard({ role, index }: { role: Role; index: number }) {
 
       {/* Card */}
       <div className="flex-1 pb-10">
-        <button
-          onClick={() => {
-            const opening = !isOpen;
-            setIsOpen(opening);
-            if (opening) {
-                setTimeout(() => {
-                    cardRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-                }, 300);
+        <div
+          role="button"
+          tabIndex={0}
+          onClick={handleToggle}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              handleToggle();
             }
           }}
-          className="w-full text-left"
+          className="w-full text-left cursor-pointer"
           aria-expanded={isOpen}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
         >
           <div
             className="rounded-xl border overflow-hidden relative transition-all duration-300"
             style={{
-              borderColor: isOpen ? theme.borderOpen : theme.borderCollapsed,
+              borderColor: isOpen ? theme.borderOpen : showHover ? theme.borderOpen : theme.borderCollapsed,
               backgroundColor: isOpen ? theme.cardBgOpen : theme.cardBg,
-              boxShadow: isOpen ? theme.glowOpen : "none",
+              boxShadow: isOpen ? theme.glowOpen : showHover ? theme.glowOpen : "none",
+              transform: showHover ? "translateY(-2px)" : "translateY(0)",
             }}
           >
             {/* Collapsed: header SVG bleed */}
@@ -714,21 +742,52 @@ function RoleCard({ role, index }: { role: Role; index: number }) {
                     <span className="font-mono text-xs" style={{ color: theme.chipColor, opacity: 0.7 }}>
                       {role.period}
                     </span>
-                    <span className="font-mono text-xs text-white/20">· {role.location}</span>
+                    <span className="font-mono text-xs text-white/35">· {role.location}</span>
                   </div>
-                  <h3 className="leading-snug">{role.companyNode}</h3>
+                  <h3 className="leading-snug inline-flex items-center gap-1.5">
+                    {role.companyNode}
+                    <a
+                      href={role.website}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      aria-label="Visit company website"
+                      className="inline-flex items-center transition-opacity duration-200 hover:!opacity-100"
+                      style={{ color: theme.chipColor, opacity: 0.5 }}
+                    >
+                      <svg width="11" height="11" viewBox="0 0 16 16" fill="none" aria-hidden>
+                        <path d="M5 11L11 5M11 5H6M11 5V10" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    </a>
+                  </h3>
                   <p className="font-mono text-xs mt-1" style={{ color: theme.chipColor, opacity: 0.65 }}>
                     {role.title}
                   </p>
                 </div>
-                <motion.svg
-                  animate={{ rotate: isOpen ? 180 : 0 }}
-                  transition={{ duration: 0.25, ease: "easeInOut" }}
-                  width="15" height="15" viewBox="0 0 16 16" fill="none"
-                  className="flex-shrink-0 mt-1 text-white/25"
-                >
-                  <path d="M3 6l5 5 5-5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                </motion.svg>
+                <div className="flex-shrink-0 flex items-center gap-1.5 mt-1">
+                  <AnimatePresence initial={false}>
+                    {!isOpen && (
+                      <motion.span
+                        initial={{ opacity: 0, x: 4 }}
+                        animate={{ opacity: showHover ? 0.9 : 0.4, x: 0 }}
+                        exit={{ opacity: 0, x: 4 }}
+                        transition={{ duration: 0.2 }}
+                        className="font-mono text-[10px] tracking-widest hidden sm:inline"
+                        style={{ color: theme.chipColor }}
+                      >
+                        expand
+                      </motion.span>
+                    )}
+                  </AnimatePresence>
+                  <motion.svg
+                    animate={{ rotate: isOpen ? 180 : 0, y: showHover ? 2 : 0 }}
+                    transition={{ duration: 0.25, ease: "easeInOut" }}
+                    width="15" height="15" viewBox="0 0 16 16" fill="none"
+                    style={{ color: showHover ? theme.chipColor : "rgba(255,255,255,0.25)" }}
+                  >
+                    <path d="M3 6l5 5 5-5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </motion.svg>
+                </div>
               </div>
 
               <AnimatePresence initial={false}>
@@ -738,7 +797,7 @@ function RoleCard({ role, index }: { role: Role; index: number }) {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.18 }}
-                    className="text-white/50 text-sm leading-relaxed mt-3"
+                    className="text-white/65 text-sm leading-relaxed mt-3"
                   >
                     {role.shortBlurb}
                   </motion.p>
@@ -759,7 +818,7 @@ function RoleCard({ role, index }: { role: Role; index: number }) {
                   <div className="mx-5 h-px" style={{ backgroundColor: theme.divider }} />
                   <div className="px-5 pt-4 pb-5 space-y-4">
                     {role.body.map((para, i) => (
-                      <p key={i} className="text-white/60 text-sm leading-7 md:max-w-[58%]">
+                      <p key={i} className="text-white/72 text-sm leading-7 md:max-w-[58%]">
                         {para}
                       </p>
                     ))}
@@ -770,7 +829,7 @@ function RoleCard({ role, index }: { role: Role; index: number }) {
                           <div className="font-mono font-bold text-sm" style={{ color: theme.metricColor }}>
                             {h.metric}
                           </div>
-                          <div className="text-white/35 text-xs mt-0.5 leading-snug">{h.label}</div>
+                          <div className="text-white/50 text-xs mt-0.5 leading-snug">{h.label}</div>
                         </div>
                       ))}
                     </div>
@@ -787,7 +846,7 @@ function RoleCard({ role, index }: { role: Role; index: number }) {
               )}
             </AnimatePresence>
           </div>
-        </button>
+        </div>
       </div>
     </motion.div>
   );
@@ -816,7 +875,7 @@ export default function Experience() {
             className="flex items-center gap-3 mb-3"
           >
             <div style={{ width: "28px", height: "1px", background: "#6366f1" }} />
-            <p className="font-mono text-xs tracking-widest text-white/30">
+            <p className="font-mono text-xs tracking-widest text-white/45">
               03 / experience
             </p>
           </motion.div>
@@ -834,7 +893,7 @@ export default function Experience() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-40px" }}
             transition={{ duration: 0.6, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
-            className="text-white/35 text-sm mt-3 pl-9 max-w-md leading-relaxed"
+            className="text-white/50 text-sm mt-3 pl-9 max-w-md leading-relaxed"
           >
             Five roles across research, embedded, full-stack, and applied AI.
             Click any card to read the full story.

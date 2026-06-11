@@ -153,7 +153,7 @@ export default function Nav() {
             (e.currentTarget as HTMLElement).style.boxShadow = "0 0 10px rgba(99,102,241,0.25), 0 0 20px rgba(99,102,241,0.1), inset 0 0 10px rgba(99,102,241,0.05)";
           }}
         >
-          <span className="font-mono text-sm tracking-widest text-white/70 group-hover:text-white transition-colors duration-200">
+          <span className="font-mono text-sm tracking-widest text-white/80 group-hover:text-white transition-colors duration-200">
             AR
           </span>
         </a>
