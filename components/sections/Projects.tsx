@@ -5,6 +5,13 @@ import Link from "next/link";
 import { featuredProjects, secondaryProjects } from "@/lib/projects";
 import SectionOrbs from "@/components/SectionOrbs";
 
+const projectPrompts: Record<string, string> = {
+  "agent-techs-pipeline": "What's the real story behind the data-matching pipeline — what went wrong?",
+  "text2sql": "Tell me about the Text2SQL project — what was Abheesht's contribution?",
+  "graph-pipeline": "Tell me about the graph data pipeline project",
+  "samsung-tcon": "Tell me about the Samsung TCON tool — what was the hard part?",
+};
+
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 24 },
   visible: (i: number) => ({
@@ -182,6 +189,18 @@ export default function Projects() {
                       >
                         <ExternalIcon /> live
                       </a>
+                    )}
+                    {projectPrompts[project.slug] && (
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          window.dispatchEvent(new CustomEvent('open-chat', { detail: { message: projectPrompts[project.slug] } }));
+                        }}
+                        className="font-mono text-xs flex items-center gap-1 transition-colors cursor-pointer"
+                        style={{ color: "#22d3ee" }}
+                      >
+                        ask about this ↗
+                      </button>
                     )}
                     <Link
                       href={`/projects/${project.slug}`}

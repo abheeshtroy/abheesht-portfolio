@@ -4,6 +4,14 @@ import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import SectionOrbs from "@/components/SectionOrbs";
 
+const rolePrompts: Record<string, string> = {
+  "agent-techs": "What did Abheesht own end-to-end at Agent-Techs?",
+  "desknow": "What did the youngest engineer at DeskNow end up responsible for?",
+  "samsung": "What did he actually own on the Samsung TCON project?",
+  "atthah": "What did he own at Atthah while learning the whole stack?",
+  "ncsm": "What was Abheesht's piece of the IEEE museum research?",
+};
+
 // ─── Types ────────────────────────────────────────────────────────────────────
 
 interface Highlight {

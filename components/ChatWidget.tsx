@@ -11,22 +11,15 @@ const SUGGESTED_CHIPS = [
   'Show me the non-code Abheesht',
 ];
 
-const TEASER_MESSAGES = [
-  "Ask about the week he built the wrong thing at Samsung",
-  "Ask why he argued against a bigger model — and won",
-  "Ask about the bug where one exhibit kept triggering another",
-  "Ask him to settle the Messi-GOAT debate",
-];
 
 const STORAGE_KEY = 'chat-messages';
-const TEASER_KEY = 'chat-teaser-shown';
+
 
 export default function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const [rateLimitMsg, setRateLimitMsg] = useState<string | null>(null);
-  const [teaserMsg, setTeaserMsg] = useState<string | null>(null);
-  const [teaserVisible, setTeaserVisible] = useState(false);
+
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
@@ -63,21 +56,7 @@ export default function ChatWidget() {
     }
   }, [messages]);
 
-  // Fire teaser once per session, 2.5s after mount
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const alreadyShown = sessionStorage.getItem(TEASER_KEY);
-    if (alreadyShown) return;
-    const timer = setTimeout(() => {
-      const msg = TEASER_MESSAGES[Math.floor(Math.random() * TEASER_MESSAGES.length)];
-      setTeaserMsg(msg);
-      setTeaserVisible(true);
-      sessionStorage.setItem(TEASER_KEY, '1');
-      // Auto-hide after 5s
-      setTimeout(() => setTeaserVisible(false), 5000);
-    }, 2500);
-    return () => clearTimeout(timer);
-  }, []);
+
 
   useEffect(() => {
     if (isOpen) setTimeout(() => inputRef.current?.focus(), 300);
@@ -90,6 +69,19 @@ export default function ChatWidget() {
     window.addEventListener('keydown', handleEsc);
     return () => window.removeEventListener('keydown', handleEsc);
   }, [isOpen]);
+
+  // Listen for open-chat events from other components
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const detail = (e as CustomEvent).detail;
+      setIsOpen(true);
+      if (detail?.message) {
+        setTimeout(() => handleSend(detail.message), 400);
+      }
+    };
+    window.addEventListener('open-chat', handler);
+    return () => window.removeEventListener('open-chat', handler);
+  }, []);
 
   const handleSend = async (text?: string) => {
     const msg = text || inputValue.trim();
