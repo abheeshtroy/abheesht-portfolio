@@ -17,6 +17,8 @@ export default function ChatWidget() {
   const [rateLimitMsg, setRateLimitMsg] = useState<string | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
+  const dragStartY = useRef<number>(0);
+  const [isDragging, setIsDragging] = useState(false);
 
   const { messages, sendMessage, status, stop } = useChat({
     onError: (error: Error) => {
@@ -130,8 +132,13 @@ export default function ChatWidget() {
                   </div>
                   <p className="text-[11px] text-[#4b5563] mt-0.5">Not as funny as him, but I've got the receipts</p>
                 </div>
-                <div className="absolute top-1.5 left-1/2 -translate-x-1/2 sm:hidden">
-                  <div className="w-8 h-1 rounded-full bg-[rgba(129,140,248,0.3)]" />
+                <div
+                  className="absolute top-1.5 left-1/2 -translate-x-1/2 sm:hidden cursor-grab active:cursor-grabbing py-2 px-6"
+                  onTouchStart={(e) => { dragStartY.current = e.touches[0].clientY; setIsDragging(true); }}
+                  onTouchMove={(e) => { if (isDragging && e.touches[0].clientY - dragStartY.current > 60) setIsOpen(false); }}
+                  onTouchEnd={() => setIsDragging(false)}
+                >
+                  <div className="w-8 h-1 rounded-full bg-[rgba(129,140,248,0.5)]" />
                 </div>
                 <button onClick={() => setIsOpen(false)}
                   className="text-[#4b5563] hover:text-white transition-colors p-1 cursor-pointer"
