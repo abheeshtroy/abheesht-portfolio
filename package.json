@@ -9,7 +9,10 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.100.1",
+    "@ai-sdk/anthropic": "^3.0.82",
+    "@ai-sdk/react": "^3.0.202",
+    "@upstash/ratelimit": "^2.0.8",
+    "@upstash/redis": "^1.38.0",
     "ai": "^6.0.196",
     "framer-motion": "^12.40.0",
     "next": "16.2.7",
