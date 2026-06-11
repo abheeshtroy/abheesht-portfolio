@@ -699,7 +699,9 @@ function RoleCard({ role, index }: { role: Role; index: number }) {
                   transition={{ duration: 0.4, delay: 0.12 }}
                   style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0 }}
                 >
-                  <role.ExpandedSVG id={role.id} />
+                  <div className="hidden md:block w-full h-full">
+                    <role.ExpandedSVG id={role.id} />
+                  </div>
                 </motion.div>
               )}
             </AnimatePresence>
@@ -757,12 +759,12 @@ function RoleCard({ role, index }: { role: Role; index: number }) {
                   <div className="mx-5 h-px" style={{ backgroundColor: theme.divider }} />
                   <div className="px-5 pt-4 pb-5 space-y-4">
                     {role.body.map((para, i) => (
-                      <p key={i} className="text-white/60 text-sm leading-7" style={{ maxWidth: "58%" }}>
+                      <p key={i} className="text-white/60 text-sm leading-7 md:max-w-[58%]">
                         {para}
                       </p>
                     ))}
-                    <div className="rounded-lg p-4 grid grid-cols-3 gap-4"
-                      style={{ backgroundColor: theme.highlightsBg, maxWidth: "58%" }}>
+                    <div className="rounded-lg p-4 grid grid-cols-3 gap-4 md:max-w-[58%]"
+                      style={{ backgroundColor: theme.highlightsBg }}>
                       {role.highlights.map((h) => (
                         <div key={h.label}>
                           <div className="font-mono font-bold text-sm" style={{ color: theme.metricColor }}>
