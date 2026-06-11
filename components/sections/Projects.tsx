@@ -9,7 +9,11 @@ const projectPrompts: Record<string, string> = {
   "agent-techs-pipeline": "What's the real story behind the data-matching pipeline — what went wrong?",
   "text2sql": "Tell me about the Text2SQL project — what was Abheesht's contribution?",
   "graph-pipeline": "Tell me about the graph data pipeline project",
-  "samsung-tcon": "Tell me about the Samsung TCON tool — what was the hard part?",
+  "samsung-diagnostic": "Tell me about the Samsung TCON tool — what was the hard part?",
+  "agrichain": "Tell me about the AgriChain project",
+  "context-monitoring": "Tell me about the context monitoring app",
+  "air-passenger": "Tell me about the air passenger prediction project",
+  "mushroom-classifier": "Tell me about the mushroom classifier project",
 };
 
 const fadeUp: Variants = {
