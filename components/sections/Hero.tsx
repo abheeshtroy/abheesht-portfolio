@@ -18,33 +18,8 @@ export default function Hero() {
             initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
-            className="order-1 md:order-2 mb-10 md:mb-0 flex justify-center md:justify-end"
+            className="hidden md:flex order-1 md:order-2 mb-10 md:mb-0 justify-center md:justify-end"
           >
-            {/* Mobile: clean circle */}
-            <div
-              className="md:hidden relative rounded-full p-[1.5px] w-32"
-              style={{
-                background: "linear-gradient(135deg, #6366f1, #22d3ee)",
-                boxShadow: "0 0 45px rgba(99,102,241,0.22)",
-              }}
-            >
-              <div className="relative rounded-full overflow-hidden w-full aspect-square">
-                <Image
-                  src="/abheesht-portfolio.jpg"
-                  alt="Abheesht Roy"
-                  fill
-                  priority
-                  sizes="128px"
-                  className="object-cover"
-                  style={{ objectPosition: "center 30%" }}
-                />
-                <div
-                  className="absolute inset-0 pointer-events-none"
-                  style={{ background: "linear-gradient(180deg, transparent 50%, rgba(19,19,31,0.5) 100%)" }}
-                />
-              </div>
-            </div>
-
             {/* Desktop: terminal-window frame with gradient border + glow */}
             <div
               className="hidden md:block relative rounded-2xl p-[1.5px]"
