@@ -15,15 +15,18 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 80px;
-}
-
-section {
+  scroll-snap-type: y mandatory;
 }
 
 body {
   background-color: var(--background);
   color: #eef0f6;
   -webkit-font-smoothing: antialiased;
+}
+
+section {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 
 @keyframes pulse {
@@ -37,3 +40,7 @@ body {
 ::-webkit-scrollbar-thumb:hover { background: #2a2a3e; }
 
 ::selection { background: rgba(99, 102, 241, 0.3); color: inherit; }
+
+/* Hero photo — cool at rest, warm on hover (hover-capable devices only) */
+.hero-photo { transition: filter 0.5s ease; }
+.hero-photo-tint { opacity: 0; transition: opacity 0.5s ease; }
