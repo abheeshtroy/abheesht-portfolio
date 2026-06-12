@@ -35,13 +35,13 @@ export default function CursorGlow() {
   return (
     <div
       ref={glowRef}
-      className="fixed pointer-events-none z-30 hidden sm:block"
+      className="fixed pointer-events-none z-0 hidden sm:block"
       style={{
-        width: 350,
-        height: 350,
+        width: 450,
+        height: 450,
         transform: 'translate(-50%, -50%)',
         background: 'radial-gradient(circle, rgba(99,102,241,0.15) 0%, rgba(34,211,238,0.08) 35%, transparent 65%)',
-        filter: 'blur(30px)',
+        filter: 'blur(50px)',
         transition: 'opacity 0.4s ease',
         opacity: 0,
       }}
