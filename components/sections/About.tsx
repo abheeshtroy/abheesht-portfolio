@@ -8,13 +8,10 @@ export default function About() {
     <section
       id="about"
       className="relative py-32 px-6 overflow-hidden isolate"
-      
     >
-      {/* Ambient orbs */}
       <SectionOrbs />
 
       <div className="relative z-10 max-w-5xl mx-auto">
-        {/* Staggered heading */}
         <div className="mb-12">
           <motion.div
             initial={{ opacity: 0, x: -40 }}
@@ -49,63 +46,38 @@ export default function About() {
             {/* Left — main copy */}
             <div className="space-y-6">
               <p className="text-2xl text-white/85 leading-relaxed font-light">
-                I've spent the last few years working at levels of the stack
-                most engineers only read about.
+                I&apos;ve spent the last few years building at levels of the
+                stack most engineers only read about.
               </p>
               <p className="text-white/65 leading-relaxed">
-                Hardware diagnostics at Samsung. Real-time backends at a
-                European startup. Production AI pipelines at a healthtech firm.
-                IoT research that ended up in two IEEE publications.
+                The kind of work Samsung doesn&apos;t put in press releases, at Samsung Semiconductor.
+                Real-time backends for a European SaaS startup. Agentic AI pipelines
+                for enterprise data infrastructure. IoT systems that ended up published.
               </p>
               <p className="text-white/65 leading-relaxed">
-                That range isn't a résumé quirk — it's how I think. I'm drawn
-                to problems that require understanding the full system, not just
-                the layer you're hired to own.
+                The range is intentional. I&apos;m drawn to problems where you
+                can&apos;t solve the top layer without understanding what&apos;s
+                underneath it.
               </p>
               <p className="text-white/65 leading-relaxed">
-                Right now I'm most interested in roles where AI changes what a
-                product can fundamentally do — not just automate what it already
-                does. I want to be in the room where that architecture gets
-                decided.
+                There&apos;s a lot going on outside the terminal window.
+                I take that part just as seriously.
               </p>
             </div>
 
             {/* Right — quick facts */}
-            <div className="space-y-8">
+            <div className="space-y-4">
               <div>
-                <p className="font-mono text-xs tracking-widest text-white/40 mb-4">currently</p>
+                <p className="font-mono text-xs tracking-widest text-white/40 mb-3">education</p>
                 <p className="text-white/80">MS Computer Science · Arizona State University</p>
                 <p className="text-white/45 text-sm mt-1">GPA 4.0 · May 2026</p>
+                <p className="text-white/80 mt-2">BTech Information Technology · Manipal Institute of Technology</p>
+                <p className="text-white/45 text-sm mt-1">2019 – 2023</p>
               </div>
+              <div style={{ height: "1px", background: "rgba(255,255,255,0.06)" }} />
               <div>
-                <p className="font-mono text-xs tracking-widest text-white/40 mb-4">based in</p>
+                <p className="font-mono text-xs tracking-widest text-white/40 mb-3">based in</p>
                 <p className="text-white/80">San Francisco, CA</p>
-              </div>
-              <div>
-                <p className="font-mono text-xs tracking-widest text-white/40 mb-4">looking for</p>
-                <p className="text-white/80">SWE · AI Engineering</p>
-                <p className="text-white/45 text-sm mt-1">anywhere</p>
-              </div>
-              <div>
-                <p className="font-mono text-xs tracking-widest text-white/40 mb-4">published</p>
-                <div className="space-y-2">
-                  <a
-                    href="https://ieeexplore.ieee.org/document/9573753"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block text-sm text-white/65 hover:text-white/90 transition-colors duration-200 underline underline-offset-4 decoration-white/20"
-                  >
-                    IEEE RTEICT 2021
-                  </a>
-                  <a
-                    href="https://ieeexplore.ieee.org/document/10101373"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block text-sm text-white/65 hover:text-white/90 transition-colors duration-200 underline underline-offset-4 decoration-white/20"
-                  >
-                    IEEE INCON 2023
-                  </a>
-                </div>
               </div>
             </div>
           </div>

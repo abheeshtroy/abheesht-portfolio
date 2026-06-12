@@ -83,6 +83,9 @@ export default function ContactSection() {
             Have a role, a project, or just want to argue about system design?
             I&apos;m all ears.
           </p>
+          <p className="font-mono text-xs text-white/35 mt-3 italic tracking-wide">
+            If you&apos;re hiring, the timing is good.
+          </p>
         </motion.div>
 
         <motion.div

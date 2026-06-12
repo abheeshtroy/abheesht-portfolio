@@ -488,13 +488,13 @@ const roles: Role[] = [
     website: "https://www.agent-techs.ai/",
     title: "Applied AI Engineering Intern",
     period: "Jun 2025 – Aug 2025",
-    location: "Remote",
+    location: "Atlanta, GA",
     theme: T.agentTechs,
-    shortBlurb: "Built production multi-agent AI pipelines on GCP — FAISS vector search, LangChain orchestration, and a retrieval layer that cut query latency by 40%.",
+    shortBlurb: "Built an entity resolution pipeline that cleaned up messy enterprise data across healthcare, supply chain, and finance. The biggest accuracy jump came from fixing the data, not throwing a bigger model at it.",
     body: [
-      "Joined a small applied AI team to build out their data harmonization pipeline from scratch. The core problem: heterogeneous health data coming in from multiple sources, none of it agreeing on schema, identifiers, or units.",
-      "Designed and shipped a multi-agent orchestration system using LangChain — one agent for extraction, one for normalization, one for conflict resolution. Deployed on GCP Cloud Run with FAISS-backed semantic search for entity matching across documents.",
-      "The retrieval layer was the interesting part. Off-the-shelf embeddings weren't precise enough for medical terminology, so I fine-tuned a domain adapter and combined it with a BM25 re-ranking pass. End result: 40% reduction in query latency and match accuracy that cleared the team's bar for production.",
+      "Joined a small applied AI team to build their data harmonization pipeline from scratch. The core problem: enterprise data arriving from multiple sources across healthcare, supply chain, and finance, none of it agreeing on schema, identifiers, or formatting.",
+      "Designed and shipped a multi-agent orchestration system using LangChain, deployed on GCP Cloud Run with FAISS-backed entity matching across datasets. The interesting finding was that after proper data cleaning and normalization, different embedding backends all performed similarly. The data quality was doing the heavy lifting, not the model.",
+      "The trickiest bug was address-heavy false positives. People on the same street were getting merged because address fields were weighted too heavily. Pulled the bad matches, looked at them manually, reduced address contribution, added a name-based re-rank as a tiebreaker. Wrong links dropped without hurting recall. 95%+ entity resolution accuracy across three business domains.",
     ],
     highlights: [
       { metric: "40%", label: "Query latency reduction" },
@@ -511,13 +511,13 @@ const roles: Role[] = [
     website: "https://www.desk-now.com/",
     title: "Software Engineer",
     period: "Sep 2023 – Jul 2024",
-    location: "Remote",
+    location: "Reken, Germany",
     theme: T.desknow,
-    shortBlurb: "Full-stack SWE at a European workspace booking platform — Node.js backend, PostgreSQL, 20+ enterprise clients, and a production incident that taught me more than any course.",
+    shortBlurb: "Full-stack at a German workspace booking startup. Owned vendor analytics, hunted down a production latency regression affecting three enterprise clients, and learned what good engineering management looks like.",
     body: [
-      "DeskNow was a B2B workspace booking platform in scale-up mode when I joined. My work spanned the full stack: REST APIs in Node.js, a PostgreSQL data layer, and a React frontend for the admin dashboard.",
-      "The work I'm most proud of wasn't a feature — it was an incident. A race condition in the booking service was causing double-reservations for high-demand slots under concurrent load. I traced it through the logs, reproduced it locally under simulated concurrency, and patched it with advisory locks and an idempotency key pattern.",
-      "On the product side, I owned the integrations layer for enterprise clients — calendar sync, SSO, webhook delivery. By the time I left we were live with 20+ enterprise accounts.",
+      "DeskNow was a German startup building a platform for managing shared workspaces. Vendors listed spaces, the platform handled bookings, payments, and occupancy tracking. I was full-stack across Node.js and MongoDB on the backend, Angular and ApexCharts on the frontend.",
+      "My main ownership was the vendor analytics dashboards. This wasn't just fetching data. I wrote MongoDB aggregation pipelines that computed monthly revenue and occupancy percentages from raw booking records. Vendors were making real business decisions off these numbers, so getting the aggregation logic right actually mattered.",
+      "Reduced CI/CD build failures by 40% by engineering a GitLab pipeline with automated Docker builds, Jest test gating, and environment-specific deployment configs. Bad deploys dropped from roughly ten per month to about six. Also traced a UTF-8 encoding bug where German special characters were breaking confirmation emails, fixed the templates, then standardized all language handling into a single module across the system.",
     ],
     highlights: [
       { metric: "20+", label: "Enterprise clients" },
@@ -532,11 +532,11 @@ const roles: Role[] = [
     id: "samsung",
     companyNode: <SamsungName />,
     website: "https://semiconductor.samsung.com/",
-    title: "Embedded Systems Engineer",
+    title: "Software Engineer Intern",
     period: "Jan 2023 – Jul 2023",
     location: "Bangalore, India",
     theme: T.samsung,
-    shortBlurb: "Hardware diagnostic tooling in C++/PyQt for chip validation across 3+ silicon variants — including a thread contention bug that only surfaced under one specific I2C sequence.",
+    shortBlurb: "Built the diagnostic tooling that Samsung's hardware engineers use to configure and validate TCON display chips across pre-release silicon variants over I2C and SPI.",
     body: [
       "Embedded at Samsung Semiconductor's device diagnostics team, working on tooling for hardware validation engineers to test chip behavior across pre-release silicon variants.",
       "The main project was a cross-platform diagnostic GUI in C++ and PyQt — wrapping low-level I2C/SPI communication protocols behind a test runner interface that validation engineers could use without digging into register maps.",
@@ -555,15 +555,15 @@ const roles: Role[] = [
     id: "atthah",
     companyNode: <PlainName name="Atthah Infomedia" />,
     website: "https://www.atthah.com/",
-    title: "Backend Engineer",
+    title: "Software Engineer Intern",
     period: "May 2022 – Jul 2022",
-    location: "Remote",
+    location: "Gurugram, India",
     theme: T.atthah,
-    shortBlurb: "Real-time backend for an immersive experience studio — MERN stack, Socket.io, 500+ concurrent users, sub-200ms latency at peak broadcast load.",
+    shortBlurb: "Real-time backend for a virtual convention center. MERN stack, Socket.io, 500+ concurrent users at sub-200ms latency. First time owning a backend end-to-end.",
     body: [
-      "Atthah was a media-tech studio building live audience engagement infrastructure for spatial and immersive brand experiences. I came in to help shore up the backend before a major product launch.",
-      "The core technical work was around the real-time layer — WebSocket connections via Socket.io on a Node.js backend, with MongoDB handling the event log and React on the frontend. The challenge was keeping latency under 200ms when concurrent user counts spiked during live broadcast windows.",
-      "We got there through connection pooling tuning, event batching on the emitter side, and horizontal scaling behind a load balancer. Peak load hit 500+ concurrent users without the latency budgets blowing.",
+      "Atthah was building a virtual convention center with live chat, video conferencing, and polling for large audiences. I came in to build the real-time backend before a major product launch.",
+      "The team was initially planning to use REST for messaging. I spent a day building a Socket.io prototype, two browser windows and a basic Node server, to show the difference. We went with WebSockets for the real-time layer and kept REST for metadata. Built the full system: Socket.io rooms mapped to virtual spaces, JWT auth through the socket handshake, one-to-one messaging via socket ID routing, group chat via room broadcasts, MongoDB for chat history.",
+      "Message delivery went from 2-3 seconds under REST polling to sub-200ms. System scaled from about 50 to 500+ concurrent users. Along the way I broke the login flow by mishandling the token during socket auth integration. Debugged it, rolled back, added proper validation. Learned the hard way that touching auth is never a small change.",
     ],
     highlights: [
       { metric: "500+", label: "Concurrent users" },
@@ -582,11 +582,11 @@ const roles: Role[] = [
     period: "May 2021 – Aug 2021",
     location: "Kolkata, India",
     theme: T.ncsm,
-    shortBlurb: "IoT research at India's National Council of Science Museums — chatbot for museum accessibility, CNN crowd counting model, two IEEE publications.",
+    shortBlurb: "IoT research at India's National Council of Science Museums. Built a chatbot for museum accessibility and a CNN crowd counting system. Two IEEE publications came out of it.",
     body: [
-      "My first research internship, at the National Council of Science Museums in Kolkata. The lab was working on making large public science spaces more accessible — visitors who can't read exhibit labels, staff trying to manage crowd density in real time.",
-      "I built two things. A voice-accessible chatbot (Musoassist) that let visitors query exhibit information in natural language, deployed on Raspberry Pi hardware throughout the museum floor. And a Bayesian-enhanced CNN model for crowd density estimation from overhead camera feeds, trained on the ShanghaiTech dataset.",
-      "Both projects made it to IEEE publications — RTEICT 2021 and INCON 2023. But more than the papers, this is where I got hooked on AI that operates in the real world, under real constraints, with real stakes. That thread runs through everything I've built since.",
+      "My first research internship, at the National Council of Science Museums in Kolkata. The lab was working on making large public science spaces more accessible. Visitors who can't read exhibit labels, staff trying to manage crowd density across galleries in real time.",
+      "Built two systems. A voice-accessible chatbot deployed on Raspberry Pi hardware across 8 exhibits, letting visitors query exhibit information in natural language. 73% visitor comprehension versus 54% without guidance. And a CNN-based crowd density estimator running on existing CCTV feeds, whose output directly controlled motorized spotlights to highlight the most crowded exhibits. No new hardware required.",
+      "Both projects made it to IEEE publications. RTEICT 2021 and INCON 2023. This was also the summer I realized I wanted to build AI that operates under real-world constraints, not just in notebooks.",
     ],
     highlights: [
       { metric: "2×", label: "IEEE publications" },
@@ -895,7 +895,7 @@ export default function Experience() {
             transition={{ duration: 0.6, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
             className="text-white/50 text-sm mt-3 pl-9 max-w-md leading-relaxed"
           >
-            Five roles across research, embedded, full-stack, and applied AI.
+            Five roles across research, systems, full-stack, and applied AI.
             Click any card to read the full story.
           </motion.p>
         </div>

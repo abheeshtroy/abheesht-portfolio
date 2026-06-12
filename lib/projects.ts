@@ -26,7 +26,7 @@ export type Project = {
       filename: "agent-techs / agentic-data-harmonization",
       year: "2025",
       description:
-        "Multi-agent orchestration system for healthcare document processing. Built async task queues, FAISS vector search, and deployed on GCP Cloud Run.",
+        "Teaching a swarm of AI agents to clean up the messy, mismatched data that every enterprise quietly drowns in. FAISS-powered entity matching, orchestrated on GCP Cloud Run.",
       stack: "Python · LangChain · FAISS · GCP",
       impact: "~60% reduction in processing time",
       tags: ["multi-agent", "vector search", "distributed"],
@@ -59,9 +59,9 @@ export type Project = {
       filename: "research / text2sql",
       year: "2024",
       description:
-        "Natural language to SQL translation using FLAN-T5, evaluated on the Spider benchmark with knowledge-graph-based validation for query correctness.",
+        "Getting a small language model to write SQL that's actually correct, and refuse the queries that would wreck your database. A knowledge-graph validation layer pushed it to 76.2% on Spider.",
       stack: "Python · FLAN-T5 · HuggingFace · PyTorch",
-      impact: "Evaluated on Spider benchmark",
+      impact: "68.4% \u2192 76.2% accuracy on Spider",
       tags: ["NLP", "LLM fine-tuning", "knowledge graph"],
       github: undefined, // link coming
       featured: true,
@@ -90,7 +90,7 @@ export type Project = {
       filename: "infra / graph-pipeline",
       year: "2024",
       description:
-        "Distributed graph data pipeline using Neo4j, Kafka, Kubernetes, and Docker. Designed for real-time ingestion and traversal at scale.",
+        "Graph data is powerful but a pain to feed at scale. A real-time pipeline that streams Kafka into Neo4j on Kubernetes and keeps the graph fresh without choking on its own ingestion.",
       stack: "Neo4j · Kafka · Kubernetes · Docker",
       impact: "Real-time ingestion at scale",
       tags: ["distributed systems", "graph DB", "Kafka"],
@@ -122,7 +122,7 @@ export type Project = {
       filename: "samsung / chip-diagnostics",
       year: "2023",
       description:
-        "Hardware diagnostic tool for semiconductor validation in C++ and PyQt. Interfaced with I2C/SPI protocols across 3+ chip variants, including hunting down a thread contention bug.",
+        "The unglamorous tooling that validates the TCON chips behind Samsung's displays before they ship. Built in C++ and PyQt across I2C/SPI, deployed to 3+ chip variants.",
       stack: "C++ · PyQt · I2C · SPI",
       impact: "Used across 3+ chip variants",
       tags: ["embedded", "hardware", "C++"],
