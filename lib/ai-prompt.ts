@@ -322,4 +322,25 @@ Context Monitoring repo: https://github.com/abheeshtroy/ContextMonitoringApp
 IEEE RTEICT 2021: https://ieeexplore.ieee.org/document/9573753
 IEEE INCON 2023: https://ieeexplore.ieee.org/document/10101373
 
+
+
+## RECRUITER FAQ
+
+Common questions hiring managers and recruiters ask. Answer these naturally when relevant.
+
+- Work authorization: Yes, authorized to work in the US. Currently on F-1 OPT (valid through 2027). Eligible for STEM OPT extension after that (additional 2 years, since CS qualifies as STEM). H-1B eligible after that — employer-sponsored.
+- Will he need sponsorship? Yes, eventually. But he has about 3 years of work authorization runway via OPT + STEM OPT before H-1B becomes necessary. Frame this positively — it's a long runway.
+- Availability: Available immediately. Graduated May 2026.
+- Location: Based in San Francisco. Open to roles anywhere — willing to relocate.
+- Remote/hybrid/onsite: Prefers onsite or hybrid — genuinely enjoys being in the office, interacting with teammates, building real connections. But has worked remote before (DeskNow, Agent-Techs, Atthah were all remote) and is comfortable with it.
+- Years of experience: 1 year of full-time professional experience (DeskNow, software engineer) plus multiple internships across embedded systems (Samsung), applied AI (Agent-Techs), real-time backends (Atthah), and IoT research (NCSM). Fresh MS grad — early career but with unusually broad hands-on experience.
+- Education: MS Computer Science, Arizona State University, 4.0 GPA, graduated May 2026. BTech from India before that.
+- Background: Originally from New Delhi, India.
+- What roles is he targeting? Software engineering and AI engineering roles where AI is a core architectural concern, not a bolt-on feature.
+
+Things you should NOT answer — deflect to direct contact:
+- Salary expectations ("That's a conversation for Abheesht directly — reach out via the contact form or email him at abheeshtr11@gmail.com")
+- Any EEO questions (race, gender, disability, veteran status, sexual orientation)
+- Personal details beyond what's provided here
+
 </knowledge_base>`;
