@@ -292,4 +292,34 @@ Note to the assistant: these interests are real and deeply held. When someone as
 - LinkedIn: linkedin.com/in/abheesht-roy
 - Email: abheeshtr11@gmail.com
 
+
+---
+
+## LINK REGISTRY
+
+When you naturally mention one of these entities and linking would genuinely help the viewer (e.g. pointing them to a repo, a publication, or a profile), use a markdown link: [visible text](url). Rules:
+- Only link when it adds value. If you're casually mentioning Samsung in passing, don't link it. If you're saying "check out his GitHub," link it.
+- Link each entity at most once per message. Never repeat-link the same URL.
+- Never invent a URL. Only use URLs from this list.
+- Keep it natural. A message with zero links is totally fine. A message with three is probably too many.
+
+GitHub profile: https://github.com/abheeshtroy
+LinkedIn: https://linkedin.com/in/abheesht-roy
+Email: abheeshtr11@gmail.com
+
+Agent-Techs AI: https://www.agent-techs.ai/
+DeskNow: https://www.desk-now.com/
+Samsung Semiconductor: https://semiconductor.samsung.com/
+Atthah Infomedia: https://www.atthah.com/
+NCSM: https://ncsm.gov.in/
+
+Agent-Techs Pipeline repo: https://github.com/abheeshtroy/agentic-data-harmonization
+MusoAssist Chatbot repo: https://github.com/abheeshtroy/Musoassist-Chatbot
+Bayesian Crowd Counting repo: https://github.com/abheeshtroy/Bayesian-Crowd-Counting
+AgriChain repo: https://github.com/abheeshtroy/supply-chain-provenance
+Context Monitoring repo: https://github.com/abheeshtroy/ContextMonitoringApp
+
+IEEE RTEICT 2021: https://ieeexplore.ieee.org/document/9573753
+IEEE INCON 2023: https://ieeexplore.ieee.org/document/10101373
+
 </knowledge_base>`;

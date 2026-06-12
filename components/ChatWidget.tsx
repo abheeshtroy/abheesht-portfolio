@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useChat } from '@ai-sdk/react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -13,6 +13,48 @@ const SUGGESTED_CHIPS = [
 
 
 const STORAGE_KEY = 'chat-messages';
+
+const ALLOWED_DOMAINS = [
+  'github.com', 'linkedin.com', 'ieeexplore.ieee.org',
+  'agent-techs.ai', 'www.agent-techs.ai',
+  'desk-now.com', 'www.desk-now.com',
+  'semiconductor.samsung.com', 'atthah.com', 'www.atthah.com',
+  'ncsm.gov.in', 'abheesht-portfolio.vercel.app',
+];
+
+function linkify(text: string): (string | React.ReactElement)[] {
+  const parts: (string | React.ReactElement)[] = [];
+  const regex = /\[([^\]]+)\]\(([^)]+)\)/g;
+  let lastIndex = 0;
+  let match;
+
+  while ((match = regex.exec(text)) !== null) {
+    if (match.index > lastIndex) {
+      parts.push(text.slice(lastIndex, match.index));
+    }
+    const label = match[1];
+    const url = match[2];
+    try {
+      const hostname = new URL(url).hostname;
+      const isAllowed = ALLOWED_DOMAINS.some(d => hostname === d || hostname.endsWith('.' + d));
+      if (url.startsWith('https://') && isAllowed) {
+        parts.push(
+          <a key={match.index} href={url} target="_blank" rel="noopener noreferrer"
+            className="text-[#22d3ee] hover:underline">{label}</a>
+        );
+      } else {
+        parts.push(label);
+      }
+    } catch {
+      parts.push(label);
+    }
+    lastIndex = regex.lastIndex;
+  }
+  if (lastIndex < text.length) {
+    parts.push(text.slice(lastIndex));
+  }
+  return parts;
+}
 
 
 export default function ChatWidget() {
@@ -222,7 +264,7 @@ export default function ChatWidget() {
                       {msg.parts
                         ? msg.parts
                             .filter((p): p is { type: 'text'; text: string } => p.type === 'text')
-                            .map((p, i) => <span key={i}>{p.text}</span>)
+                            .map((p, i) => <span key={i}>{linkify(p.text)}</span>)
                         : null}
                     </div>
                   </motion.div>
