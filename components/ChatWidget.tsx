@@ -209,7 +209,7 @@ export default function ChatWidget() {
                     <span className="font-mono text-sm text-[#c7d2fe] tracking-tight">ask my AI</span>
                     <span className="w-1.5 h-1.5 rounded-full bg-[#22d3ee] animate-pulse" />
                   </div>
-                  <p className="text-[11px] text-[#4b5563] mt-0.5">Not as funny as him, but I've got the receipts</p>
+                  <p className="text-[11px] text-[#4b5563] mt-0.5">Not as funny as me, but it's got the receipts</p>
                 </div>
 
                 <button onClick={() => setIsOpen(false)}
