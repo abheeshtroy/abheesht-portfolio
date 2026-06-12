@@ -44,3 +44,7 @@ section {
 /* Hero photo — cool at rest, warm on hover (hover-capable devices only) */
 .hero-photo { transition: filter 0.5s ease; }
 .hero-photo-tint { opacity: 0; transition: opacity 0.5s ease; }
+
+#contact {
+  scroll-snap-align: none;
+}
