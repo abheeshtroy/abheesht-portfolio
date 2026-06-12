@@ -46,5 +46,6 @@ section {
 .hero-photo-tint { opacity: 0; transition: opacity 0.5s ease; }
 
 #contact {
-  scroll-snap-align: none;
+  scroll-snap-align: start;
+  min-height: 100vh;
 }
