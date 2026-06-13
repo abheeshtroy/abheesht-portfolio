@@ -18,6 +18,7 @@ function lerp(a: number, b: number, t: number) {
 
 export default function CursorSystem() {
   const [mounted, setMounted] = useState(false);
+  const [isActive, setIsActive] = useState(false);
   const blobRef  = useRef<HTMLDivElement>(null);
   const torchRef = useRef<HTMLDivElement>(null);
   const dotRef   = useRef<HTMLDivElement>(null);
@@ -34,7 +35,11 @@ export default function CursorSystem() {
     // Only activate on hover-capable fine-pointer (mouse) devices
     const hoverMq  = window.matchMedia("(hover: hover) and (pointer: fine)");
     const motionMq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (!hoverMq.matches || motionMq.matches) return;
+    if (!hoverMq.matches || motionMq.matches) {
+      setIsActive(false);
+      return;
+    }
+    setIsActive(true);
 
     document.body.classList.add("cursor-custom-active");
 
@@ -175,7 +180,7 @@ export default function CursorSystem() {
     };
   }, [mounted]);
 
-  if (!mounted) return null;
+  if (!mounted || !isActive) return null;
 
   return createPortal(
     <>
