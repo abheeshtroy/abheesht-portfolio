@@ -16,6 +16,7 @@ function NavLink({ link, isActive }: { link: NavLinkItem; isActive: boolean }) {
   return (
     <a
       href={link.href}
+      data-cursor-snap
       className="relative font-mono text-xs tracking-widest transition-colors duration-200 pb-1"
       style={{
         color: isActive ? "rgba(255,255,255,0.9)" : "rgba(255,255,255,0.4)",

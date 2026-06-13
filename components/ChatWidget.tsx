@@ -155,6 +155,7 @@ export default function ChatWidget() {
             exit={{ scale: 0, opacity: 0 }}
             transition={{ type: 'spring', damping: 20, stiffness: 300 }}
             onClick={() => setIsOpen(true)}
+            data-cursor-snap
             className="fixed bottom-20 right-4 sm:bottom-6 sm:right-6 z-50 flex items-center gap-2 px-4 py-2.5
               rounded-full font-mono text-sm cursor-pointer
               bg-[rgba(26,26,40,0.85)] backdrop-blur-xl

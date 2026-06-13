@@ -108,6 +108,7 @@ export default function Hero() {
             >
               <a
                 href="#about"
+                data-cursor-snap
                 className="px-6 py-3 rounded-lg text-sm font-mono tracking-wide text-white transition-all duration-200 hover:opacity-90"
                 style={{
                   background: "linear-gradient(135deg, #6366f1, #4f46e5)",
@@ -118,6 +119,7 @@ export default function Hero() {
               </a>
               <a
                 href="#contact"
+                data-cursor-snap
                 className="px-6 py-3 rounded-lg text-sm font-mono tracking-wide text-white/65 border border-white/10 hover:text-white/90 hover:border-white/20 transition-all duration-200"
               >
                 get in touch
@@ -127,6 +129,7 @@ export default function Hero() {
                   href="https://github.com/abheeshtroy"
                   target="_blank"
                   rel="noopener noreferrer"
+                  data-cursor-snap
                   className="text-white/35 hover:text-white/75 transition-colors duration-200"
                   aria-label="GitHub"
                 >
@@ -138,6 +141,7 @@ export default function Hero() {
                   href="https://www.linkedin.com/in/abheesht-roy/"
                   target="_blank"
                   rel="noopener noreferrer"
+                  data-cursor-snap
                   className="text-white/35 hover:text-white/75 transition-colors duration-200"
                   aria-label="LinkedIn"
                 >

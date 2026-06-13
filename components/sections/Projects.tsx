@@ -176,6 +176,7 @@ export default function Projects() {
                   >
                     {project.github && (
                       <a
+                        data-cursor-snap
                         href={project.github}
                         target="_blank"
                         rel="noopener noreferrer"
@@ -200,6 +201,7 @@ export default function Projects() {
                           e.stopPropagation();
                           window.dispatchEvent(new CustomEvent('open-chat', { detail: { message: projectPrompts[project.slug] } }));
                         }}
+                        data-cursor-snap
                         className="font-mono text-xs flex items-center gap-1 transition-colors cursor-pointer"
                         style={{ color: "#22d3ee" }}
                       >
@@ -207,6 +209,7 @@ export default function Projects() {
                       </button>
                     )}
                     <Link
+                      data-cursor-snap
                       href={`/projects/${project.slug}`}
                       className="ml-auto font-mono text-xs flex items-center gap-1.5 transition-colors"
                       style={{ color: "#818cf8" }}

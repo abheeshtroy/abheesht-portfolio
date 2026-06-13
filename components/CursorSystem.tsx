@@ -70,9 +70,21 @@ export default function CursorSystem() {
     };
 
     // Magnetic snap — event delegation so dynamically mounted elements work
+    const TEXT_SEL = "input, textarea, select";
     const onOver = (e: MouseEvent) => {
+      // Text inputs: shrink + fade so typing isn't obscured
+      if ((e.target as Element).closest(TEXT_SEL)) {
+        tgtW = 6; tgtH = 6; tgtR = 999;
+        snapped = false;
+        if (blobRef.current) blobRef.current.style.opacity = "0.1";
+        if (dotRef.current)  dotRef.current.style.opacity  = "0.35";
+        return;
+      }
+      // Magnetic snap
       const el = (e.target as Element).closest("[data-cursor-snap]");
       if (!el) return;
+      if (blobRef.current) blobRef.current.style.opacity = "1";
+      if (dotRef.current)  dotRef.current.style.opacity  = "1";
       const r = el.getBoundingClientRect();
       snapX = r.left + r.width  / 2;
       snapY = r.top  + r.height / 2;
@@ -83,16 +95,26 @@ export default function CursorSystem() {
     };
 
     const onOut = (e: MouseEvent) => {
+      const related = e.relatedTarget as Element | null;
+      // Leaving a text input — restore
+      if ((e.target as Element).closest(TEXT_SEL)) {
+        if (related && (related as Element).closest?.(TEXT_SEL)) return;
+        tgtW = BLOB_SIZE; tgtH = BLOB_SIZE; tgtR = 999;
+        if (blobRef.current) blobRef.current.style.opacity = "1";
+        if (dotRef.current)  dotRef.current.style.opacity  = "1";
+        return;
+      }
+      // Leaving a snap target
       const el = (e.target as Element).closest("[data-cursor-snap]");
       if (!el) return;
-      const related = e.relatedTarget as Element | null;
-      if (related && el.contains(related)) return; // moving into a child — stay snapped
+      if (related && el.contains(related)) return;
       tgtW = BLOB_SIZE; tgtH = BLOB_SIZE; tgtR = 999;
       snapped = false;
+      if (blobRef.current) blobRef.current.style.opacity = "1";
     };
 
     const onLeave = () => {
-      if (blobRef.current) blobRef.current.style.opacity = "0";
+      if (blobRef.current) blobRef.current.style.opacity = "1";
       if (dotRef.current)  dotRef.current.style.opacity  = "0";
     };
     const onEnter = () => {
