@@ -357,10 +357,12 @@ export default function Projects() {
                 </p>
                 <div className="flex gap-4 flex-wrap">
                   <a href="https://ieeexplore.ieee.org/document/9573753" target="_blank" rel="noopener noreferrer"
+                    data-cursor-snap
                     className="font-mono text-xs text-white/50 hover:text-white/80 transition-colors flex items-center gap-1.5">
                     <ExternalIcon size={13} /> IEEE
                   </a>
                   <a href="https://github.com/abheeshtroy/Musoassist-Chatbot" target="_blank" rel="noopener noreferrer"
+                    data-cursor-snap
                     className="font-mono text-xs text-white/40 hover:text-white/72 transition-colors flex items-center gap-1.5">
                     <GithubIcon size={13} /> chatbot repo
                   </a>
@@ -386,10 +388,12 @@ export default function Projects() {
                 </p>
                 <div className="flex gap-4 flex-wrap">
                   <a href="https://ieeexplore.ieee.org/document/9573753" target="_blank" rel="noopener noreferrer"
+                    data-cursor-snap
                     className="font-mono text-xs text-white/50 hover:text-white/80 transition-colors flex items-center gap-1.5">
                     <ExternalIcon size={13} /> IEEE
                   </a>
                   <a href="https://github.com/abheeshtroy/Bayesian-Crowd-Counting" target="_blank" rel="noopener noreferrer"
+                    data-cursor-snap
                     className="font-mono text-xs text-white/40 hover:text-white/72 transition-colors flex items-center gap-1.5">
                     <GithubIcon size={13} /> crowd counting repo
                   </a>
@@ -405,6 +409,7 @@ export default function Projects() {
                   <span className="text-sm text-white/68">Smart IoT Infrastructure for Public Space Management</span>
                 </div>
                 <a href="https://ieeexplore.ieee.org/document/10101373" target="_blank" rel="noopener noreferrer"
+                    data-cursor-snap
                   className="font-mono text-xs text-white/50 hover:text-white/80 transition-colors flex items-center gap-1.5 shrink-0">
                   <ExternalIcon size={13} /> IEEE
                 </a>

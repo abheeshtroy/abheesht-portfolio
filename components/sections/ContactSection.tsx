@@ -216,6 +216,7 @@ export default function ContactSection() {
 
               <button
                 type="submit"
+                data-cursor-snap
                 disabled={formState === "sending"}
                 className="w-full py-3.5 px-6 rounded-2xl font-medium text-white transition-all duration-300 disabled:opacity-40 disabled:cursor-not-allowed relative overflow-hidden group"
                 style={{
