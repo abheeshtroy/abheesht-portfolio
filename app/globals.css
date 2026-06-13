@@ -60,8 +60,3 @@ section {
     transform: translateY(-3px);
   }
 }
-/* Custom cursor — hide native cursor when system is active */
-body.cursor-custom-active,
-body.cursor-custom-active * {
-  cursor: none !important;
-}
