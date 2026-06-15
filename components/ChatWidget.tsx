@@ -75,7 +75,7 @@ export default function ChatWidget() {
     } catch { return undefined; }
   })();
 
-  const { messages, sendMessage, status, stop } = useChat({
+  const { messages, sendMessage, status, stop, setMessages } = useChat({
     id: 'portfolio-chat',
     messages: restoredMessages,
     onError: (error: Error) => {
@@ -124,6 +124,12 @@ export default function ChatWidget() {
     window.addEventListener('open-chat', handler);
     return () => window.removeEventListener('open-chat', handler);
   }, []);
+
+  const clearChat = () => {
+    setMessages([]);
+    setRateLimitMsg(null);
+    try { sessionStorage.removeItem(STORAGE_KEY); } catch {}
+  };
 
   const handleSend = async (text?: string) => {
     const msg = text || inputValue.trim();
@@ -213,14 +219,26 @@ export default function ChatWidget() {
                   <p className="text-[11px] text-[#4b5563] mt-0.5">Not as funny as me, but it's got the receipts</p>
                 </div>
 
-                <button onClick={() => setIsOpen(false)}
-                  className="text-[#4b5563] hover:text-white transition-colors p-1 cursor-pointer"
-                  aria-label="Close chat">
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                    stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
-                    <path d="M4 4l8 8M12 4l-8 8" />
-                  </svg>
-                </button>
+                <div className="flex items-center gap-1">
+                  {hasMessages && (
+                    <button onClick={clearChat}
+                      className="text-[#4b5563] hover:text-white transition-colors p-1 cursor-pointer"
+                      aria-label="Clear chat" title="Clear chat">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6" />
+                      </svg>
+                    </button>
+                  )}
+                  <button onClick={() => setIsOpen(false)}
+                    className="text-[#4b5563] hover:text-white transition-colors p-1 cursor-pointer"
+                    aria-label="Close chat">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                      stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
+                      <path d="M4 4l8 8M12 4l-8 8" />
+                    </svg>
+                  </button>
+                </div>
               </div>
 
               <div className="flex-1 overflow-y-auto px-4 py-3 space-y-3" style={{ WebkitOverflowScrolling: "touch", overscrollBehavior: "contain" }}>
