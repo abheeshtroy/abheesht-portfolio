@@ -46,22 +46,19 @@ export default function About() {
             {/* Left — main copy */}
             <div className="space-y-6">
               <p className="text-2xl text-white/85 leading-relaxed font-light">
-                I&apos;ve spent the last few years building at levels of the
-                stack most engineers only read about.
+                I&apos;m a software engineer who&apos;s worked across systems,
+                backends, and applied AI.
               </p>
               <p className="text-white/65 leading-relaxed">
-                The kind of work Samsung doesn&apos;t put in press releases, at Samsung Semiconductor.
-                Real-time backends for a European SaaS startup. Agentic AI pipelines
-                for enterprise data infrastructure. IoT systems that ended up published.
+                I&apos;ve built low-level systems software at Samsung
+                Semiconductor, real-time backends at a European SaaS startup,
+                and agentic AI pipelines for enterprise data infrastructure.
+                Earlier on, I did IoT research that led to two IEEE
+                publications.
               </p>
               <p className="text-white/65 leading-relaxed">
-                The range is intentional. I&apos;m drawn to problems where you
-                can&apos;t solve the top layer without understanding what&apos;s
-                underneath it.
-              </p>
-              <p className="text-white/65 leading-relaxed">
-                There&apos;s a lot going on outside the terminal window.
-                I take that part just as seriously.
+                I recently finished my MS in Computer Science at Arizona State,
+                and I&apos;m currently based in San Francisco.
               </p>
             </div>
 
@@ -71,7 +68,7 @@ export default function About() {
                 <p className="font-mono text-xs tracking-widest text-white/40 mb-3">education</p>
                 <p className="text-white/80">MS Computer Science · Arizona State University</p>
                 <p className="text-white/45 text-sm mt-1">GPA 4.0 · May 2026</p>
-                <p className="text-white/80 mt-2">BTech Information Technology · Manipal Institute of Technology</p>
+                <p className="text-white/80 mt-2">BTech Inftion Technology · Manipal Institute of Technology</p>
                 <p className="text-white/45 text-sm mt-1">2019 – 2023</p>
               </div>
               <div style={{ height: "1px", background: "rgba(255,255,255,0.06)" }} />

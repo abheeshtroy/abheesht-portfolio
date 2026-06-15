@@ -96,8 +96,8 @@ export default function Hero() {
               transition={{ duration: 0.6, delay: 0.45 }}
               className="text-base text-white/50 max-w-xl mb-12 leading-relaxed"
             >
-              I care about correctness, scale, and the 3am incident that proves
-              whether your architecture actually holds.
+              I like building reliable, scalable software that makes 
+              people's lives easier.
             </motion.p>
 
             <motion.div
