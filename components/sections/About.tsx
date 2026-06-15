@@ -60,6 +60,10 @@ export default function About() {
                 I recently finished my MS in Computer Science at Arizona State,
                 and I&apos;m currently based in San Francisco.
               </p>
+              <p className="text-white/65 leading-relaxed">
+                There&apos;s a lot going on outside the terminal window. 
+                I take that part just as seriously.
+              </p>
             </div>
 
             {/* Right — quick facts */}
