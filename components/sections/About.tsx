@@ -72,7 +72,7 @@ export default function About() {
                 <p className="font-mono text-xs tracking-widest text-white/40 mb-3">education</p>
                 <p className="text-white/80">MS Computer Science · Arizona State University</p>
                 <p className="text-white/45 text-sm mt-1">GPA 4.0 · May 2026</p>
-                <p className="text-white/80 mt-2">BTech Inftion Technology · Manipal Institute of Technology</p>
+                <p className="text-white/80 mt-2">BTech Information Technology · Manipal Institute of Technology</p>
                 <p className="text-white/45 text-sm mt-1">2019 – 2023</p>
               </div>
               <div style={{ height: "1px", background: "rgba(255,255,255,0.06)" }} />
