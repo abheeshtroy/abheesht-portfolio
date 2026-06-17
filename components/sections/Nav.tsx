@@ -17,10 +17,11 @@ function NavLink({ link, isActive }: { link: NavLinkItem; isActive: boolean }) {
     <a
       href={link.href}
       data-cursor-snap
-      className="relative font-mono text-xs tracking-widest transition-colors duration-200 pb-1"
-      style={{
-        color: isActive ? "rgba(255,255,255,0.9)" : "rgba(255,255,255,0.4)",
-      }}
+      className={`relative font-mono text-xs tracking-widest transition-colors duration-200 pb-1 ${
+        isActive
+          ? "text-white/90"
+          : "text-white/40 hover:text-white/70 after:absolute after:bottom-0 after:left-0 after:right-0 after:h-px after:bg-white/0 hover:after:bg-white/20 after:transition-all after:duration-300 after:scale-x-0 hover:after:scale-x-100"
+      }`}
     >
       {link.label}
       {isActive ? (
