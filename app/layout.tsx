@@ -14,6 +14,22 @@ export const metadata: Metadata = {
   title: "Abheesht Roy — Software Engineer",
   description:
     "Software engineer building at the intersection of reliable systems and applied AI.",
+  openGraph: {
+    title: "Abheesht Roy — Software Engineer",
+    description:
+      "Software engineer building at the intersection of reliable systems and applied AI.",
+    url: "https://abheeshtroy.dev",
+    siteName: "Abheesht Roy",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Abheesht Roy — Software Engineer",
+    description:
+      "Software engineer building at the intersection of reliable systems aed AI.",
+  },
+  metadataBase: new URL("https://abheeshtroy.dev"),
 };
 
 export default function RootLayout({
