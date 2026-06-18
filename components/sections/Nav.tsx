@@ -169,6 +169,15 @@ export default function Nav() {
               isActive={activeSection === link.id}
             />
           ))}
+          <a
+            href="/Abheesht_Roy_Resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-cursor-snap
+            className="relative font-mono text-xs tracking-widest transition-colors duration-200 pb-1 text-white/40 hover:text-white/70 after:absolute after:bottom-0 after:left-0 after:right-0 after:h-px after:bg-white/0 hover:after:bg-white/20 after:transition-all after:duration-300 after:scale-x-0 hover:after:scale-x-100"
+          >
+            resume
+          </a>
         </div>
 
         {/* Mobile hamburger */}
@@ -246,6 +255,18 @@ export default function Nav() {
                   </motion.a>
                 );
               })}
+              <motion.a
+                href="/Abheesht_Roy_Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setMenuOpen(false)}
+                initial={{ opacity: 0, x: -8 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.25, duration: 0.25, ease: "easeOut" as const }}
+                className="relative font-mono text-sm tracking-widest py-3 pl-4 text-white/50 hover:text-white/70"
+              >
+                resume
+              </motion.a>
             </div>
           </motion.div>
         ) : null}
