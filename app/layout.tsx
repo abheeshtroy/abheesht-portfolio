@@ -11,11 +11,11 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Abheesht Roy — Software Engineer",
+  title: "Abheesht Roy",
   description:
     "Software engineer building at the intersection of reliable systems and applied AI.",
   openGraph: {
-    title: "Abheesht Roy — Software Engineer",
+    title: "Abheesht Roy",
     description:
       "Software engineer building at the intersection of reliable systems and applied AI.",
     url: "https://abheeshtroy.dev",
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Abheesht Roy — Software Engineer",
+    title: "Abheesht Roy",
     description:
       "Software engineer building at the intersection of reliable systems aed AI.",
   },
