@@ -7,26 +7,24 @@ import SectionOrbs from "@/components/SectionOrbs";
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden isolate">
-      {/* Ambient orbs */}
       <SectionOrbs />
 
       <div className="relative z-10 max-w-5xl mx-auto px-6 pt-24 w-full">
         <div className="grid md:grid-cols-[1.15fr_0.85fr] md:gap-12 items-center">
 
-          {/* Photo — top on mobile, right on desktop */}
+          {/* Photo */}
           <motion.div
             initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
             className="hidden md:flex order-1 md:order-2 mb-10 md:mb-0 justify-center md:justify-end"
           >
-            {/* Desktop: terminal-window frame with gradient border + glow */}
             <div
               className="hidden md:block relative rounded-2xl p-[1.5px]"
               style={{
                 width: "320px",
-                background: "linear-gradient(135deg, #6366f1, #22d3ee)",
-                boxShadow: "0 0 45px rgba(99,102,241,0.22)",
+                background: "linear-gradient(135deg, var(--indigo), var(--cyan))",
+                boxShadow: "0 0 45px color-mix(in srgb, var(--indigo) 35%, transparent)",
               }}
             >
               <div
@@ -40,7 +38,9 @@ export default function Hero() {
                   <span className="w-2.5 h-2.5 rounded-full" style={{ background: "#ff5f57" }} />
                   <span className="w-2.5 h-2.5 rounded-full" style={{ background: "#febc2e" }} />
                   <span className="w-2.5 h-2.5 rounded-full" style={{ background: "#28c840" }} />
-                  <span className="font-mono text-[11px] text-white/40 ml-2">~/abheesht.jpg</span>
+                  <span className="font-mono text-[11px] ml-2" style={{ color: "var(--text-muted)" }}>
+                    ~/abheesht.jpg
+                  </span>
                 </div>
                 <div className="relative w-full aspect-[3/4] overflow-hidden">
                   <Image
@@ -54,7 +54,7 @@ export default function Hero() {
                   />
                   <div
                     className="absolute inset-0 pointer-events-none"
-                    style={{ background: "linear-gradient(180deg, transparent 55%, rgba(19,19,31,0.5) 100%)" }}
+                    style={{ background: "linear-gradient(180deg, transparent 55%, var(--photo-fade) 100%)" }}
                   />
                 </div>
               </div>
@@ -70,7 +70,7 @@ export default function Hero() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-6xl md:text-7xl font-bold tracking-tight mb-6"
               style={{
-                background: "linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.7) 50%, #6366f1 100%)",
+                background: "linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 50%, var(--indigo) 100%)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
@@ -83,21 +83,23 @@ export default function Hero() {
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.35 }}
-              className="text-xl md:text-2xl text-white/72 max-w-2xl mb-6 leading-relaxed"
+              className="text-xl md:text-2xl max-w-2xl mb-6 leading-relaxed"
+              style={{ color: "var(--text-secondary)" }}
             >
               Software engineer building at the intersection of{" "}
-              <span className="text-white/90">reliable systems</span> and{" "}
-              <span style={{ color: "#22d3ee" }}>applied AI</span>.
+              <span style={{ color: "var(--text-primary)" }}>reliable systems</span> and{" "}
+              <span style={{ color: "var(--cyan)" }}>applied AI</span>.
             </motion.p>
 
             <motion.p
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.45 }}
-              className="text-base text-white/50 max-w-xl mb-12 leading-relaxed"
+              className="text-base max-w-xl mb-12 leading-relaxed"
+              style={{ color: "var(--text-muted)" }}
             >
-              I like building reliable, scalable software that makes 
-              people's lives easier.
+              I like building reliable, scalable software that makes
+              people&#39;s lives easier.
             </motion.p>
 
             <motion.div
@@ -111,8 +113,8 @@ export default function Hero() {
                 data-cursor-snap
                 className="px-6 py-3 rounded-lg text-sm font-mono tracking-wide text-white transition-all duration-200 hover:opacity-90"
                 style={{
-                  background: "linear-gradient(135deg, #6366f1, #4f46e5)",
-                  boxShadow: "0 0 20px rgba(99,102,241,0.3)",
+                  background: "linear-gradient(135deg, var(--indigo), color-mix(in srgb, var(--indigo) 85%, #000))",
+                  boxShadow: "0 0 20px color-mix(in srgb, var(--indigo) 30%, transparent)",
                 }}
               >
                 see my work
@@ -120,7 +122,19 @@ export default function Hero() {
               <a
                 href="#contact"
                 data-cursor-snap
-                className="px-6 py-3 rounded-lg text-sm font-mono tracking-wide text-white/65 border border-white/10 hover:text-white/90 hover:border-white/20 transition-all duration-200"
+                className="px-6 py-3 rounded-lg text-sm font-mono tracking-wide transition-all duration-200"
+                style={{
+                  color: "var(--text-secondary)",
+                  border: "1px solid var(--border)",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLElement).style.color = "var(--text-primary)";
+                  (e.currentTarget as HTMLElement).style.borderColor = "var(--text-muted)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLElement).style.color = "var(--text-secondary)";
+                  (e.currentTarget as HTMLElement).style.borderColor = "var(--border)";
+                }}
               >
                 get in touch
               </a>
@@ -130,7 +144,10 @@ export default function Hero() {
                   target="_blank"
                   rel="noopener noreferrer"
                   data-cursor-snap
-                  className="text-white/35 hover:text-white/75 transition-colors duration-200"
+                  className="transition-colors duration-200"
+                  style={{ color: "var(--text-muted)" }}
+                  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "var(--text-secondary)"; }}
+                  onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "var(--text-muted)"; }}
                   aria-label="GitHub"
                 >
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
@@ -142,7 +159,10 @@ export default function Hero() {
                   target="_blank"
                   rel="noopener noreferrer"
                   data-cursor-snap
-                  className="text-white/35 hover:text-white/75 transition-colors duration-200"
+                  className="transition-colors duration-200"
+                  style={{ color: "var(--text-muted)" }}
+                  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "var(--text-secondary)"; }}
+                  onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "var(--text-muted)"; }}
                   aria-label="LinkedIn"
                 >
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
@@ -156,7 +176,8 @@ export default function Hero() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.7 }}
-              className="mt-16 font-mono text-xs text-white/40 tracking-widest"
+              className="mt-16 font-mono text-xs tracking-widest"
+              style={{ color: "var(--text-muted)" }}
             >
               MS Computer Science · Arizona State University
             </motion.p>
@@ -165,33 +186,33 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Scroll indicator — hidden on mobile (short viewports cause overlap with credential line) */}
+      {/* Scroll indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: 1.1 }}
         className="absolute bottom-10 left-1/2 -translate-x-1/2 hidden sm:flex flex-col items-center gap-2"
       >
-        <span className="font-mono text-xs text-white/35 tracking-widest">scroll</span>
+        <span className="font-mono text-xs tracking-widest" style={{ color: "var(--text-muted)" }}>
+          scroll
+        </span>
         <motion.div
           animate={{ y: [0, 6, 0] }}
           transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
         >
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-white/35">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"
+            style={{ color: "var(--text-muted)" }}>
             <line x1="12" y1="5" x2="12" y2="19" />
             <polyline points="19 12 12 19 5 12" />
           </svg>
         </motion.div>
       </motion.div>
 
-      {/* Accent stripe into About */}
-      <div
-        className="absolute bottom-0 left-0 right-0 pointer-events-none"
-        style={{ zIndex: 10 }}
-      >
+      {/* Accent stripe */}
+      <div className="absolute bottom-0 left-0 right-0 pointer-events-none" style={{ zIndex: 10 }}>
         <div style={{
           height: "2px",
-          background: "linear-gradient(90deg, #6366f1 0%, rgba(99,102,241,0.15) 60%, transparent 100%)",
+          background: "linear-gradient(90deg, var(--indigo) 0%, rgba(99,102,241,0.15) 60%, transparent 100%)",
           opacity: 0.5,
         }} />
       </div>

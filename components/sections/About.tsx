@@ -20,8 +20,8 @@ export default function About() {
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className="flex items-center gap-3 mb-3"
           >
-            <div style={{ width: "28px", height: "1px", background: "#6366f1" }} />
-            <p className="font-mono text-xs tracking-widest text-white/45">
+            <div style={{ width: "28px", height: "1px", background: "var(--indigo)" }} />
+            <p className="font-mono text-xs tracking-widest" style={{ color: "var(--text-muted)" }}>
               01 / about
             </p>
           </motion.div>
@@ -30,7 +30,8 @@ export default function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-40px" }}
             transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-            className="text-3xl font-semibold text-white/90 pl-9"
+            className="text-3xl font-semibold pl-9"
+            style={{ color: "var(--text-primary)" }}
           >
             A bit about me
           </motion.h2>
@@ -43,56 +44,53 @@ export default function About() {
           transition={{ duration: 0.9, delay: 0.28, ease: [0.22, 1, 0.36, 1] }}
         >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
-            {/* Left — main copy */}
             <div className="space-y-6">
-              <p className="text-2xl text-white/85 leading-relaxed font-light">
+              <p className="text-2xl leading-relaxed font-light" style={{ color: "var(--text-primary)", opacity: 0.9 }}>
                 I&apos;m a software engineer who&apos;s worked across systems,
                 backends, and applied AI.
               </p>
-              <p className="text-white/65 leading-relaxed">
+              <p className="leading-relaxed" style={{ color: "var(--text-secondary)" }}>
                 I&apos;ve built low-level systems software at Samsung
                 Semiconductor, real-time backends at a European SaaS startup,
                 and agentic AI pipelines for enterprise data infrastructure.
                 Earlier on, I did IoT research that led to two IEEE
                 publications.
               </p>
-              <p className="text-white/65 leading-relaxed">
+              <p className="leading-relaxed" style={{ color: "var(--text-secondary)" }}>
                 I recently finished my MS in Computer Science at Arizona State,
                 and I&apos;m currently based in San Francisco.
               </p>
-              <p className="text-white/65 leading-relaxed">
-                There&apos;s a lot going on outside the terminal window. 
+              <p className="leading-relaxed" style={{ color: "var(--text-secondary)" }}>
+                There&apos;s a lot going on outside the terminal window.
                 I take that part just as seriously.
               </p>
             </div>
 
-            {/* Right — quick facts */}
             <div className="space-y-4">
               <div>
-                <p className="font-mono text-xs tracking-widest text-white/40 mb-3">education</p>
-                <p className="text-white/80">MS Computer Science · Arizona State University</p>
-                <p className="text-white/45 text-sm mt-1">GPA 4.0 · May 2026</p>
-                <p className="text-white/80 mt-2">BTech Information Technology · Manipal Institute of Technology</p>
-                <p className="text-white/45 text-sm mt-1">2019 – 2023</p>
+                <p className="font-mono text-xs tracking-widest mb-3" style={{ color: "var(--text-muted)" }}>education</p>
+                <p style={{ color: "var(--text-primary)", opacity: 0.85 }}>MS Computer Science · Arizona State University</p>
+                <p className="text-sm mt-1" style={{ color: "var(--text-muted)" }}>GPA 4.0 · May 2026</p>
+                <p className="mt-2" style={{ color: "var(--text-primary)", opacity: 0.85 }}>BTech Information Technology · Manipal Institute of Technology</p>
+                <p className="text-sm mt-1" style={{ color: "var(--text-muted)" }}>2019 – 2023</p>
               </div>
-              <div style={{ height: "1px", background: "rgba(255,255,255,0.06)" }} />
+              <div style={{ height: "1px", background: "var(--border)" }} />
               <div>
-                <p className="font-mono text-xs tracking-widest text-white/40 mb-3">based in</p>
-                <p className="text-white/80">San Francisco, CA</p>
+                <p className="font-mono text-xs tracking-widest mb-3" style={{ color: "var(--text-muted)" }}>based in</p>
+                <p style={{ color: "var(--text-primary)", opacity: 0.85 }}>San Francisco, CA</p>
               </div>
             </div>
           </div>
         </motion.div>
       </div>
 
-      {/* Accent stripe into Projects */}
       <div
         className="absolute bottom-0 left-0 right-0 pointer-events-none"
         style={{ zIndex: 10 }}
       >
         <div style={{
           height: "2px",
-          background: "linear-gradient(90deg, #6366f1 0%, rgba(99,102,241,0.15) 60%, transparent 100%)",
+          background: "linear-gradient(90deg, var(--indigo) 0%, color-mix(in srgb, var(--indigo) 15%, transparent) 60%, transparent 100%)",
           opacity: 0.5,
         }} />
       </div>

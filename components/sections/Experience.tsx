@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
+import { useTheme } from "next-themes";
 import { motion, AnimatePresence } from "framer-motion";
 import SectionOrbs from "@/components/SectionOrbs";
 
@@ -134,6 +135,90 @@ const T: Record<string, Theme> = {
     metricColor: "#a78bfa",
     highlightsBg: "rgba(109,40,217,0.09)",
     divider: "rgba(109,40,217,0.22)",
+  },
+};
+
+
+const TLight: Record<string, Theme> = {
+  samsung: {
+    cardBg: "rgba(10,12,30,0.88)",
+    cardBgOpen: "rgba(10,12,30,0.94)",
+    borderCollapsed: "rgba(70,110,255,0.55)",
+    borderOpen: "rgba(90,130,255,0.95)",
+    glowOpen: "0 0 60px rgba(60,100,255,0.35), inset 0 1px 0 rgba(80,120,255,0.50)",
+    dotColor: "#4a6cf5",
+    dotGlow: "rgba(40,70,220,0.70)",
+    connectorOpen: "rgba(40,70,220,0.50)",
+    chipColor: "#a8c8ff",
+    chipBg: "rgba(40,70,220,0.22)",
+    chipBorder: "rgba(40,70,220,0.50)",
+    metricColor: "#a8c8ff",
+    highlightsBg: "rgba(40,70,220,0.15)",
+    divider: "rgba(40,70,220,0.30)",
+  },
+  agentTechs: {
+    cardBg: "rgba(4,10,24,0.88)",
+    cardBgOpen: "rgba(4,10,24,0.94)",
+    borderCollapsed: "rgba(90,180,255,0.55)",
+    borderOpen: "rgba(110,200,255,0.95)",
+    glowOpen: "0 0 65px rgba(80,170,255,0.30), inset 0 1px 0 rgba(100,190,255,0.40)",
+    dotColor: "#5ba0ff",
+    dotGlow: "rgba(60,150,255,0.75)",
+    connectorOpen: "rgba(60,150,255,0.50)",
+    chipColor: "#b0ddff",
+    chipBg: "rgba(60,150,255,0.15)",
+    chipBorder: "rgba(60,150,255,0.40)",
+    metricColor: "#b0ddff",
+    highlightsBg: "rgba(60,150,255,0.12)",
+    divider: "rgba(60,150,255,0.25)",
+  },
+  desknow: {
+    cardBg: "rgba(6,20,22,0.88)",
+    cardBgOpen: "rgba(6,20,22,0.94)",
+    borderCollapsed: "rgba(60,250,230,0.50)",
+    borderOpen: "rgba(70,255,240,0.95)",
+    glowOpen: "0 0 55px rgba(50,240,220,0.28), inset 0 1px 0 rgba(60,255,235,0.45)",
+    dotColor: "#2ee8d0",
+    dotGlow: "rgba(30,220,200,0.75)",
+    connectorOpen: "rgba(30,220,200,0.50)",
+    chipColor: "#80fff0",
+    chipBg: "rgba(30,220,200,0.15)",
+    chipBorder: "rgba(30,220,200,0.40)",
+    metricColor: "#80fff0",
+    highlightsBg: "rgba(30,220,200,0.10)",
+    divider: "rgba(30,220,200,0.25)",
+  },
+  atthah: {
+    cardBg: "rgba(14,6,20,0.88)",
+    cardBgOpen: "rgba(14,6,20,0.94)",
+    borderCollapsed: "rgba(255,100,245,0.50)",
+    borderOpen: "rgba(255,130,252,0.95)",
+    glowOpen: "0 0 65px rgba(255,80,240,0.30), inset 0 1px 0 rgba(255,140,250,0.45)",
+    dotColor: "#f060e0",
+    dotGlow: "rgba(240,60,220,0.75)",
+    connectorOpen: "rgba(240,60,220,0.50)",
+    chipColor: "#ffc5fc",
+    chipBg: "rgba(240,60,220,0.15)",
+    chipBorder: "rgba(240,60,220,0.40)",
+    metricColor: "#ffc5fc",
+    highlightsBg: "rgba(240,60,220,0.10)",
+    divider: "rgba(240,60,220,0.25)",
+  },
+  ncsm: {
+    cardBg: "rgba(6,6,22,0.88)",
+    cardBgOpen: "rgba(6,6,22,0.94)",
+    borderCollapsed: "rgba(175,135,255,0.55)",
+    borderOpen: "rgba(195,160,255,0.95)",
+    glowOpen: "0 0 65px rgba(165,120,255,0.30), inset 0 1px 0 rgba(190,150,255,0.45)",
+    dotColor: "#b99fff",
+    dotGlow: "rgba(140,90,255,0.75)",
+    connectorOpen: "rgba(140,90,255,0.50)",
+    chipColor: "#eddcff",
+    chipBg: "rgba(140,90,255,0.15)",
+    chipBorder: "rgba(140,90,255,0.40)",
+    metricColor: "#eddcff",
+    highlightsBg: "rgba(140,90,255,0.12)",
+    divider: "rgba(140,90,255,0.30)",
   },
 };
 
@@ -602,6 +687,21 @@ const roles: Role[] = [
 // ─── Timeline dot ─────────────────────────────────────────────────────────────
 
 function TimelineDot({ theme, isActive }: { theme: Theme; isActive: boolean }) {
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
+
+  const isLight = mounted && resolvedTheme === "light";
+
+  const themeMap: Record<string, string> = {
+    "agent-techs": "agentTechs",
+    "desknow": "desknow",
+    "samsung": "samsung",
+    "atthah": "atthah",
+    "ncsm": "ncsm",
+  };
+
   return (
     <div className="relative flex-shrink-0 w-4 h-4 mt-[18px]">
       <AnimatePresence>
@@ -619,8 +719,8 @@ function TimelineDot({ theme, isActive }: { theme: Theme; isActive: boolean }) {
       <div
         className="w-4 h-4 rounded-full relative z-10 border-2 transition-all duration-300"
         style={{
-          backgroundColor: isActive ? theme.dotColor : "#1c1c2a",
-          borderColor: isActive ? theme.dotColor : "#2e2e3e",
+          backgroundColor: isActive ? theme.dotColor : (isLight ? "var(--border)" : "#1c1c2a"),
+          borderColor: isActive ? theme.dotColor : (isLight ? "var(--border)" : "#2e2e3e"),
           boxShadow: isActive ? `0 0 12px ${theme.dotGlow}` : "none",
         }}
       />
@@ -631,10 +731,25 @@ function TimelineDot({ theme, isActive }: { theme: Theme; isActive: boolean }) {
 // ─── Role card ────────────────────────────────────────────────────────────────
 
 function RoleCard({ role, index }: { role: Role; index: number }) {
+   const { resolvedTheme } = useTheme();
+   const [mounted, setMounted] = useState(false);
    const [isOpen, setIsOpen] = useState(false);
    const [isHovered, setIsHovered] = useState(false);
    const cardRef = useRef<HTMLDivElement>(null);
-   const { theme } = role;
+
+   useEffect(() => setMounted(true), []);
+
+   const isLight = mounted && resolvedTheme === "light";
+
+   const themeMap: Record<string, string> = {
+     "agent-techs": "agentTechs",
+     desknow: "desknow",
+     samsung: "samsung",
+     atthah: "atthah",
+     ncsm: "ncsm",
+   };
+
+   const theme = isLight ? (TLight[themeMap[role.id]] || role.theme) : role.theme;
    const showHover = !isOpen && isHovered;
 
    const handleToggle = () => {
@@ -669,7 +784,7 @@ function RoleCard({ role, index }: { role: Role; index: number }) {
         <div
           className="w-px flex-1 mt-2 min-h-8 transition-all duration-500"
           style={{
-            backgroundColor: isOpen ? theme.connectorOpen : "rgba(255,255,255,0.05)",
+            backgroundColor: isOpen ? theme.connectorOpen : "var(--border)",
           }}
         />
       </div>
@@ -874,8 +989,8 @@ export default function Experience() {
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className="flex items-center gap-3 mb-3"
           >
-            <div style={{ width: "28px", height: "1px", background: "#6366f1" }} />
-            <p className="font-mono text-xs tracking-widest text-white/45">
+            <div style={{ width: "28px", height: "1px", background: "var(--indigo)" }} />
+            <p className="font-mono text-xs tracking-widest" style={{ color: "var(--text-muted)" }}>
               03 / experience
             </p>
           </motion.div>
@@ -884,7 +999,7 @@ export default function Experience() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-40px" }}
             transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-            className="text-3xl font-semibold text-white/90 pl-9"
+            className="text-3xl font-semibold pl-9" style={{ color: "var(--text-primary)" }}
           >
             Where I&apos;ve been
           </motion.h2>
@@ -893,7 +1008,7 @@ export default function Experience() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-40px" }}
             transition={{ duration: 0.6, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
-            className="text-white/50 text-sm mt-3 pl-9 max-w-md leading-relaxed"
+            className="text-sm mt-3 pl-9 max-w-md leading-relaxed" style={{ color: "var(--text-muted)" }}
           >
             Five roles across research, systems, full-stack, and applied AI.
             Click any card to read the full story.
@@ -912,7 +1027,7 @@ export default function Experience() {
       <div className="absolute bottom-0 left-0 right-0 pointer-events-none" style={{ zIndex: 10 }}>
         <div style={{
           height: "2px",
-          background: "linear-gradient(90deg, #6366f1 0%, rgba(99,102,241,0.15) 60%, transparent 100%)",
+          background: "linear-gradient(90deg, var(--indigo) 0%, color-mix(in srgb, var(--indigo) 15%, transparent) 60%, transparent 100%)",
           opacity: 0.5,
         }} />
       </div>

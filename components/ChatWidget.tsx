@@ -40,7 +40,7 @@ function linkify(text: string): (string | React.ReactElement)[] {
       if (url.startsWith('https://') && isAllowed) {
         parts.push(
           <a key={match.index} href={url} target="_blank" rel="noopener noreferrer"
-            className="text-[#22d3ee] hover:underline">{label}</a>
+            className="text-[var(--chat-accent)] hover:underline">{label}</a>
         );
       } else {
         parts.push(label);
@@ -164,17 +164,17 @@ export default function ChatWidget() {
             data-cursor-snap
             className="fixed bottom-20 right-4 sm:bottom-6 sm:right-6 z-50 flex items-center gap-2 px-4 py-2.5
               rounded-full font-mono text-sm cursor-pointer
-              bg-[rgba(26,26,40,0.85)] backdrop-blur-xl
-              border border-[rgba(99,102,241,0.4)]
-              text-[#a5b4fc] hover:text-white hover:border-[rgba(99,102,241,0.7)]
+              bg-[var(--chat-fab-bg)] backdrop-blur-xl
+              border border-[var(--chat-fab-border)]
+              text-[var(--chat-fab-text)] hover:text-[var(--chat-text-bright)] hover:border-[var(--chat-border)]
               animate-[glow-breathe_3.5s_ease-in-out_infinite]
-              hover:shadow-[0_0_32px_rgba(99,102,241,0.3),0_0_64px_rgba(34,211,238,0.12)]
+              hover:shadow-[0_0_32px_var(--chat-border),0_0_64px_var(--chat-divider)]
               transition-all duration-300"
             aria-label="Open AI chat"
           >
-            <span className="text-[#22d3ee]">&gt;_</span>
+            <span className="text-[var(--chat-accent)]">&gt;_</span>
             <span>ask my AI</span>
-            <span className="w-1.5 h-1.5 rounded-full bg-[#22d3ee] animate-pulse" />
+            <span className="w-1.5 h-1.5 rounded-full bg-[var(--chat-accent)] animate-pulse" />
           </motion.button>
         )}
       </AnimatePresence>
@@ -202,27 +202,27 @@ export default function ChatWidget() {
                 sm:bottom-6 sm:right-6 sm:left-auto sm:top-auto
                 sm:w-[380px] sm:h-[560px] sm:rounded-2xl
                 flex flex-col overflow-hidden
-                bg-[rgba(26,26,40,0.72)] backdrop-blur-2xl
-                border border-[rgba(129,140,248,0.35)]"
+                bg-[var(--chat-bg)] backdrop-blur-2xl
+                border border-[var(--chat-border)]"
               style={{ transformOrigin: 'bottom right' }}
             >
               <div className="absolute top-0 left-0 right-0 h-px"
-                style={{ background: 'linear-gradient(90deg, rgba(99,102,241,0.6), rgba(34,211,238,0.6))' }} />
-              <div className="absolute -top-20 -right-20 w-40 h-40 rounded-full bg-[rgba(99,102,241,0.1)] blur-3xl pointer-events-none" />
+                style={{ background: 'linear-gradient(90deg, var(--chat-border), var(--chat-accent))' }} />
+              <div className="absolute -top-20 -right-20 w-40 h-40 rounded-full bg-[var(--chat-btn-bg)] blur-3xl pointer-events-none" />
 
-              <div className="relative flex items-center justify-between px-4 py-3 border-b border-[rgba(129,140,248,0.15)]">
+              <div className="relative flex items-center justify-between px-4 py-3 border-b border-[var(--chat-divider)]">
                 <div>
                   <div className="flex items-center gap-2">
-                    <span className="font-mono text-sm text-[#c7d2fe] tracking-tight">ask my AI</span>
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#22d3ee] animate-pulse" />
+                    <span className="font-mono text-sm text-[var(--chat-text)] tracking-tight">ask my AI</span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-[var(--chat-accent)] animate-pulse" />
                   </div>
-                  <p className="text-[11px] text-[#4b5563] mt-0.5">Not as funny as me, but it's got the receipts</p>
+                  <p className="text-[11px] text-[var(--chat-muted)] mt-0.5">Not as funny as me, but it's got the receipts</p>
                 </div>
 
                 <div className="flex items-center gap-1">
                   {hasMessages && (
                     <button onClick={clearChat}
-                      className="text-[#4b5563] hover:text-white transition-colors p-1 cursor-pointer"
+                      className="text-[var(--chat-muted)] hover:text-[var(--chat-text)] transition-colors p-1 cursor-pointer"
                       aria-label="Clear chat" title="Clear chat">
                       <svg width="15" height="15" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -231,7 +231,7 @@ export default function ChatWidget() {
                     </button>
                   )}
                   <button onClick={() => setIsOpen(false)}
-                    className="text-[#4b5563] hover:text-white transition-colors p-1 cursor-pointer"
+                    className="text-[var(--chat-muted)] hover:text-[var(--chat-text)] transition-colors p-1 cursor-pointer"
                     aria-label="Close chat">
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
                       stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
@@ -246,8 +246,8 @@ export default function ChatWidget() {
                   <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.15 }} className="space-y-4">
                     <div className="flex gap-2.5">
-                      <span className="shrink-0 mt-0.5 font-mono text-xs text-[#22d3ee]">&gt;_</span>
-                      <p className="text-sm text-[#c7d2fe] leading-relaxed">
+                      <span className="shrink-0 mt-0.5 font-mono text-xs text-[var(--chat-accent)]">&gt;_</span>
+                      <p className="text-sm text-[var(--chat-text)] leading-relaxed">
                         Hey — I&apos;m Abheesht&apos;s AI. Ask me anything about his work, how he thinks, or why he won&apos;t shut up about Football.
                       </p>
                     </div>
@@ -258,8 +258,8 @@ export default function ChatWidget() {
                           transition={{ delay: 0.25 + i * 0.08 }}
                           onClick={() => handleSend(chip)}
                           className="text-xs font-mono px-3 py-1.5 rounded-full cursor-pointer
-                            border border-[rgba(34,211,238,0.3)] text-[#67e8f9]
-                            hover:bg-[rgba(34,211,238,0.1)] hover:border-[rgba(34,211,238,0.55)]
+                            border border-[var(--chat-chip-border)] text-[var(--chat-chip-text)]
+                            hover:bg-[var(--chat-bubble-ai)] hover:border-[var(--chat-accent)]
                             transition-all duration-200">
                           {chip}
                         </motion.button>
@@ -273,12 +273,12 @@ export default function ChatWidget() {
                     initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}
                     className={`flex gap-2.5 ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                     {msg.role === 'assistant' && (
-                      <span className="shrink-0 mt-1.5 font-mono text-xs text-[#22d3ee]">&gt;_</span>
+                      <span className="shrink-0 mt-1.5 font-mono text-xs text-[var(--chat-accent)]">&gt;_</span>
                     )}
                     <div className={`max-w-[85%] px-3 py-2 text-sm leading-relaxed whitespace-pre-wrap ${
                       msg.role === 'user'
-                        ? 'bg-[rgba(99,102,241,0.2)] text-[#e0e7ff] rounded-2xl rounded-br-sm'
-                        : 'bg-[rgba(255,255,255,0.04)] text-[#c7d2fe] rounded-2xl rounded-bl-sm'
+                        ? 'bg-[var(--chat-bubble-user)] text-[var(--chat-text-bright)] rounded-2xl rounded-br-sm'
+                        : 'bg-[var(--chat-bubble-ai)] text-[var(--chat-text)] rounded-2xl rounded-bl-sm'
                     }`}>
                       {msg.parts
                         ? msg.parts
@@ -291,16 +291,16 @@ export default function ChatWidget() {
 
                 {isWaiting && (
                   <div className="flex gap-2.5">
-                    <span className="shrink-0 mt-1.5 font-mono text-xs text-[#22d3ee]">&gt;_</span>
+                    <span className="shrink-0 mt-1.5 font-mono text-xs text-[var(--chat-accent)]">&gt;_</span>
                     <div className="flex items-center gap-1 px-3 py-2">
-                      <span className="w-1.5 h-4 bg-[#22d3ee] rounded-sm animate-pulse" />
+                      <span className="w-1.5 h-4 bg-[var(--chat-accent)] rounded-sm animate-pulse" />
                     </div>
                   </div>
                 )}
 
                 {rateLimitMsg && (
                   <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} className="flex gap-2.5">
-                    <span className="shrink-0 mt-1.5 font-mono text-xs text-[#22d3ee]">&gt;_</span>
+                    <span className="shrink-0 mt-1.5 font-mono text-xs text-[var(--chat-accent)]">&gt;_</span>
                     <p className="text-sm text-[#fbbf24] leading-relaxed">{rateLimitMsg}</p>
                   </motion.div>
                 )}
@@ -308,18 +308,18 @@ export default function ChatWidget() {
                 <div ref={messagesEndRef} />
               </div>
 
-              <div className="px-4 py-3 border-t border-[rgba(129,140,248,0.15)]">
+              <div className="px-4 py-3 border-t border-[var(--chat-divider)]">
                 <div className="flex items-end gap-2">
                   <textarea ref={inputRef} value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
                     onKeyDown={handleKeyDown}
                     placeholder="Ask me anything about Abheesht…"
                     rows={1} disabled={isBusy}
-                    className="flex-1 resize-none bg-[rgba(20,20,32,0.6)] text-sm text-[#e0e7ff]
-                      placeholder:text-[#4b5563] rounded-lg px-3 py-2
-                      border border-[rgba(129,140,248,0.2)]
-                      focus:border-[rgba(99,102,241,0.5)]
-                      focus:outline-none focus:ring-1 focus:ring-[rgba(99,102,241,0.25)]
+                    className="flex-1 resize-none bg-[var(--chat-input-bg)] text-sm text-[var(--chat-text-bright)]
+                      placeholder:text-[var(--chat-muted)] rounded-lg px-3 py-2
+                      border border-[var(--chat-divider)]
+                      focus:border-[var(--chat-border)]
+                      focus:outline-none focus:ring-1 focus:ring-[var(--chat-divider)]
                       transition-colors disabled:opacity-40"
                     style={{ maxHeight: '80px' }} />
                   {isStreaming ? (
@@ -336,8 +336,8 @@ export default function ChatWidget() {
                     <button onClick={() => handleSend()}
                       disabled={!inputValue.trim() || isBusy}
                       className="shrink-0 p-2 rounded-lg cursor-pointer
-                        bg-[rgba(99,102,241,0.2)] text-[#a5b4fc]
-                        hover:bg-[rgba(99,102,241,0.35)]
+                        bg-[var(--chat-btn-bg)] text-[var(--chat-fab-text)]
+                        hover:bg-[var(--chat-border)]
                         disabled:opacity-25 disabled:cursor-not-allowed
                         transition-colors"
                       aria-label="Send message">
@@ -348,7 +348,7 @@ export default function ChatWidget() {
                     </button>
                   )}
                 </div>
-                <p className="text-[10px] font-mono text-[#2d2d42] mt-2 text-center select-none">
+                <p className="text-[10px] font-mono text-[var(--chat-muted)] mt-2 text-center select-none">
                   Claude Haiku · streamed · rate-limited via Upstash
                 </p>
               </div>

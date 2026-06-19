@@ -46,12 +46,12 @@ export default function ContactSection() {
 
   const inputClasses = [
     "w-full rounded-2xl px-4 py-3.5",
-    "bg-white/[0.03]",
-    "border border-white/[0.06]",
-    "text-white placeholder-white/20",
+    "bg-[var(--surface-overlay)]",
+    "border border-[var(--glass-border)]",
+    "text-[var(--text-primary)] placeholder-[var(--text-muted)]",
     "outline-none transition-all duration-300",
-    "focus:border-white/[0.15] focus:bg-white/[0.05]",
-    "focus:shadow-[0_0_20px_rgba(99,102,241,0.08)]",
+    "focus:border-[var(--border)] focus:bg-[var(--surface-overlay)]",
+    "focus:shadow-[0_0_20px_color-mix(in_srgb,var(--indigo)_8%,transparent)]",
     "disabled:opacity-40",
   ].join(" ");
 
@@ -73,17 +73,17 @@ export default function ContactSection() {
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="mb-10"
       >
-          <p className="font-mono text-xs text-indigo-400/70 tracking-widest uppercase mb-3">
+          <p className="font-mono text-xs text-[var(--indigo)] tracking-widest uppercase mb-3">
             Get in touch
           </p>
-          <h2 className="text-3xl sm:text-4xl font-bold text-white leading-tight">
+          <h2 className="text-3xl sm:text-4xl font-bold text-[var(--text-primary)] leading-tight">
             Let&apos;s talk
           </h2>
-          <p className="text-white/55 text-base mt-3 max-w-lg leading-relaxed">
+          <p className="text-[var(--text-secondary)] text-base mt-3 max-w-lg leading-relaxed">
             Have a role, a project, or just want to argue about system design?
             I&apos;m all ears.
           </p>
-          <p className="font-mono text-xs text-white/35 mt-3 italic tracking-wide">
+          <p className="font-mono text-xs text-[var(--text-muted)] mt-3 italic tracking-wide">
             If you&apos;re hiring, the timing is good.
           </p>
         </motion.div>
@@ -94,12 +94,12 @@ export default function ContactSection() {
           transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
           className="relative rounded-3xl p-7 sm:p-9"
           style={{
-            background: "rgba(255,255,255,0.05)",
+            background: "var(--glass-bg)",
             backdropFilter: "blur(40px) saturate(1.5)",
             WebkitBackdropFilter: "blur(40px) saturate(1.5)",
-            border: "1px solid rgba(255,255,255,0.12)",
+            border: "1px solid var(--glass-border)",
             boxShadow:
-              "inset 0 1px 0 rgba(255,255,255,0.08), 0 4px 24px rgba(0,0,0,0.2)",
+              "inset 0 1px 0 var(--surface-overlay), 0 4px 24px rgba(0,0,0,0.08)",
           }}
         >
           {formState === "success" ? (
@@ -129,15 +129,15 @@ export default function ContactSection() {
                   />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold text-white mb-2">
+              <h3 className="text-xl font-semibold text-[var(--text-primary)] mb-2">
                 Message sent
               </h3>
-              <p className="text-white/55 text-sm">
+              <p className="text-[var(--text-secondary)] text-sm">
                 I&apos;ll get back to you soon.
               </p>
               <button
                 onClick={() => setFormState("idle")}
-                className="mt-6 text-sm text-indigo-400 hover:text-indigo-300 transition-colors"
+                className="mt-6 text-sm text-[var(--indigo)] hover:opacity-80 transition-colors"
               >
                 Send another message
               </button>
@@ -147,7 +147,7 @@ export default function ContactSection() {
               <div>
                 <label
                   htmlFor="contact-name"
-                  className="block text-[13px] font-medium text-white/55 mb-2 tracking-wide"
+                  className="block text-[13px] font-medium text-[var(--text-secondary)] mb-2 tracking-wide"
                 >
                   Name
                 </label>
@@ -167,7 +167,7 @@ export default function ContactSection() {
               <div>
                 <label
                   htmlFor="contact-email"
-                  className="block text-[13px] font-medium text-white/55 mb-2 tracking-wide"
+                  className="block text-[13px] font-medium text-[var(--text-secondary)] mb-2 tracking-wide"
                 >
                   Email
                 </label>
@@ -187,7 +187,7 @@ export default function ContactSection() {
               <div>
                 <label
                   htmlFor="contact-message"
-                  className="block text-[13px] font-medium text-white/55 mb-2 tracking-wide"
+                  className="block text-[13px] font-medium text-[var(--text-secondary)] mb-2 tracking-wide"
                 >
                   Message
                 </label>
@@ -221,12 +221,12 @@ export default function ContactSection() {
                 className="w-full py-3.5 px-6 rounded-2xl font-medium text-white transition-all duration-300 disabled:opacity-40 disabled:cursor-not-allowed relative overflow-hidden group"
                 style={{
                   background:
-                    "linear-gradient(135deg, rgba(99,102,241,0.6) 0%, rgba(99,102,241,0.4) 100%)",
+                    "linear-gradient(135deg, var(--indigo), color-mix(in srgb, var(--indigo) 85%, #000))",
                   backdropFilter: "blur(20px)",
                   WebkitBackdropFilter: "blur(20px)",
-                  border: "1px solid rgba(99,102,241,0.25)",
+                  border: "1px solid color-mix(in srgb, var(--indigo) 40%, transparent)",
                   boxShadow:
-                    "inset 0 1px 0 rgba(255,255,255,0.1), 0 2px 12px rgba(99,102,241,0.15)",
+                    "0 0 20px color-mix(in srgb, var(--indigo) 30%, transparent)",
                 }}
               >
                 <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.08] to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-700" />
