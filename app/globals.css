@@ -193,11 +193,30 @@ html.light .animate-\[glow-breathe_3\.5s_ease-in-out_infinite\] {
 
 @keyframes glow-breathe {
   0%, 100% {
-    box-shadow: 0 0 24px var(--chat-border), 0 0 48px var(--chat-divider);
+    box-shadow: 0 0 24px rgba(99,102,241,0.18), 0 0 48px rgba(34,211,238,0.08);
     transform: translateY(0px);
   }
   50% {
-    box-shadow: 0 0 36px var(--chat-border), 0 0 64px var(--chat-divider), 0 0 80px var(--chat-border);
+    box-shadow: 0 0 36px rgba(99,102,241,0.45), 0 0 64px rgba(34,211,238,0.25), 0 0 80px rgba(99,102,241,0.1);
+    transform: translateY(-3px);
+  }
+}
+
+.fab-glow {
+  animation: glow-breathe 3.5s ease-in-out infinite;
+}
+
+html.light .fab-glow {
+  animation: glow-breathe-light 3.5s ease-in-out infinite;
+}
+
+@keyframes glow-breathe-light {
+  0%, 100% {
+    box-shadow: 0 0 28px rgba(200,145,120,0.45), 0 0 56px rgba(224,168,138,0.25);
+    transform: translateY(0px);
+  }
+  50% {
+    box-shadow: 0 0 44px rgba(200,145,120,0.75), 0 0 80px rgba(224,168,138,0.50), 0 0 100px rgba(200,145,120,0.25);
     transform: translateY(-3px);
   }
 }

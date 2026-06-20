@@ -199,7 +199,7 @@ export default function Nav() {
             onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "var(--text-secondary)"; }}
             onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "var(--text-muted)"; }}
           >
-            resume
+            resumé
           </a>
           {mounted && (
             <button

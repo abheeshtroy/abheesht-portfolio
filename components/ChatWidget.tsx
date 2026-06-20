@@ -167,7 +167,7 @@ export default function ChatWidget() {
               bg-[var(--chat-fab-bg)] backdrop-blur-xl
               border border-[var(--chat-fab-border)]
               text-[var(--chat-fab-text)] hover:text-[var(--chat-text-bright)] hover:border-[var(--chat-border)]
-              animate-[glow-breathe_3.5s_ease-in-out_infinite]
+              fab-glow animate-[glow-breathe_3.5s_ease-in-out_infinite]
               hover:shadow-[0_0_32px_var(--chat-border),0_0_64px_var(--chat-divider)]
               transition-all duration-300"
             aria-label="Open AI chat"
