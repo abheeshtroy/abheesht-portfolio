@@ -89,7 +89,7 @@ export default function Projects() {
               transition={{ duration: 0.2 }}
             >
               <div
-                className="rounded-xl overflow-hidden"
+                className="rounded-xl overflow-hidden light-card-shadow"
                 style={{
                   background: "var(--glass-bg)",
                   border: "0.5px solid var(--border)",
@@ -243,7 +243,7 @@ export default function Projects() {
                 whileHover={{ y: -2 }}
               >
                 <div
-                  className="rounded-xl p-4 flex flex-col gap-2.5 h-full"
+                  className="rounded-xl p-4 flex flex-col gap-2.5 h-full light-card-shadow"
                   style={{
                     background: "var(--glass-bg)",
                     border: "0.5px solid var(--border)",
@@ -294,7 +294,7 @@ export default function Projects() {
           transition={{ duration: 0.5 }}
         >
           <div
-            className="rounded-xl overflow-hidden"
+            className="rounded-xl overflow-hidden light-card-shadow"
             style={{
               background: "var(--glass-bg)",
               border: "0.5px solid var(--border)",

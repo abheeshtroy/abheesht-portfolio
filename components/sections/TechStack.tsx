@@ -135,7 +135,6 @@ const INFRA: ToolGroup[] = [
       { name: "Linux", bg: "#e95420", abbr: "Li", logo: "/logos/linux.svg" },
     ],
   },
-
 ];
 
 const DATA_TOOLS: ToolGroup[] = [
@@ -356,7 +355,7 @@ export default function TechStack() {
             </div>
 
             {/* ── Split pane ── */}
-            <div className="flex min-h-[480px]">
+            <div className="flex min-h-[510px]">
               {/* Sidebar (desktop) */}
               <div
                 className="hidden md:flex flex-col shrink-0"
@@ -417,38 +416,35 @@ export default function TechStack() {
                     </h3>
                     <div className="space-y-3.5 text-[14.5px] leading-[1.75]" style={{ color: "#444" }}>
                       <p>
-                        AI is in every stage of how I work.{" "}
+                        AI is embedded in how I build.{" "}
                         <strong style={{ color: "#111", fontWeight: 600 }}>Cursor</strong> and{" "}
-                        <strong style={{ color: "#111", fontWeight: 600 }}>Claude Code</strong> are my primary dev
-                        environment &mdash; not just for autocomplete, but for architectural reasoning, multi-file
-                        refactors, and debugging distributed systems.{" "}
-                        <strong style={{ color: "#111", fontWeight: 600 }}>v0</strong> handles rapid component
-                        scaffolding.{" "}
-                        <strong style={{ color: "#111", fontWeight: 600 }}>CodeRabbit</strong> runs automated review on
-                        every PR, even when I&apos;m working solo.
+                        <strong style={{ color: "#111", fontWeight: 600 }}>Claude Code</strong> are my primary
+                        development environment for architectural reasoning, multi-file refactors, and debugging — not
+                        just autocomplete. I use{" "}
+                        <strong style={{ color: "#111", fontWeight: 600 }}>v0</strong> for rapid component scaffolding
+                        and{" "}
+                        <strong style={{ color: "#111", fontWeight: 600 }}>CodeRabbit</strong> for automated review,
+                        even on solo projects.
                       </p>
                       <p>
-                        When I build AI into products, I work directly with the{" "}
-                        <strong style={{ color: "#111", fontWeight: 600 }}>Anthropic</strong> and{" "}
-                        <strong style={{ color: "#111", fontWeight: 600 }}>OpenAI</strong> APIs. The chat widget on this
-                        site is a working example: it streams responses from an edge runtime, uses prompt caching to cut
-                        token cost, enforces per-visitor rate limiting through Redis, and is locked to a curated knowledge
-                        base so it physically cannot hallucinate a fact about me. I chose a smaller, faster model on
-                        purpose &mdash; model selection is a cost and latency decision, not a &quot;pick the biggest
-                        one&quot; decision.
+                        I also build AI directly into products. The chat widget on this site streams responses from an
+                        edge runtime, uses prompt caching to reduce token cost, applies Redis-based rate limiting, and is
+                        grounded in a curated knowledge base to prevent hallucinated facts about me. I chose a smaller,
+                        faster model deliberately because model selection is a latency, cost, and reliability decision.
                       </p>
                       <p>
-                        At <strong style={{ color: "#111", fontWeight: 600 }}>Agent-Techs</strong>, I shipped a
-                        multi-agent orchestration platform with LangChain and built RAG pipelines using FAISS vector
-                        search and dense embeddings for entity resolution across healthcare, finance, and supply-chain
-                        data &mdash; with human-in-the-loop checkpoints for regulated domain compliance.
+                        At <strong style={{ color: "#111", fontWeight: 600 }}>Agent-Techs</strong>, I built multi-agent
+                        orchestration and RAG pipelines using{" "}
+                        <strong style={{ color: "#111", fontWeight: 600 }}>LangChain</strong>,{" "}
+                        <strong style={{ color: "#111", fontWeight: 600 }}>FAISS</strong>, and dense embeddings for
+                        entity resolution across healthcare, finance, and supply-chain data, with human-in-the-loop
+                        checkpoints for regulated domains.
                       </p>
                       <p>
-                        I treat AI reliability the way I treat system reliability. I run evals against golden datasets,
-                        use observability tooling to track token economics and latency in production, build guardrails
-                        against prompt injection, and design every AI feature with the assumption that the model will be
-                        confidently wrong some percentage of the time. The skill isn&apos;t typing the prompt &mdash;
-                        it&apos;s knowing what good output looks like well enough to catch the failures.
+                        I treat AI reliability like system reliability: evals, observability, guardrails,
+                        prompt-injection defenses, and the assumption that models will sometimes be confidently wrong.
+                        The skill is not just prompting — it is knowing what good output looks like and catching failures
+                        before users do.
                       </p>
                     </div>
                   </div>
@@ -458,7 +454,9 @@ export default function TechStack() {
 
                 {activeTab === "languages" && (
                   <div className="flex flex-wrap gap-2">
-                    {LANGUAGES.map((p) => <PillBadge key={p.name} {...p} />)}
+                    {LANGUAGES.map((p) => (
+                      <PillBadge key={p.name} {...p} />
+                    ))}
                   </div>
                 )}
 

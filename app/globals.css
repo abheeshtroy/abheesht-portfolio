@@ -235,3 +235,12 @@ html.light .fab-glow {
 
 .scrollbar-none::-webkit-scrollbar { display: none; }
 .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ─── Light theme card shadow trial ───────────────────────────────────────── */
+
+html.light .light-card-shadow {
+  box-shadow:
+    inset 0 1px 0 var(--surface-overlay),
+    0 10px 30px rgba(60, 42, 30, 0.12),
+    0 2px 8px rgba(60, 42, 30, 0.08) !important;
+}

@@ -92,14 +92,13 @@ export default function ContactSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-          className="relative rounded-3xl p-7 sm:p-9"
+          className="relative rounded-3xl p-7 sm:p-9 light-card-shadow"
           style={{
             background: "var(--glass-bg)",
             backdropFilter: "blur(40px) saturate(1.5)",
             WebkitBackdropFilter: "blur(40px) saturate(1.5)",
             border: "1px solid var(--glass-border)",
-            boxShadow:
-              "inset 0 1px 0 var(--surface-overlay), 0 4px 24px rgba(0,0,0,0.08)",
+            boxShadow: "inset 0 1px 0 var(--surface-overlay)",
           }}
         >
           {formState === "success" ? (
