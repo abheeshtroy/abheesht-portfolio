@@ -40,6 +40,8 @@
   --chat-fab-border: rgba(99, 102, 241, 0.4);
   --chat-fab-text: #a5b4fc;
   --glass-border: rgba(255, 255, 255, 0.08);
+  --terminal-border: #111111;
+  --terminal-shadow: #111111;
 }
 
 html.light {
@@ -80,6 +82,8 @@ html.light {
   --chat-fab-border: rgba(200, 145, 120, 0.40);
   --chat-fab-text: #e0a88a;
   --glass-border: rgba(140, 100, 60, 0.18);
+  --terminal-border: #2a2420;
+  --terminal-shadow: rgba(50, 40, 24, 0.30);
 }
 
 /* ─── Light mode readability ──────────────────────────────────────────────── */
@@ -220,3 +224,14 @@ html.light .fab-glow {
     transform: translateY(-3px);
   }
 }
+
+/* ─── Terminal utilities ───────────────────────────────────────────────────── */
+
+@keyframes terminal-blink { 50% { opacity: 0; } }
+
+.terminal-cursor {
+  animation: terminal-blink 1s step-end infinite;
+}
+
+.scrollbar-none::-webkit-scrollbar { display: none; }
+.scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
