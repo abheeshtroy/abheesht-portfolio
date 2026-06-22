@@ -414,7 +414,7 @@ export default function TechStack() {
                     <h3 className="font-mono text-[17px] font-semibold mb-4" style={{ color: "#111" }}>
                       # how i use ai
                     </h3>
-                    <div className="space-y-3.5 text-[14.5px] leading-[1.75]" style={{ color: "#444" }}>
+                    <div className="font-mono space-y-3.5 text-[13px] leading-[1.7]" style={{ color: "#444" }}>
                       <p>
                         AI is embedded in how I build.{" "}
                         <strong style={{ color: "#111", fontWeight: 600 }}>Cursor</strong> and{" "}
