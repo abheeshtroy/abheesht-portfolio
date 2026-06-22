@@ -104,27 +104,9 @@ export default function ChatWidget() {
     if (isOpen) setTimeout(() => inputRef.current?.focus(), 300);
   }, [isOpen]);
 
-  // Resize panel when mobile keyboard opens/closes
-  useEffect(() => {
-    if (!isOpen || typeof window === 'undefined' || !window.visualViewport) return;
-    const vv = window.visualViewport;
-    const onResize = () => {
-      const panel = document.getElementById('chat-panel');
-      if (!panel) return;
-      const ratio = vv.height / window.innerHeight;
-      if (ratio < 0.85) {
-        // Keyboard is open — shrink panel to fit above it
-        panel.style.height = (vv.height - 20) + 'px';
-        panel.style.maxHeight = (vv.height - 20) + 'px';
-      } else {
-        // Keyboard closed — restore
-        panel.style.height = '';
-        panel.style.maxHeight = '';
-      }
-    };
-    vv.addEventListener('resize', onResize);
-    return () => vv.removeEventListener('resize', onResize);
-  }, [isOpen]);
+
+
+
 
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
@@ -221,7 +203,7 @@ export default function ChatWidget() {
               aria-label="AI Chat"
               id="chat-panel"
               className="fixed z-50
-                bottom-0 left-0 right-0 h-[85dvh] max-h-[85vh] rounded-t-2xl
+                top-[12vh] bottom-0 left-0 right-0 rounded-t-2xl
                 sm:bottom-6 sm:right-6 sm:left-auto sm:top-auto
                 sm:w-[380px] sm:h-[560px] sm:rounded-2xl
                 flex flex-col overflow-hidden
