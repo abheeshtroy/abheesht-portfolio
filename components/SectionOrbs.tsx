@@ -4,12 +4,12 @@ import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
 const darkOrbs = [
-  { r: 99,  g: 102, b: 241, o: 0.22, s: 600, top: "-6%",  left: "-6%"  },
-  { r: 59,  g: 130, b: 246, o: 0.16, s: 500, top: "8%",   left: "62%"  },
-  { r: 168, g: 85,  b: 247, o: 0.14, s: 480, top: "30%",  left: "20%"  },
-  { r: 34,  g: 211, b: 238, o: 0.15, s: 460, top: "42%",  left: "68%"  },
-  { r: 99,  g: 102, b: 241, o: 0.17, s: 540, top: "62%",  left: "-4%"  },
-  { r: 34,  g: 211, b: 238, o: 0.13, s: 500, top: "80%",  left: "60%"  },
+  { r: 179, g: 63,  b: 98,  o: 0.20, s: 620, top: "-6%",  left: "-6%"  },
+  { r: 120, g: 60,  b: 140, o: 0.15, s: 540, top: "8%",   left: "62%"  },
+  { r: 179, g: 63,  b: 98,  o: 0.17, s: 500, top: "30%",  left: "20%"  },
+  { r: 242, g: 160, b: 70,  o: 0.13, s: 480, top: "42%",  left: "68%"  },
+  { r: 120, g: 60,  b: 140, o: 0.14, s: 560, top: "62%",  left: "-4%"  },
+  { r: 242, g: 160, b: 70,  o: 0.12, s: 520, top: "80%",  left: "60%"  },
 ];
 
 const lightOrbs = [

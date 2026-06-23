@@ -43,7 +43,7 @@ export default function CursorGlow() {
         transform: "translate(-50%, -50%)",
         background: isLight
           ? "radial-gradient(circle, rgba(220,180,120,0.18) 0%, rgba(200,165,110,0.08) 35%, transparent 65%)"
-          : "radial-gradient(circle, rgba(99,102,241,0.15) 0%, rgba(34,211,238,0.08) 35%, transparent 65%)",
+          : "radial-gradient(circle, rgba(179,63,98,0.15) 0%, rgba(242,179,93,0.08) 35%, transparent 65%)",
         filter: "blur(50px)",
         transition: "opacity 0.4s ease",
         opacity: 0,
