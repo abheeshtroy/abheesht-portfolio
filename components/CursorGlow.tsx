@@ -16,6 +16,7 @@ export default function CursorGlow() {
     if (isTouch) return;
     const glow = glowRef.current;
     if (!glow) return;
+
     const handleMove = (e: MouseEvent) => {
       glow.style.left = e.clientX + "px";
       glow.style.top = e.clientY + "px";
@@ -23,13 +24,40 @@ export default function CursorGlow() {
     };
     const handleLeave = () => { glow.style.opacity = "0"; };
     const handleEnter = () => { glow.style.opacity = "1"; };
+
+    const handleClick = (e: MouseEvent) => {
+      const ripple = document.createElement("div");
+      Object.assign(ripple.style, {
+        position: "fixed",
+        borderRadius: "50%",
+        background: "color-mix(in srgb, var(--indigo) 30%, transparent)",
+        width: "8px",
+        height: "8px",
+        left: e.clientX + "px",
+        top: e.clientY + "px",
+        transform: "translate(-50%, -50%) scale(0)",
+        transition: "transform 0.6s ease, opacity 0.6s ease",
+        pointerEvents: "none",
+        zIndex: "9999",
+      });
+      document.body.appendChild(ripple);
+      requestAnimationFrame(() => {
+        ripple.style.transform = "translate(-50%, -50%) scale(18)";
+        ripple.style.opacity = "0";
+      });
+      setTimeout(() => ripple.remove(), 700);
+    };
+
     window.addEventListener("mousemove", handleMove);
     document.addEventListener("mouseleave", handleLeave);
     document.addEventListener("mouseenter", handleEnter);
+    window.addEventListener("click", handleClick);
+
     return () => {
       window.removeEventListener("mousemove", handleMove);
       document.removeEventListener("mouseleave", handleLeave);
       document.removeEventListener("mouseenter", handleEnter);
+      window.removeEventListener("click", handleClick);
     };
   }, []);
 

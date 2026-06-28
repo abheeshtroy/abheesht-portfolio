@@ -65,10 +65,10 @@ export default function Projects() {
             </p>
           </motion.div>
           <motion.h2
-            initial={{ opacity: 0, y: 60 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ y: "100%", opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
             viewport={{ once: true, margin: "-40px" }}
-            transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
             className="text-3xl font-semibold text-[var(--text-primary)] pl-9"
           >
             Things I&apos;ve built

@@ -64,9 +64,11 @@ const MoonIcon = () => (
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
+  
   const [activeSection, setActiveSection] = useState<string>("");
   const [menuOpen, setMenuOpen] = useState(false);
   const hasScrolled = useRef(false);
+  const progressRef = useRef<HTMLDivElement>(null);
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
@@ -83,6 +85,10 @@ export default function Nav() {
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
+      if (progressRef.current) {
+        const total = document.documentElement.scrollHeight - window.innerHeight;
+        progressRef.current.style.width = total > 0 ? `${(window.scrollY / total) * 100}%` : "0%";
+      }
       if (window.scrollY > 80) {
         hasScrolled.current = true;
       } else {
@@ -270,6 +276,20 @@ export default function Nav() {
           </button>
         </div>
       </div>
+
+      {/* Scroll progress */}
+      <div
+        ref={progressRef}
+        style={{
+          position: "absolute",
+          bottom: 0,
+          left: 0,
+          height: "2px",
+          width: "0%",
+          background: "linear-gradient(90deg, var(--indigo), var(--cyan))",
+          willChange: "width",
+        }}
+      />
 
       {/* Mobile slide-down panel */}
       <AnimatePresence>

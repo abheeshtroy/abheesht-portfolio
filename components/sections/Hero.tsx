@@ -1,10 +1,61 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import SectionOrbs from "@/components/SectionOrbs";
 
+type Segment = { text: string; style?: React.CSSProperties; className?: string };
+
+function Typewriter({ segments, delay = 0, speed = 16, onDone }: { segments: Segment[]; delay?: number; speed?: number; onDone?: () => void }) {
+  const fullText = segments.map(s => s.text).join("");
+  const [charCount, setCharCount] = useState(0);
+  const [started, setStarted] = useState(false);
+  const [done, setDone] = useState(false);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => setStarted(true), delay);
+    return () => clearTimeout(timeout);
+  }, [delay]);
+
+  useEffect(() => {
+    if (!started) return;
+    if (charCount >= fullText.length) {
+      if (!done) { setDone(true); if (onDone) onDone(); }
+      return;
+    }
+    const timeout = setTimeout(() => setCharCount(c => c + 1), speed);
+    return () => clearTimeout(timeout);
+  }, [started, charCount, fullText.length, speed, onDone, done]);
+
+  let remaining = charCount;
+  const rendered = segments.map((seg, i) => {
+    if (remaining <= 0) return null;
+    const show = seg.text.slice(0, remaining);
+    remaining -= show.length;
+    return <span key={i} style={seg.style} className={seg.className}>{show}</span>;
+  });
+
+  return (
+    <span>
+      {rendered}
+      <span
+        className="inline-block w-[3px] ml-[2px] rounded-[1px]"
+        style={{
+          height: "1em",
+          verticalAlign: "-0.15em",
+          background: done ? "var(--indigo)" : "var(--text-primary)",
+          animation: "terminal-blink 1s step-end infinite",
+          opacity: started ? 1 : 0,
+        }}
+      />
+    </span>
+  );
+}
+
 export default function Hero() {
+  const [typingDone, setTypingDone] = useState(false);
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden isolate">
       <SectionOrbs />
@@ -19,17 +70,40 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
             className="hidden md:flex order-1 md:order-2 mb-10 md:mb-0 justify-center md:justify-end"
           >
-            <div
-              className="hidden md:block relative rounded-2xl p-[1.5px]"
-              style={{
-                width: "320px",
-                background: "linear-gradient(135deg, var(--indigo), var(--cyan))",
-                boxShadow: "0 0 45px color-mix(in srgb, var(--indigo) 35%, transparent)",
-              }}
-            >
-              <div
+            <div className="hidden md:block relative" style={{ width: "322px" }}>
+              <svg
+                className="absolute inset-0 w-full h-full"
+                style={{ zIndex: 2, pointerEvents: "none" }}
+              >
+                <defs>
+                  <linearGradient id="frame-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="var(--indigo)" />
+                    <stop offset="100%" stopColor="var(--cyan)" />
+                  </linearGradient>
+                </defs>
+                <rect
+                  x="1" y="1"
+                  width="calc(100% - 2px)" height="calc(100% - 2px)"
+                  rx="16" ry="16"
+                  fill="none"
+                  stroke="url(#frame-grad)"
+                  strokeWidth="2"
+                  className="photo-frame-stroke"
+                />
+              </svg>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1.6, duration: 0.8 }}
+                className="absolute inset-0 rounded-2xl"
+                style={{ boxShadow: "0 0 45px color-mix(in srgb, var(--indigo) 35%, transparent)", zIndex: 1 }}
+              />
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.8, duration: 0.6 }}
                 className="relative rounded-2xl overflow-hidden"
-                style={{ background: "var(--surface)" }}
+                style={{ background: "var(--surface)", margin: "1.5px" }}
               >
                 <div
                   className="flex items-center gap-2 px-3 py-2.5"
@@ -57,7 +131,7 @@ export default function Hero() {
                     style={{ background: "linear-gradient(180deg, transparent 55%, var(--photo-fade) 100%)" }}
                   />
                 </div>
-              </div>
+              </motion.div>
             </div>
           </motion.div>
 
@@ -68,8 +142,9 @@ export default function Hero() {
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-6xl md:text-7xl font-bold tracking-tight mb-6"
+              className="text-6xl md:text-[72px] font-bold tracking-tight mb-6"
               style={{
+                fontWeight: 700,
                 background: "linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 50%, var(--indigo) 100%)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
@@ -80,33 +155,43 @@ export default function Hero() {
             </motion.h1>
 
             <motion.p
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.35 }}
-              className="text-xl md:text-2xl max-w-2xl mb-6 leading-relaxed"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.3, delay: 0.6 }}
+              className="text-xl md:text-[24px] max-w-2xl mb-6 leading-relaxed"
               style={{ color: "var(--text-secondary)" }}
             >
-              Software engineer building at the intersection of{" "}
-              <span style={{ color: "var(--text-primary)" }}>reliable systems</span> and{" "}
-              <span style={{ color: "var(--cyan)" }}>applied AI</span>.
+              <Typewriter
+                segments={[
+                  { text: "Software engineer building at the intersection of " },
+                  { text: "reliable systems", style: { color: "var(--text-primary)", fontWeight: 600 } },
+                  { text: " and " },
+                  { text: "applied AI", style: { color: "var(--cyan)" } },
+                  { text: "." },
+                ]}
+                delay={800}
+                speed={16}
+                onDone={() => setTypingDone(true)}
+              />
             </motion.p>
 
             <motion.p
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.45 }}
-              className="text-base max-w-xl mb-12 leading-relaxed"
-              style={{ color: "var(--text-muted)" }}
+              initial={{ opacity: 0, y: 12 }}
+              animate={typingDone ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.4 }}
+              className="text-sm md:text-[15px] max-w-xl mb-10 leading-relaxed"
+              style={{ color: "var(--text-muted)", opacity: 0 }}
             >
               I like building reliable, scalable software that makes
-              people&#39;s lives easier.
+              people&apos;s lives easier.
             </motion.p>
 
             <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.55 }}
-              className="flex items-center gap-4"
+              initial={{ opacity: 0, y: 12 }}
+              animate={typingDone ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.4, delay: 0.15 }}
+              className="flex flex-wrap items-center gap-4"
+              style={{ opacity: 0 }}
             >
               <a
                 href="#about"
@@ -172,12 +257,27 @@ export default function Hero() {
               </div>
             </motion.div>
 
+            {/* AI widget prompt */}
+            <motion.button
+              initial={{ opacity: 0 }}
+              animate={typingDone ? { opacity: 1 } : {}}
+              transition={{ duration: 0.4, delay: 0.4 }}
+              onClick={() => window.dispatchEvent(new CustomEvent("open-chat"))}
+              data-cursor-snap
+              className="mt-6 font-mono text-xs tracking-wide transition-colors duration-200 cursor-pointer flex items-center gap-2"
+              style={{ color: "var(--cyan)", opacity: 0, background: "none", border: "none", padding: 0 }}
+              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.opacity = "0.7"; }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.opacity = "1"; }}
+            >
+              <span style={{ color: "var(--text-muted)" }}>or</span> ask my AI about my work ↗
+            </motion.button>
+
             <motion.p
               initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.7 }}
-              className="mt-16 font-mono text-xs tracking-widest"
-              style={{ color: "var(--text-muted)" }}
+              animate={typingDone ? { opacity: 1 } : {}}
+              transition={{ duration: 0.4, delay: 0.5 }}
+              className="mt-12 font-mono text-xs tracking-widest"
+              style={{ color: "var(--text-muted)", opacity: 0 }}
             >
               MS Computer Science · Arizona State University
             </motion.p>
@@ -189,13 +289,12 @@ export default function Hero() {
       {/* Scroll indicator */}
       <motion.div
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6, delay: 1.1 }}
+        animate={typingDone ? { opacity: 1 } : {}}
+        transition={{ duration: 0.6, delay: 0.6 }}
         className="absolute bottom-10 left-1/2 -translate-x-1/2 hidden sm:flex flex-col items-center gap-2"
+        style={{ opacity: 0 }}
       >
-        <span className="font-mono text-xs tracking-widest" style={{ color: "var(--text-muted)" }}>
-          scroll
-        </span>
+        <span className="font-mono text-xs tracking-widest" style={{ color: "var(--text-muted)" }}>scroll</span>
         <motion.div
           animate={{ y: [0, 6, 0] }}
           transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
@@ -212,7 +311,7 @@ export default function Hero() {
       <div className="absolute bottom-0 left-0 right-0 pointer-events-none" style={{ zIndex: 10 }}>
         <div style={{
           height: "2px",
-          background: "linear-gradient(90deg, var(--indigo) 0%, rgba(99,102,241,0.15) 60%, transparent 100%)",
+          background: "linear-gradient(90deg, var(--indigo) 0%, color-mix(in srgb, var(--indigo) 15%, transparent) 60%, transparent 100%)",
           opacity: 0.5,
         }} />
       </div>
