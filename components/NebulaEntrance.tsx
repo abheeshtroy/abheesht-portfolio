@@ -19,45 +19,69 @@ const lightBlobs = [
   { fx: 0.28, fy: 0.58, sx: 0.72, sy: 0.88, r: 195, g: 115, b: 120, tr: 170 },
 ];
 
+type Blob = (typeof darkBlobs)[number];
+
 export default function NebulaEntrance() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [phase, setPhase] = useState<"animating" | "ambient" | "removed">("animating");
+  const animRef = useRef<number>(0);
+  const hasPlayedRef = useRef(false);
+  const [zHigh, setZHigh] = useState(true);
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
-
-  useEffect(() => setMounted(true), []);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    if (!mounted) return;
-    const canvas = canvasRef.current;
-    if (!canvas) return;
+    setMounted(true);
+    setIsMobile(window.matchMedia("(pointer: coarse)").matches);
+  }, []);
+
+  function drawStatic(canvas: HTMLCanvasElement, isLight: boolean) {
+    const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
+    if (!ctx) return;
+    const w = canvas.width;
+    const h = canvas.height;
+    ctx.clearRect(0, 0, w, h);
+    if (isLight) return;
+
+    const blobs = darkBlobs;
+    const ambientAlpha = 0.11;
+    const scale = w / 700;
+
+    blobs.forEach((b) => {
+      const cx = b.fx * w;
+      const cy = b.fy * h;
+      const rad = b.tr;
+      const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, rad * scale);
+      grad.addColorStop(0, `rgba(${b.r},${b.g},${b.b},${ambientAlpha})`);
+      grad.addColorStop(0.4, `rgba(${b.r},${b.g},${b.b},${ambientAlpha * 0.5})`);
+      grad.addColorStop(0.7, `rgba(${b.r},${b.g},${b.b},${ambientAlpha * 0.15})`);
+      grad.addColorStop(1, "transparent");
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, w, h);
+    });
+  }
+
+  function playEntrance(canvas: HTMLCanvasElement, isLight: boolean) {
     const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
     if (!ctx) return;
 
-    const isLight = resolvedTheme === "light";
     const blobs = isLight ? lightBlobs : darkBlobs;
     const peakAlpha = isLight ? 0.30 : 0.28;
     const ambientAlpha = isLight ? 0 : 0.11;
+    const duration = 4200;
 
-    const resize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-    resize();
-    window.addEventListener("resize", resize);
-
+    setZHigh(true);
     const W = () => canvas.width;
     const H = () => canvas.height;
     const start = performance.now();
-    const duration = 4200;
 
-    function drawFrame(ep: number, alpha: number) {
+    function drawFrame(blobsArr: Blob[], ep: number, alpha: number) {
       const w = W();
       const h = H();
       ctx.clearRect(0, 0, w, h);
       const scale = w / 700;
 
-      blobs.forEach((b) => {
+      blobsArr.forEach((b) => {
         const cx = (b.sx * w) + ((b.fx - b.sx) * w * ep);
         const cy = (b.sy * h) + ((b.fy - b.sy) * h * ep);
         const rad = 60 + (b.tr - 60) * ep;
@@ -71,8 +95,6 @@ export default function NebulaEntrance() {
         ctx.fillRect(0, 0, w, h);
       });
     }
-
-    let animId: number;
 
     const draw = (t: number) => {
       const elapsed = t - start;
@@ -90,39 +112,67 @@ export default function NebulaEntrance() {
         alpha = peakAlpha - (peakAlpha - ambientAlpha) * easeDecay;
       }
 
-      drawFrame(ep, alpha);
+      drawFrame(blobs, ep, alpha);
 
       if (p < 1) {
-        animId = requestAnimationFrame(draw);
+        animRef.current = requestAnimationFrame(draw);
       } else {
         if (isLight) {
           ctx.clearRect(0, 0, W(), H());
-          setPhase("removed");
         } else {
-          setPhase("ambient");
+          drawFrame(blobs, 1, ambientAlpha);
         }
+        setZHigh(false);
       }
     };
 
-    animId = requestAnimationFrame(draw);
+    animRef.current = requestAnimationFrame(draw);
+  }
 
+  useEffect(() => {
+    if (!mounted || isMobile) return;
+    if (!resolvedTheme) return;
+
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const isLight = resolvedTheme === "light";
+
+    if (!hasPlayedRef.current) {
+      hasPlayedRef.current = true;
+      playEntrance(canvas, isLight);
+      return;
+    }
+
+    if (animRef.current) cancelAnimationFrame(animRef.current);
+    setZHigh(false);
+    drawStatic(canvas, isLight);
+  }, [mounted, resolvedTheme, isMobile]);
+
+  useEffect(() => {
     const handleResize = () => {
-      resize();
-      if (!isLight) drawFrame(1, ambientAlpha);
+      const canvas = canvasRef.current;
+      if (!canvas) return;
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      if (hasPlayedRef.current) {
+        drawStatic(canvas, resolvedTheme === "light");
+      }
     };
     window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [resolvedTheme]);
 
+  useEffect(() => {
     return () => {
-      cancelAnimationFrame(animId);
-      window.removeEventListener("resize", resize);
-      window.removeEventListener("resize", handleResize);
+      if (animRef.current) cancelAnimationFrame(animRef.current);
     };
-  }, [mounted, resolvedTheme]);
+  }, []);
 
-  if (!mounted) return null;
-  if (phase === "removed") return null;
-
-  const isLight = resolvedTheme === "light";
+  if (!mounted || isMobile) return null;
 
   return (
     <canvas
@@ -132,10 +182,8 @@ export default function NebulaEntrance() {
         inset: 0,
         width: "100%",
         height: "100%",
-        zIndex: phase === "animating" ? 50 : (isLight ? -1 : 0),
+        zIndex: zHigh ? 50 : 0,
         pointerEvents: "none",
-        opacity: isLight && phase === "ambient" ? 0 : 1,
-        transition: isLight ? "opacity 0.8s ease" : undefined,
       }}
     />
   );
