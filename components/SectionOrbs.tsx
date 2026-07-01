@@ -27,6 +27,7 @@ export default function SectionOrbs() {
   useEffect(() => setMounted(true), []);
 
   const isLight = mounted && resolvedTheme === "light";
+  if (isLight) return null;
   const orbs = isLight ? lightOrbs : darkOrbs;
   const blend = isLight ? "normal" : "screen";
 
