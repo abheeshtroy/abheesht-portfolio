@@ -3,7 +3,6 @@ import { Inter } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import "./globals.css";
 import ChatWidget from "@/components/ChatWidget";
-import NebulaEntrance from "@/components/NebulaEntrance";
 import CursorSystem from "@/components/CursorSystem";
 
 const inter = Inter({
@@ -46,7 +45,6 @@ export default function RootLayout({
       </head>
       <body className={`${inter.variable} antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange={false}>
-          <NebulaEntrance />
           {children}
           <CursorSystem />
           <ChatWidget />
