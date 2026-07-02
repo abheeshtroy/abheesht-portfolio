@@ -4,6 +4,7 @@ import { ThemeProvider } from "next-themes";
 import "./globals.css";
 import ChatWidget from "@/components/ChatWidget";
 import CursorSystem from "@/components/CursorSystem";
+import NebulaEntrance from "@/components/NebulaEntrance";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -45,6 +46,7 @@ export default function RootLayout({
       </head>
       <body className={`${inter.variable} antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange={false}>
+          <NebulaEntrance />
           {children}
           <CursorSystem />
           <ChatWidget />
