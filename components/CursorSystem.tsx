@@ -14,6 +14,15 @@ const INTERACTIVE_SELECTOR =
 const TEXT_SELECTOR =
   "p, span, h1, h2, h3, h4, h5, h6, li, label, blockquote, td, th";
 const SKIP_GLOW_SELECTOR = "[data-cursor-skip-glow]";
+const ICON_SELECTOR = "[data-cursor-icon]";
+
+const CURSOR_ICON_MAP: Record<string, string> = {
+  samsung: "/cursors/samsung-cursor.png",
+  "agent-techs": "/cursors/agent-techs-cursor.png",
+  atthah: "/cursors/atthah-cursor.png",
+  ncsm: "/cursors/ncsm-cursor.png",
+  desknow: "/cursors/desknow-cursor.png",
+};
 
 function lerp(a: number, b: number, t: number) {
   return a + (b - a) * t;
@@ -35,7 +44,6 @@ export default function CursorSystem() {
 
     const isDark = resolvedTheme === "dark";
 
-    // default glow (elements with no theme of their own)
     const DEFAULT_GLOW_SHADOW = isDark
       ? "0 0 22px 2px rgba(242,179,93,0.40), inset 0 0 26px rgba(242,179,93,0.12)"
       : "0 0 20px 2px rgba(224,168,138,0.35), inset 0 0 24px rgba(224,168,138,0.12)";
@@ -73,6 +81,23 @@ export default function CursorSystem() {
       if (glowEl === el) glowEl = null;
     };
 
+    // real cursor swap bookkeeping
+    const origCursor = new WeakMap<HTMLElement, string>();
+    let cursorEl: HTMLElement | null = null;
+
+    const applyCursor = (el: HTMLElement, iconPath: string) => {
+      if (cursorEl === el) return;
+      if (cursorEl) resetCursor(cursorEl);
+      cursorEl = el;
+      if (!origCursor.has(el)) origCursor.set(el, el.style.cursor);
+      el.style.cursor = `url(${iconPath}) 16 16, pointer`;
+    };
+
+    const resetCursor = (el: HTMLElement) => {
+      el.style.cursor = origCursor.get(el) ?? "";
+      if (cursorEl === el) cursorEl = null;
+    };
+
     let mouseX = -9999, mouseY = -9999;
     let torchX = -9999, torchY = -9999;
     let dim = 1, targetDim = 1;
@@ -89,18 +114,26 @@ export default function CursorSystem() {
       }
 
       const el = e.target as Element | null;
+      const iconEl = el?.closest?.(ICON_SELECTOR) as HTMLElement | null;
+      const iconKey = iconEl?.getAttribute("data-cursor-icon") ?? null;
+      const iconPath = iconKey ? CURSOR_ICON_MAP[iconKey] : undefined;
+
+      if (iconEl && iconPath) {
+        applyCursor(iconEl, iconPath);
+      } else if (cursorEl) {
+        resetCursor(cursorEl);
+      }
+
       const interactiveEl = el?.closest?.(INTERACTIVE_SELECTOR) as HTMLElement | null;
 
       if (interactiveEl) {
         const skipsGlow = !!interactiveEl.closest(SKIP_GLOW_SELECTOR);
         if (skipsGlow) {
-          // element manages its own themed hover glow (e.g. experience cards) —
-          // just get our generic glow out of the way if it was on something else
           if (glowEl) removeGlow(glowEl);
         } else {
           applyGlow(interactiveEl);
         }
-        targetDim = 0.12; // fade circular torch out over any interactable either way
+        targetDim = 0.12;
       } else {
         if (glowEl) removeGlow(glowEl);
         const textEl = el?.closest?.(TEXT_SELECTOR);
@@ -134,6 +167,7 @@ export default function CursorSystem() {
       cancelAnimationFrame(rafId);
       document.removeEventListener("mousemove", onMove);
       if (glowEl) removeGlow(glowEl);
+      if (cursorEl) resetCursor(cursorEl);
     };
   }, [mounted, isActive, resolvedTheme]);
 
@@ -151,10 +185,6 @@ export default function CursorSystem() {
   if (!mounted || !isActive) return null;
 
   const isDark = resolvedTheme === "dark";
-
-  // dark mode: warm amber torch, screen blend genuinely brightens the dark bg
-  // light mode: soft champagne/copper torch (matches --chat-accent), normal blend
-  //   so it reads as warm ambient light rather than a dimmed clone of dark mode
   const coreColor = isDark ? "255,200,120" : "210,165,215";
   const haloColor = isDark ? "245,158,11" : "190,140,190";
   const coreOpacity = isDark ? 0.5 : 0.3;

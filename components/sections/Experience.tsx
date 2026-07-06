@@ -804,6 +804,7 @@ function RoleCard({ role, index }: { role: Role; index: number }) {
           className="w-full text-left cursor-pointer"
           aria-expanded={isOpen}
           data-cursor-skip-glow="true"
+          data-cursor-icon={role.id}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
