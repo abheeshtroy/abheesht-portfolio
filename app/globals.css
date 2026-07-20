@@ -45,18 +45,18 @@
 }
 
 html.light {
-  --background: #efecea;
-  --surface: #fefdfb;
+  --background: #e4d5c0;
+  --surface: #f5ead8;
   --border: rgba(130, 90, 50, 0.22);
   --indigo: #a14e21;
   --cyan: #31817f;
   --text-primary: #080604;
   --text-secondary: #1e1a16;
   --text-muted: #453f38;
-  --nav-bg: rgba(239, 236, 234, 0.90);
+  --nav-bg: rgba(228, 213, 192, 0.92);
   --nav-border: rgba(161, 78, 33, 0.08);
-  --photo-fade: rgba(239, 236, 234, 0.5);
-  --glass-bg: rgba(255, 255, 252, 0.92);
+  --photo-fade: rgba(228, 213, 192, 0.5);
+  --glass-bg: rgba(245, 234, 216, 0.92);
   --surface-overlay: rgba(120, 80, 40, 0.05);
   --tag-bg: rgba(120, 80, 40, 0.06);
   --color-stack: #2563a0;
