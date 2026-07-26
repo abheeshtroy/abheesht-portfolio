@@ -133,6 +133,7 @@ html.theme-transitioning *::after {
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 80px;
+  scroll-snap-type: y mandatory;
 }
 
 body {
@@ -142,6 +143,11 @@ body {
 }
 
 
+
+section {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
 
 @keyframes pulse {
   0%, 100% { opacity: 1; }
@@ -168,6 +174,7 @@ html.light::-webkit-scrollbar-thumb:hover { background: rgba(50, 40, 24, 0.28); 
 /* ─── Contact snap ─────────────────────────────────────────────────────────── */
 
 #contact {
+  scroll-snap-align: start;
   min-height: 100vh;
 }
 
