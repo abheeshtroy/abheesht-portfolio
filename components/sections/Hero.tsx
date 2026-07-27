@@ -138,45 +138,56 @@ export default function Hero() {
           {/* Text column */}
           <div className="order-2 md:order-1">
 
-            <h1 className="text-6xl md:text-[72px] font-bold tracking-tight mb-6 leading-[1.05]">
-              {["Hi,", "I\'m", "Abheesht."].map((word, i) => (
+            <motion.h1
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-6xl md:text-[72px] font-bold tracking-tight mb-6"
+              style={{
+                fontWeight: 700,
+                background: "linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 50%, var(--indigo) 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
+            >
+              Hi, I&apos;m Abheesht.
+            </motion.h1>
+
+            <p
+              className="text-xl md:text-[24px] max-w-2xl mb-6 leading-relaxed"
+              style={{ color: "var(--text-secondary)" }}
+            >
+              {[
+                { t: "Software", style: {} },
+                { t: "engineer", style: {} },
+                { t: "building", style: {} },
+                { t: "at", style: {} },
+                { t: "the", style: {} },
+                { t: "intersection", style: {} },
+                { t: "of", style: {} },
+                { t: "reliable", style: { color: "var(--text-primary)", fontWeight: 600 } },
+                { t: "systems", style: { color: "var(--text-primary)", fontWeight: 600 } },
+                { t: "and", style: {} },
+                { t: "applied", style: { color: "var(--cyan)" } },
+                { t: "AI.", style: { color: "var(--cyan)" } },
+              ].map((word, i) => (
                 <span
                   key={i}
                   className="hero-word"
                   style={{
-                    animationDelay: `${i * 0.10}s`,
+                    animationDelay: `${0.9 + i * 0.055}s`,
                     marginRight: "0.28em",
-                    background: "linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 50%, var(--indigo) 100%)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    backgroundClip: "text",
+                    ...word.style,
+                  }}
+                  onAnimationEnd={() => {
+                    if (i === 11) setTypingDone(true);
                   }}
                 >
-                  {word}
+                  {word.t}
                 </span>
               ))}
-            </h1>
-
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.3, delay: 0.6 }}
-              className="text-xl md:text-[24px] max-w-2xl mb-6 leading-relaxed"
-              style={{ color: "var(--text-secondary)" }}
-            >
-              <Typewriter
-                segments={[
-                  { text: "Software engineer building at the intersection of " },
-                  { text: "reliable systems", style: { color: "var(--text-primary)", fontWeight: 600 } },
-                  { text: " and " },
-                  { text: "applied AI", style: { color: "var(--cyan)" } },
-                  { text: "." },
-                ]}
-                delay={800}
-                speed={16}
-                onDone={() => setTypingDone(true)}
-              />
-            </motion.p>
+            </p>
 
             <motion.p
               initial={{ opacity: 0, y: 12 }}
