@@ -124,6 +124,26 @@ html.theme-transitioning *::after {
   opacity: 0.5;
 }
 
+/* ─── Hero word reveal ──────────────────────────────────────────────────────── */
+
+.hero-word {
+  display: inline-block;
+  animation: wordIn 0.85s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+
+@keyframes wordIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
 /* ─── Base ─────────────────────────────────────────────────────────────────── */
 
 * {
