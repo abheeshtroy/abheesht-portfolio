@@ -138,21 +138,24 @@ export default function Hero() {
           {/* Text column */}
           <div className="order-2 md:order-1">
 
-            <motion.h1
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-6xl md:text-[72px] font-bold tracking-tight mb-6"
-              style={{
-                fontWeight: 700,
-                background: "linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 50%, var(--indigo) 100%)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
-            >
-              Hi, I&apos;m Abheesht.
-            </motion.h1>
+            <h1 className="text-6xl md:text-[72px] font-bold tracking-tight mb-6 leading-[1.05]">
+              {["Hi,", "I\'m", "Abheesht."].map((word, i) => (
+                <span
+                  key={i}
+                  className="hero-word"
+                  style={{
+                    animationDelay: `${i * 0.10}s`,
+                    marginRight: "0.28em",
+                    background: "linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 50%, var(--indigo) 100%)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                  }}
+                >
+                  {word}
+                </span>
+              ))}
+            </h1>
 
             <motion.p
               initial={{ opacity: 0 }}
