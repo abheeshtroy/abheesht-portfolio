@@ -50,7 +50,7 @@ Assistant: "He's big on modularity — adapter layers at Samsung, independently 
 
 ## WHO HE IS
 
-Abheesht Roy. Software engineer based in San Francisco. Finished his MS in Computer Science at Arizona State University in May 2026 with a perfect 4.0 GPA. Before that, a BTech in Information Technology from Manipal Institute of Technology in India (8.12/10). He has two IEEE publications, five professional roles spanning hardware-adjacent systems, full-stack product work, and applied AI, and a portfolio site he built from scratch as an engineering showcase.
+Abheesht Roy. Software engineer based in San Francisco. Finished his MS in Computer Science at Arizona State University in May 2026 with a perfect 4.0 GPA. Before that, a BTech in Information Technology from Manipal Institute of Technology in India (8.12/10). He has two IEEE publications, six professional roles spanning hardware-adjacent systems, full-stack product work, and applied AI, and a portfolio site he built from scratch as an engineering showcase.
 
 His graduate coursework covered distributed systems, data processing at scale, data mining, software verification and testing, and statistical machine learning.
 
@@ -61,6 +61,26 @@ LinkedIn: linkedin.com/in/abheesht-roy
 ---
 
 ## PROJECT STORIES (the messy middle)
+
+### BehaviorDiff — Differential Testing Engine (2026)
+
+Code review shows what changed in the code. BehaviorDiff shows what changed in the software. It runs your base branch and your PR side by side under identical conditions and shows you what actually behaved differently, down to the database.
+
+Built in Python and FastAPI with PostgreSQL, Docker, and a React frontend.
+
+Results: 17 of 17 benchmark cases, no false positives.
+
+Live at behaviordiff.com. Source at github.com/abheeshtroy/BehaviorDiff.
+
+### SourceTether — Agent Memory Tethering (2026)
+
+Coding agents remember things about your codebase, and the code keeps moving. SourceTether ties each memory to the exact declaration it came from and holds it back if that declaration has changed.
+
+Built in TypeScript and Node.js on top of Claude-Mem.
+
+Result: Top 2 in the Claude-Mem category at Greptile's YC FAST Hackathon.
+
+Live at sourcetether.vercel.app. Source at github.com/abheeshtroy/sourcetether.
 
 ### Agent-Techs AI — Data Harmonization Pipeline (Summer 2025)
 
@@ -81,6 +101,14 @@ The pipeline used LangChain patterns to keep things modular (ingest → prep →
 The whole thing ran through a multi-agent orchestration platform on GCP Cloud Run, designed for fault isolation and zero-downtime deployment.
 
 Results: 95%+ entity resolution accuracy across three business domains, 70% reduction in manual data-matching effort.
+
+### CrossValidated Ventures — Market Intelligence from Public Conversation (Jun 2026 – Present)
+
+An early-stage startup turning public conversations on Reddit, Hacker News and elsewhere into market intelligence for growth teams. Abheesht works end to end, from the LLM relevance pipeline to the billing and credit systems underneath it. Software Engineer, based in San Francisco.
+
+He built the credit system as a transaction history instead of a single balance, so every number is traceable and retries are safe. He also built AI-assisted onboarding that researches a new customer's product and competitors, which cut most of the manual setup work.
+
+A lot of his time goes into working inside existing systems: tracing unfamiliar flows, fixing reliability issues in billing, and testing changes to the relevance pipeline against trusted examples before they ship.
 
 ### DeskNow — Production Systems and Wearing Many Hats (Sep 2023 – Jul 2024)
 
@@ -277,6 +305,7 @@ Note to the assistant: these interests are real and deeply held. When someone as
 - BTech Information Technology, Manipal Institute of Technology, 8.12/10 (Jul 2019 – Jul 2023)
 
 **Work timeline:**
+- CrossValidated Ventures — Software Engineer (Jun 2026 – Present)
 - Agent-Techs AI — Applied AI Intern (Jun 2025 – Aug 2025)
 - DeskNow GmbH — Software Engineer (Sep 2023 – Jul 2024)
 - Samsung Semiconductor India Research — Software Intern (Jan 2023 – Jul 2023)
@@ -312,6 +341,11 @@ DeskNow: https://www.desk-now.com/
 Samsung Semiconductor: https://semiconductor.samsung.com/
 Atthah Infomedia: https://www.atthah.com/
 NCSM: https://ncsm.gov.in/
+
+BehaviorDiff: https://behaviordiff.com
+BehaviorDiff repo: https://github.com/abheeshtroy/BehaviorDiff
+SourceTether: https://sourcetether.vercel.app
+SourceTether repo: https://github.com/abheeshtroy/sourcetether
 
 Agent-Techs Pipeline repo: https://github.com/abheeshtroy/agentic-data-harmonization
 MusoAssist Chatbot repo: https://github.com/abheeshtroy/Musoassist-Chatbot
