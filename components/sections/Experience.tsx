@@ -698,7 +698,9 @@ const roles: Role[] = [
     theme: T.crossvalidated,
     shortBlurb: "Early-stage startup turning public conversations on Reddit, Hacker News and elsewhere into market intelligence for growth teams. I work end to end, from the LLM relevance pipeline to the billing and credit systems underneath it.",
     body: [
-      "I built the credit system as a transaction history instead of a single balance, so every number is traceable and retries are safe. I also built AI-assisted onboarding that researches a new customer's product and competitors, which cut most of the manual setup work. A lot of my time goes into working inside existing systems: tracing unfamiliar flows, fixing reliability issues in billing, and testing changes to the relevance pipeline against trusted examples before they ship.",
+      "I built the credit system as a transaction history instead of a single balance, so every number is traceable and retries are safe.",
+      "I also built AI-assisted onboarding that researches a new customer's product and competitors, which cut most of the manual setup work.",
+      "A lot of my time goes into working inside existing systems: tracing unfamiliar flows, fixing reliability issues in billing, and testing changes to the relevance pipeline against trusted examples before they ship.",
     ],
     highlights: [
       { metric: "End-to-end", label: "Feature ownership" },
