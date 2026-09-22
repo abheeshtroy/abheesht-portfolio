@@ -21,6 +21,36 @@ export type Project = {
   export const projects: Project[] = [
     // ── FEATURED ──────────────────────────────────────────────
     {
+      slug: "behaviordiff",
+      title: "BehaviorDiff",
+      filename: "behaviordiff / differential-testing",
+      year: "2026",
+      description:
+        "Code review shows what changed in the code. BehaviorDiff shows what changed in the software. It runs your base branch and your PR side by side under identical conditions and shows you what actually behaved differently, down to the database.",
+      stack: "Python · FastAPI · PostgreSQL · Docker · React",
+      impact: "17 of 17 benchmark cases, no false positives",
+      tags: ["differential testing", "developer tools", "applied AI"],
+      github: "https://github.com/abheeshtroy/BehaviorDiff",
+      live: "https://behaviordiff.com",
+      featured: true,
+      accentColor: "#10b981",
+    },
+    {
+      slug: "sourcetether",
+      title: "SourceTether",
+      filename: "sourcetether / agent-memory",
+      year: "2026",
+      description:
+        "Coding agents remember things about your codebase, and the code keeps moving. SourceTether ties each memory to the exact declaration it came from and holds it back if that declaration has changed.",
+      stack: "TypeScript · Node.js · Claude-Mem",
+      impact: "Top 2 in the Claude-Mem category at Greptile's YC FAST Hackathon",
+      tags: ["agent memory", "developer tools", "TypeScript"],
+      github: "https://github.com/abheeshtroy/sourcetether",
+      live: "https://sourcetether.vercel.app",
+      featured: true,
+      accentColor: "#c084fc",
+    },
+    {
       slug: "agent-techs-pipeline",
       title: "Agent-Techs AI Pipeline",
       filename: "agent-techs / agentic-data-harmonization",
