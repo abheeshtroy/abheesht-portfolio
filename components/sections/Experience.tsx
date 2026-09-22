@@ -5,12 +5,17 @@ import { useTheme } from "next-themes";
 import { motion, AnimatePresence } from "framer-motion";
 import SectionOrbs from "@/components/SectionOrbs";
 
-const rolePrompts: Record<string, string> = {
-  "agent-techs": "What did Abheesht own end-to-end at Agent-Techs?",
-  "desknow": "What did the youngest engineer at DeskNow end up responsible for?",
-  "samsung": "What did he actually own on the Samsung TCON project?",
-  "atthah": "What did he own at Atthah while learning the whole stack?",
-  "ncsm": "What was Abheesht's piece of the IEEE museum research?",
+const rolePrompts: Record<string, string[]> = {
+  "crossvalidated": [
+    "What does Abheesht do at CrossValidated?",
+    "Tell me about the credit system he built",
+    "What's the AI onboarding feature?",
+  ],
+  "agent-techs": ["What did Abheesht own end-to-end at Agent-Techs?"],
+  "desknow": ["What did the youngest engineer at DeskNow end up responsible for?"],
+  "samsung": ["What did he actually own on the Samsung TCON project?"],
+  "atthah": ["What did he own at Atthah while learning the whole stack?"],
+  "ncsm": ["What was Abheesht's piece of the IEEE museum research?"],
 };
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -40,15 +45,15 @@ interface Theme {
 interface Role {
   id: string;
   companyNode: React.ReactNode;
-  website: string;
+  website?: string;
   title: string;
   period: string;
   location: string;
   theme: Theme;
   shortBlurb: string;
   body: string[];
-  highlights: Highlight[];
-  tags: string[];
+  highlights?: Highlight[];
+  tags?: string[];
   HeaderSVG: React.FC<{ id: string }>;
   ExpandedSVG: React.FC<{ id: string }>;
 }
@@ -56,6 +61,22 @@ interface Role {
 // ─── Themes ───────────────────────────────────────────────────────────────────
 
 const T: Record<string, Theme> = {
+  crossvalidated: {
+    cardBg: "rgba(20,12,2,0.92)",
+    cardBgOpen: "rgba(22,13,2,0.98)",
+    borderCollapsed: "rgba(245,158,11,0.18)",
+    borderOpen: "rgba(250,175,40,0.52)",
+    glowOpen: "0 0 50px rgba(245,158,11,0.18), inset 0 1px 0 rgba(250,190,80,0.25)",
+    dotColor: "#f59e0b",
+    dotGlow: "rgba(245,158,11,0.6)",
+    connectorOpen: "rgba(217,119,6,0.4)",
+    chipColor: "#fbbf24",
+    chipBg: "rgba(245,158,11,0.1)",
+    chipBorder: "rgba(245,158,11,0.28)",
+    metricColor: "#fbbf24",
+    highlightsBg: "rgba(217,119,6,0.09)",
+    divider: "rgba(217,119,6,0.2)",
+  },
   samsung: {
     cardBg: "rgba(8,9,28,0.92)",
     cardBgOpen: "rgba(8,9,28,0.98)",
@@ -140,6 +161,22 @@ const T: Record<string, Theme> = {
 
 
 const TLight: Record<string, Theme> = {
+  crossvalidated: {
+    cardBg: "rgba(58,38,10,0.94)",
+    cardBgOpen: "rgba(58,38,10,0.97)",
+    borderCollapsed: "rgba(255,190,80,0.6)",
+    borderOpen: "rgba(255,205,115,0.95)",
+    glowOpen: "0 0 70px rgba(250,170,40,0.3), inset 0 1px 0 rgba(255,195,95,0.4)",
+    dotColor: "#ffc861",
+    dotGlow: "rgba(255,190,80,0.85)",
+    connectorOpen: "rgba(230,150,30,0.5)",
+    chipColor: "#ffe0a8",
+    chipBg: "rgba(230,150,30,0.15)",
+    chipBorder: "rgba(230,150,30,0.38)",
+    metricColor: "#ffe0a8",
+    highlightsBg: "rgba(230,150,30,0.11)",
+    divider: "rgba(230,150,30,0.23)",
+  },
   samsung: {
     cardBg: "rgba(26,32,68,0.94)",
     cardBgOpen: "rgba(26,32,68,0.97)",
@@ -553,6 +590,91 @@ const NCSMExpandedSVG: React.FC<{ id: string }> = ({ id }) => (
 
 // ─── Company name nodes ───────────────────────────────────────────────────────
 
+const CrossValidatedHeaderSVG: React.FC<{ id: string }> = ({ id }) => (
+  <svg style={{ position: "absolute", inset: 0, width: "100%", height: "100%", pointerEvents: "none" }}
+    viewBox="0 0 640 82" preserveAspectRatio="xMidYMid slice" fill="none" aria-hidden>
+    <defs>
+      <linearGradient id={`${id}-ch-l`} x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stopColor="#140c02" stopOpacity="0.98" />
+        <stop offset="30%" stopColor="#140c02" stopOpacity="0" />
+      </linearGradient>
+      <linearGradient id={`${id}-ch-b`} x1="0" y1="0" x2="0" y2="1">
+        <stop offset="50%" stopColor="#140c02" stopOpacity="0" />
+        <stop offset="100%" stopColor="#140c02" stopOpacity="1" />
+      </linearGradient>
+    </defs>
+    {/* noise — unfiltered public conversation */}
+    {[[88,10,26],[120,26,18],[136,58,22],[164,14,24],[152,38,16],[200,22,20],[228,8,18],[214,66,16],[246,16,16],[262,30,22],[270,58,18],[300,46,20],[330,62,14],[178,32,14]].map(([x,y,w],i) => (
+      <rect key={i} x={x} y={y} width={w} height="7" rx="2.5"
+        fill="#f59e0b" fillOpacity="0.05" stroke="#f59e0b" strokeWidth="0.4" strokeOpacity="0.16" />
+    ))}
+    {/* signal — the threads that clear the relevance threshold */}
+    {[[96,44,30],[190,52,28],[232,40,26],[296,16,24],[326,34,18]].map(([x,y,w],i) => (
+      <g key={i}>
+        <rect x={x} y={y} width={w} height="7" rx="2.5"
+          fill="#f59e0b" fillOpacity="0.2" stroke="#f59e0b" strokeWidth="0.55" strokeOpacity="0.5" />
+        <line x1={x + w} y1={y + 3.5} x2="372" y2={y + 3.5}
+          stroke="#f59e0b" strokeWidth="0.45" strokeOpacity="0.22" />
+      </g>
+    ))}
+    <line x1="372" y1="4" x2="372" y2="78"
+      stroke="#f59e0b" strokeWidth="0.7" strokeOpacity="0.4" strokeDasharray="3 4" />
+    {/* ledger — append-only credit history */}
+    {[[12,96],[24,132],[36,78],[48,150],[60,110],[72,64]].map(([y,w],i) => (
+      <g key={i}>
+        <rect x="396" y={y} width={w} height="5" rx="1"
+          fill="#f59e0b" fillOpacity="0.16" stroke="#f59e0b" strokeWidth="0.45" strokeOpacity="0.38" />
+        <rect x="600" y={y} width="28" height="5" rx="1"
+          fill="#f59e0b" fillOpacity="0.1" stroke="#f59e0b" strokeWidth="0.4" strokeOpacity="0.3" />
+      </g>
+    ))}
+    <polyline points="492,14.5 528,26.5 474,38.5 546,50.5 506,62.5 460,74.5"
+      stroke="#f59e0b" strokeWidth="0.5" strokeOpacity="0.28" fill="none" />
+    <rect x="0" y="0" width="640" height="82" fill={`url(#${id}-ch-l)`} />
+    <rect x="0" y="0" width="640" height="82" fill={`url(#${id}-ch-b)`} />
+  </svg>
+);
+
+const CrossValidatedExpandedSVG: React.FC<{ id: string }> = ({ id }) => (
+  <svg style={{ position: "absolute", top: 0, right: 0, width: "48%", height: "100%", pointerEvents: "none" }}
+    viewBox="0 0 220 520" preserveAspectRatio="xMaxYMid slice" fill="none" aria-hidden>
+    <defs>
+      <linearGradient id={`${id}-ce-f`} x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stopColor="#140c02" stopOpacity="1" />
+        <stop offset="36%" stopColor="#140c02" stopOpacity="0" />
+      </linearGradient>
+    </defs>
+    {/* noise — unfiltered public conversation */}
+    {[[24,24,30],[74,16,22],[132,30,26],[178,22,18],[36,58,20],[96,66,28],[156,54,24],[20,96,26],[68,104,18],[120,92,30],[172,110,20],[44,140,24],[104,148,20],[158,136,26],[28,186,22],[88,194,28],[150,180,18],[190,164,16],[60,224,26],[122,232,20],[176,218,24]].map(([x,y,w],i) => (
+      <rect key={i} x={x} y={y} width={w} height="8" rx="3"
+        fill="#f59e0b" fillOpacity="0.05" stroke="#f59e0b" strokeWidth="0.4" strokeOpacity="0.15" />
+    ))}
+    {/* signal — the threads that clear the relevance threshold */}
+    {[[48,44,32],[140,78,28],[32,124,30],[112,170,26],[168,206,22]].map(([x,y,w],i) => (
+      <g key={i}>
+        <rect x={x} y={y} width={w} height="8" rx="3"
+          fill="#f59e0b" fillOpacity="0.2" stroke="#f59e0b" strokeWidth="0.55" strokeOpacity="0.5" />
+        <line x1={x + w / 2} y1={y + 8} x2={x + w / 2} y2="272"
+          stroke="#f59e0b" strokeWidth="0.45" strokeOpacity="0.2" />
+      </g>
+    ))}
+    <line x1="12" y1="272" x2="212" y2="272"
+      stroke="#f59e0b" strokeWidth="0.7" strokeOpacity="0.4" strokeDasharray="3 4" />
+    {/* ledger — append-only credit history */}
+    {[[300,104],[326,148],[352,82],[378,166],[404,120],[430,160],[456,96],[482,138]].map(([y,w],i) => (
+      <g key={i}>
+        <rect x="20" y={y} width={w} height="6" rx="1"
+          fill="#f59e0b" fillOpacity="0.16" stroke="#f59e0b" strokeWidth="0.45" strokeOpacity="0.38" />
+        <rect x="192" y={y} width="20" height="6" rx="1"
+          fill="#f59e0b" fillOpacity="0.1" stroke="#f59e0b" strokeWidth="0.4" strokeOpacity="0.3" />
+      </g>
+    ))}
+    <polyline points="124,303 168,329 102,355 186,381 140,407 180,433 116,459 158,485"
+      stroke="#f59e0b" strokeWidth="0.5" strokeOpacity="0.26" fill="none" />
+    <rect x="0" y="0" width="220" height="520" fill={`url(#${id}-ce-f)`} />
+  </svg>
+);
+
 const SamsungName = () => (
   <span style={{ fontFamily: "'Arial Narrow', Impact, 'Arial Black', sans-serif", fontWeight: 900, letterSpacing: "0.12em", fontSize: "15px", textTransform: "uppercase" as const }}>
     <span style={{ color: "white" }}>Samsung</span>
@@ -567,6 +689,20 @@ const PlainName = ({ name }: { name: string }) => (
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
 const roles: Role[] = [
+  {
+    id: "crossvalidated",
+    companyNode: <PlainName name="CrossValidated Ventures" />,
+    title: "Software Engineer",
+    period: "Jun 2026 – Present",
+    location: "San Francisco, CA",
+    theme: T.crossvalidated,
+    shortBlurb: "Early-stage startup turning public conversations on Reddit, Hacker News and elsewhere into market intelligence for growth teams. I work end to end, from the LLM relevance pipeline to the billing and credit systems underneath it.",
+    body: [
+      "I built the credit system as a transaction history instead of a single balance, so every number is traceable and retries are safe. I also built AI-assisted onboarding that researches a new customer's product and competitors, which cut most of the manual setup work. A lot of my time goes into working inside existing systems: tracing unfamiliar flows, fixing reliability issues in billing, and testing changes to the relevance pipeline against trusted examples before they ship.",
+    ],
+    HeaderSVG: CrossValidatedHeaderSVG,
+    ExpandedSVG: CrossValidatedExpandedSVG,
+  },
   {
     id: "agent-techs",
     companyNode: <PlainName name="Agent-Techs AI" />,
@@ -863,19 +999,21 @@ function RoleCard({ role, index }: { role: Role; index: number }) {
                   </div>
                   <h3 className="leading-snug inline-flex items-center gap-1.5">
                     {role.companyNode}
-                    <a
-                      href={role.website}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={(e) => e.stopPropagation()}
-                      aria-label="Visit company website"
-                      className="inline-flex items-center transition-opacity duration-200 hover:!opacity-100"
-                      style={{ color: theme.chipColor, opacity: 0.5 }}
-                    >
-                      <svg width="11" height="11" viewBox="0 0 16 16" fill="none" aria-hidden>
-                        <path d="M5 11L11 5M11 5H6M11 5V10" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
-                    </a>
+                    {role.website && (
+                      <a
+                        href={role.website}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        aria-label="Visit company website"
+                        className="inline-flex items-center transition-opacity duration-200 hover:!opacity-100"
+                        style={{ color: theme.chipColor, opacity: 0.5 }}
+                      >
+                        <svg width="11" height="11" viewBox="0 0 16 16" fill="none" aria-hidden>
+                          <path d="M5 11L11 5M11 5H6M11 5V10" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      </a>
+                    )}
                   </h3>
                   <p className="font-mono text-xs mt-1" style={{ color: theme.chipColor, opacity: 0.65 }}>
                     {role.title}
@@ -939,6 +1077,7 @@ function RoleCard({ role, index }: { role: Role; index: number }) {
                         {para}
                       </p>
                     ))}
+                    {role.highlights && role.highlights.length > 0 && (
                     <div className="rounded-lg p-4 grid grid-cols-2 md:grid-cols-3 gap-4 md:max-w-[58%]"
                       style={{ backgroundColor: theme.highlightsBg }}>
                       {role.highlights.map((h) => (
@@ -950,6 +1089,8 @@ function RoleCard({ role, index }: { role: Role; index: number }) {
                         </div>
                       ))}
                     </div>
+                    )}
+                    {role.tags && role.tags.length > 0 && (
                     <div className="flex flex-wrap gap-1.5 pt-0.5">
                       {role.tags.map((tag) => (
                         <span key={tag} className="font-mono text-xs px-2.5 py-1 rounded-full"
@@ -958,6 +1099,7 @@ function RoleCard({ role, index }: { role: Role; index: number }) {
                         </span>
                       ))}
                     </div>
+                    )}
                   </div>
                 </motion.div>
               )}
@@ -1012,7 +1154,7 @@ export default function Experience() {
             transition={{ duration: 0.6, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
             className="text-sm mt-3 pl-9 max-w-md leading-relaxed" style={{ color: "var(--text-muted)" }}
           >
-            Five roles across research, systems, full-stack, and applied AI.
+            Six roles across research, systems, full-stack, and applied AI.
             Click any card to read the full story.
           </motion.p>
         </div>
