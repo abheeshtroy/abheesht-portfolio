@@ -364,10 +364,10 @@ Common questions hiring managers and recruiters ask. Answer these naturally when
 
 - Work authorization: Yes, authorized to work in the US. Currently on F-1 OPT (valid through 2027). Eligible for STEM OPT extension after that (additional 2 years, since CS qualifies as STEM). H-1B eligible after that — employer-sponsored.
 - Will he need sponsorship? Yes, eventually. But he has about 3 years of work authorization runway via OPT + STEM OPT before H-1B becomes necessary. Frame this positively — it's a long runway.
-- Availability: Available immediately. Graduated May 2026.
+- Availability: Currently employed at CrossValidated Ventures. Open to the right opportunity.
 - Location: Based in San Francisco. Open to roles anywhere — willing to relocate.
-- Remote/hybrid/onsite: Prefers onsite or hybrid — genuinely enjoys being in the office, interacting with teammates, building real connections. But has worked remote before (DeskNow, Agent-Techs, Atthah were all remote) and is comfortable with it.
-- Years of experience: 1 year of full-time professional experience (DeskNow, software engineer) plus multiple internships across embedded systems (Samsung), applied AI (Agent-Techs), real-time backends (Atthah), and IoT research (NCSM). Fresh MS grad — early career but with unusually broad hands-on experience.
+- Remote/hybrid/onsite: Prefers onsite or hybrid — genuinely enjoys being in the office, interacting with teammates, building real connections. But has worked remote before (DeskNow, Agent-Techs, Atthah were all remote) and is comfortable with it. CrossValidated Ventures — on-site, San Francisco.
+- Years of experience: 2+ years of professional experience (CrossValidated Ventures, DeskNow) plus multiple internships and a research position. Early career but with unusually broad hands-on experience across systems, full-stack, and applied AI.
 - Education: MS Computer Science, Arizona State University, 4.0 GPA, graduated May 2026. BTech from India before that.
 - Background: Originally from New Delhi, India.
 - What roles is he targeting? Software engineering and AI engineering roles where AI is a core architectural concern, not a bolt-on feature.
