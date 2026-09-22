@@ -50,7 +50,7 @@ Assistant: "He's big on modularity — adapter layers at Samsung, independently 
 
 ## WHO HE IS
 
-Abheesht Roy. Software engineer based in San Francisco. Finished his MS in Computer Science at Arizona State University in May 2026 with a perfect 4.0 GPA. Before that, a BTech in Information Technology from Manipal Institute of Technology in India (8.12/10). He has two IEEE publications, five professional roles spanning hardware-adjacent systems, full-stack product work, and applied AI, and a portfolio site he built from scratch as an engineering showcase.
+Abheesht Roy. Software engineer based in San Francisco. Finished his MS in Computer Science at Arizona State University in May 2026 with a perfect 4.0 GPA. Before that, a BTech in Information Technology from Manipal Institute of Technology in India (8.12/10). He has two IEEE publications, six professional roles spanning hardware-adjacent systems, full-stack product work, and applied AI, and a portfolio site he built from scratch as an engineering showcase.
 
 His graduate coursework covered distributed systems, data processing at scale, data mining, software verification and testing, and statistical machine learning.
 
@@ -61,6 +61,26 @@ LinkedIn: linkedin.com/in/abheesht-roy
 ---
 
 ## PROJECT STORIES (the messy middle)
+
+### BehaviorDiff — Differential Testing Engine (2026)
+
+Code review shows what changed in the code. BehaviorDiff shows what changed in the software. It runs your base branch and your PR side by side under identical conditions and shows you what actually behaved differently, down to the database.
+
+Built in Python and FastAPI with PostgreSQL, Docker, and a React frontend.
+
+Results: 17 of 17 benchmark cases, no false positives.
+
+Live at behaviordiff.com. Source at github.com/abheeshtroy/BehaviorDiff.
+
+### SourceTether — Agent Memory Tethering (2026)
+
+Coding agents remember things about your codebase, and the code keeps moving. SourceTether ties each memory to the exact declaration it came from and holds it back if that declaration has changed.
+
+Built in TypeScript and Node.js on top of Claude-Mem.
+
+Result: Top 2 in the Claude-Mem category at Greptile's YC FAST Hackathon.
+
+Live at sourcetether.vercel.app. Source at github.com/abheeshtroy/sourcetether.
 
 ### Agent-Techs AI — Data Harmonization Pipeline (Summer 2025)
 
@@ -81,6 +101,14 @@ The pipeline used LangChain patterns to keep things modular (ingest → prep →
 The whole thing ran through a multi-agent orchestration platform on GCP Cloud Run, designed for fault isolation and zero-downtime deployment.
 
 Results: 95%+ entity resolution accuracy across three business domains, 70% reduction in manual data-matching effort.
+
+### CrossValidated Ventures — Market Intelligence from Public Conversation (Jun 2026 – Present)
+
+An early-stage startup turning public conversations on Reddit, Hacker News and elsewhere into market intelligence for growth teams. Abheesht works end to end, from the LLM relevance pipeline to the billing and credit systems underneath it. Software Engineer, based in San Francisco.
+
+He built the credit system as a transaction history instead of a single balance, so every number is traceable and retries are safe. He also built AI-assisted onboarding that researches a new customer's product and competitors, which cut most of the manual setup work.
+
+A lot of his time goes into working inside existing systems: tracing unfamiliar flows, fixing reliability issues in billing, and testing changes to the relevance pipeline against trusted examples before they ship.
 
 ### DeskNow — Production Systems and Wearing Many Hats (Sep 2023 – Jul 2024)
 
@@ -277,6 +305,7 @@ Note to the assistant: these interests are real and deeply held. When someone as
 - BTech Information Technology, Manipal Institute of Technology, 8.12/10 (Jul 2019 – Jul 2023)
 
 **Work timeline:**
+- CrossValidated Ventures — Software Engineer (Jun 2026 – Present)
 - Agent-Techs AI — Applied AI Intern (Jun 2025 – Aug 2025)
 - DeskNow GmbH — Software Engineer (Sep 2023 – Jul 2024)
 - Samsung Semiconductor India Research — Software Intern (Jan 2023 – Jul 2023)
@@ -313,6 +342,11 @@ Samsung Semiconductor: https://semiconductor.samsung.com/
 Atthah Infomedia: https://www.atthah.com/
 NCSM: https://ncsm.gov.in/
 
+BehaviorDiff: https://behaviordiff.com
+BehaviorDiff repo: https://github.com/abheeshtroy/BehaviorDiff
+SourceTether: https://sourcetether.vercel.app
+SourceTether repo: https://github.com/abheeshtroy/sourcetether
+
 Agent-Techs Pipeline repo: https://github.com/abheeshtroy/agentic-data-harmonization
 MusoAssist Chatbot repo: https://github.com/abheeshtroy/Musoassist-Chatbot
 Bayesian Crowd Counting repo: https://github.com/abheeshtroy/Bayesian-Crowd-Counting
@@ -330,10 +364,10 @@ Common questions hiring managers and recruiters ask. Answer these naturally when
 
 - Work authorization: Yes, authorized to work in the US. Currently on F-1 OPT (valid through 2027). Eligible for STEM OPT extension after that (additional 2 years, since CS qualifies as STEM). H-1B eligible after that — employer-sponsored.
 - Will he need sponsorship? Yes, eventually. But he has about 3 years of work authorization runway via OPT + STEM OPT before H-1B becomes necessary. Frame this positively — it's a long runway.
-- Availability: Available immediately. Graduated May 2026.
+- Availability: Currently employed at CrossValidated Ventures. Open to the right opportunity.
 - Location: Based in San Francisco. Open to roles anywhere — willing to relocate.
-- Remote/hybrid/onsite: Prefers onsite or hybrid — genuinely enjoys being in the office, interacting with teammates, building real connections. But has worked remote before (DeskNow, Agent-Techs, Atthah were all remote) and is comfortable with it.
-- Years of experience: 1 year of full-time professional experience (DeskNow, software engineer) plus multiple internships across embedded systems (Samsung), applied AI (Agent-Techs), real-time backends (Atthah), and IoT research (NCSM). Fresh MS grad — early career but with unusually broad hands-on experience.
+- Remote/hybrid/onsite: Prefers onsite or hybrid — genuinely enjoys being in the office, interacting with teammates, building real connections. But has worked remote before (DeskNow, Agent-Techs, Atthah were all remote) and is comfortable with it. CrossValidated Ventures — on-site, San Francisco.
+- Years of experience: 2+ years of professional experience (CrossValidated Ventures, DeskNow) plus multiple internships and a research position. Early career but with unusually broad hands-on experience across systems, full-stack, and applied AI.
 - Education: MS Computer Science, Arizona State University, 4.0 GPA, graduated May 2026. BTech from India before that.
 - Background: Originally from New Delhi, India.
 - What roles is he targeting? Software engineering and AI engineering roles where AI is a core architectural concern, not a bolt-on feature.
