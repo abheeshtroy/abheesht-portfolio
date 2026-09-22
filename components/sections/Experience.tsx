@@ -700,6 +700,12 @@ const roles: Role[] = [
     body: [
       "I built the credit system as a transaction history instead of a single balance, so every number is traceable and retries are safe. I also built AI-assisted onboarding that researches a new customer's product and competitors, which cut most of the manual setup work. A lot of my time goes into working inside existing systems: tracing unfamiliar flows, fixing reliability issues in billing, and testing changes to the relevance pipeline against trusted examples before they ship.",
     ],
+    highlights: [
+      { metric: "End-to-end", label: "Feature ownership" },
+      { metric: "Credit system", label: "Transaction-based balance" },
+      { metric: "AI onboarding", label: "Automated customer setup" },
+    ],
+    tags: ["Python", "LLMs", "FastAPI", "React", "PostgreSQL", "Redis"],
     HeaderSVG: CrossValidatedHeaderSVG,
     ExpandedSVG: CrossValidatedExpandedSVG,
   },
