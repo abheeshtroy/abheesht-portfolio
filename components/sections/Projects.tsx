@@ -4,15 +4,25 @@ import { motion, type Variants } from "framer-motion";
 import { featuredProjects, secondaryProjects } from "@/lib/projects";
 import SectionOrbs from "@/components/SectionOrbs";
 
-const projectPrompts: Record<string, string> = {
-  "agent-techs-pipeline": "What's the real story behind the data-matching pipeline — what went wrong?",
-  "text2sql": "Tell me about the Text2SQL project — what was Abheesht's contribution?",
-  "graph-pipeline": "Tell me about the graph data pipeline project",
-  "samsung-diagnostic": "Tell me about the Samsung TCON tool — what was the hard part?",
-  "agrichain": "Tell me about the AgriChain project",
-  "context-monitoring": "Tell me about the context monitoring app",
-  "air-passenger": "Tell me about the air passenger prediction project",
-  "mushroom-classifier": "Tell me about the mushroom classifier project",
+const projectPrompts: Record<string, string[]> = {
+  "behaviordiff": [
+    "What does BehaviorDiff actually catch?",
+    "How is this different from just running tests?",
+    "Walk me through the checkout demo scenario",
+  ],
+  "sourcetether": [
+    "What problem does SourceTether solve?",
+    "How does the AST fingerprinting work?",
+    "What happened at the hackathon?",
+  ],
+  "agent-techs-pipeline": ["What's the real story behind the data-matching pipeline — what went wrong?"],
+  "text2sql": ["Tell me about the Text2SQL project — what was Abheesht's contribution?"],
+  "graph-pipeline": ["Tell me about the graph data pipeline project"],
+  "samsung-diagnostic": ["Tell me about the Samsung TCON tool — what was the hard part?"],
+  "agrichain": ["Tell me about the AgriChain project"],
+  "context-monitoring": ["Tell me about the context monitoring app"],
+  "air-passenger": ["Tell me about the air passenger prediction project"],
+  "mushroom-classifier": ["Tell me about the mushroom classifier project"],
 };
 
 const fadeUp: Variants = {
@@ -198,7 +208,7 @@ export default function Projects() {
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
-                          window.dispatchEvent(new CustomEvent('open-chat', { detail: { message: projectPrompts[project.slug] } }));
+                          window.dispatchEvent(new CustomEvent('open-chat', { detail: { message: projectPrompts[project.slug][0] } }));
                         }}
                         data-cursor-snap
                         className="font-mono text-xs flex items-center gap-1 transition-colors cursor-pointer"
@@ -207,12 +217,14 @@ export default function Projects() {
                         ask about this ↗
                       </button>
                     )}
-                    <span
-                      className="ml-auto font-mono text-xs flex items-center gap-1.5"
-                      style={{ color: "rgba(255,255,255,0.30)" }}
-                    >
-                      demo coming soon
-                    </span>
+                    {!project.live && (
+                      <span
+                        className="ml-auto font-mono text-xs flex items-center gap-1.5"
+                        style={{ color: "rgba(255,255,255,0.30)" }}
+                      >
+                        demo coming soon
+                      </span>
+                    )}
                   </div>
                 </div>
               </div>
